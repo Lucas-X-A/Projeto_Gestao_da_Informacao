@@ -1,0 +1,14 @@
+PREFIX cti:  <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?conceito (COUNT(DISTINCT ?ppg) as ?quantidade_ppg)
+WHERE {
+	?ppg a cti:PPG ;
+		cti:avaliado ?conceitoInd .
+
+	?conceitoInd cti:cd_conceito_programa ?conceito ;
+				 cti:an_base_conceito ?ano .
+	
+	FILTER (?ano = 2024)
+}
+GROUP BY ?conceito
+ORDER BY ?conceito

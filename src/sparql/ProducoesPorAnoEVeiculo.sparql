@@ -1,0 +1,12 @@
+PREFIX cti:  <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?ano ?veiculo ?titulo
+WHERE {
+	?artigo a cti:Producao_Cientifica ;
+			cti:an_base_producao ?ano ;
+			cti:nm_titulo ?titulo ;
+			cti:publicada ?veiculoInd .
+
+	?veiculoInd cti:nm_veiculo_publicacao ?veiculo .
+}
+ORDER BY ?ano ?veiculo ?titulo

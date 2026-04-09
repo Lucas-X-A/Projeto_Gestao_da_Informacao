@@ -1,0 +1,20 @@
+PREFIX cti:  <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?ppg ?codigo ?nome ?modalidadePrograma ?siglaIct ?nomeIct ?conceito ?ano
+WHERE {
+	?ppg a cti:PPG ;
+		cti:cd_programa_ies ?codigo ;
+		cti:nm_programa_ies ?nome ;
+		cti:nm_modalidade_programa ?modalidadePrograma ;
+		cti:sediado ?ict ;
+		cti:avaliado ?conceitoInd .
+
+	?ict cti:sg_entidade_ensino ?siglaIct ;
+		 cti:nm_entidade_ensino ?nomeIct .
+
+	?conceitoInd cti:cd_conceito_programa ?conceito ;
+				 cti:an_base_conceito ?ano .
+	
+	FILTER (?conceito = "5")
+}
+ORDER BY ?siglaIct ?codigo ?ano

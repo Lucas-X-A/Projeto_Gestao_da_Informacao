@@ -1,0 +1,279 @@
+vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
+
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+
+	concept PPG
+
+	concept ICT
+
+	concept Conceito_PPG
+
+	relation sediado [
+		from PPG
+		to ICT
+	]
+
+	relation avaliado [
+		from PPG
+		to Conceito_PPG
+	]
+
+	concept Discente < Pessoa
+
+	concept Docente < Pessoa
+
+	relation vinculado [
+		from Discente
+		to PPG
+	]
+
+	relation membro [
+		from Docente
+		to PPG
+	]
+
+	aspect Pessoa
+
+	scalar property an_base_conceito [
+		domain Conceito_PPG
+		range xsd:integer
+	]
+
+	scalar property cd_conceito_programa [
+		domain Conceito_PPG
+		range xsd:string
+	]
+
+	scalar property cd_entidade_capes [
+		domain ICT
+		range xsd:string
+	]
+
+	scalar property sg_entidade_ensino [
+		domain ICT
+		range xsd:string
+	]
+
+	scalar property nm_entidade_ensino [
+		domain ICT
+		range xsd:string
+	]
+
+	scalar property sg_uf [
+		domain ICT
+		range xsd:string
+	]
+
+	scalar property cd_programa_ies [
+		domain PPG
+		range xsd:string
+	]
+
+	scalar property nm_programa_ies [
+		domain PPG
+		range xsd:string
+	]
+
+	scalar property nm_modalidade_programa [
+		domain PPG
+		range xsd:string
+	]
+
+	scalar property nm_area_conhecimento [
+		domain PPG
+		range xsd:string
+	]
+
+	scalar property id_pessoa [
+		domain Pessoa
+		range xsd:integer
+	]
+
+	scalar property nr_documento [
+		domain Pessoa
+		range xsd:string
+	]
+
+	scalar property nm_pessoa [
+		domain Pessoa
+		range xsd:string
+	]
+
+	scalar property an_nascimento [
+		domain Pessoa
+		range xsd:integer
+	]
+
+	scalar property nm_pais_nacionalidade [
+		domain Pessoa
+		range xsd:string
+	]
+
+	scalar property ds_url_cv_lattes [
+		domain Pessoa
+		range xsd:string
+	]
+
+	scalar property ds_grau_academico_discente [
+		domain Discente
+		range xsd:string
+	]
+
+	scalar property nm_situacao_discente [
+		domain Discente
+		range xsd:string
+	]
+
+	scalar property qt_mes_titulacao [
+		domain Discente
+		range xsd:int
+	]
+
+	scalar property ds_categoria_docente [
+		domain Docente
+		range xsd:int
+	]
+
+	scalar property ds_tipo_vinculo_docente_ies [
+		domain Docente
+		range xsd:string
+	]
+
+	scalar property ds_regime_trabalho [
+		domain Docente
+		range xsd:string
+	]
+
+	scalar property cd_cat_bolsa_produtividade [
+		domain Docente
+		range xsd:string
+	]
+
+	scalar property an_titulacao [
+		domain Docente
+		range xsd:int
+	]
+
+	scalar property nm_grau_titulacao [
+		domain Docente
+		range xsd:string
+	]
+
+	concept Autor < Pessoa
+
+	scalar property ds_orc_id [
+		domain Autor
+		range xsd:string
+	]
+
+	scalar property ds_scopus_id [
+		domain Autor
+		range xsd:string
+	]
+
+	scalar property ds_url_google_scholar [
+		domain Autor
+		range xsd:string
+	]
+
+	concept Producao_Cientifica
+
+	scalar property an_base_producao [
+		domain Producao_Cientifica
+		range xsd:integer
+	]
+
+	scalar property ds_natureza [
+		domain Producao_Cientifica
+		range xsd:string
+	]
+
+	scalar property nm_titulo [
+		domain Producao_Cientifica
+		range xsd:string
+	]
+
+	scalar property ds_url_acesso [
+		domain Producao_Cientifica
+		range xsd:string
+	]
+
+	scalar property ds_palavras_chave [
+		domain Producao_Cientifica
+		range xsd:string
+	]
+
+	scalar property ds_doi [
+		domain Producao_Cientifica
+		range xsd:string
+	]
+
+	scalar property nr_citacoes_publicacao [
+		domain Producao_Cientifica
+		range xsd:string
+	]
+
+	relation autoria [
+		from Autor
+		to Producao_Cientifica
+	]
+
+	concept Veiculo_Publicacao
+
+	scalar property nm_veiculo_publicacao [
+		domain Veiculo_Publicacao
+		range xsd:string
+	]
+
+	scalar property ds_isbn_issn [
+		domain Veiculo_Publicacao
+		range xsd:string
+	]
+
+	scalar property nr_citescore_scopus [
+		domain Veiculo_Publicacao
+		range xsd:int
+	]
+
+	scalar property nr_quartil_scopus [
+		domain Veiculo_Publicacao
+		range xsd:int
+	]
+
+	relation publicada [
+		from Producao_Cientifica
+		to Veiculo_Publicacao
+	]
+
+	concept Citacao
+
+	scalar property an_base_citacao [
+		domain Citacao
+		range xsd:integer
+	]
+
+	scalar property nr_indice_h [
+		domain Citacao
+		range xsd:int
+	]
+
+	scalar property nr_indice_i10 [
+		domain Citacao
+		range xsd:int
+	]
+
+	scalar property nr_citacoes_autor [
+		domain Citacao
+		range xsd:integer
+	]
+
+	relation mensurado [
+		from Autor
+		to Citacao
+	]
+
+	relation orientador [
+		from Discente
+		to Docente
+	]
+}

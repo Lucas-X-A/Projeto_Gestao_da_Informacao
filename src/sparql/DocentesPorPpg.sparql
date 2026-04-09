@@ -1,0 +1,15 @@
+PREFIX cti:  <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?siglaIct ?ppgNome ?docente ?docenteNome
+WHERE {
+	?ppg a cti:PPG ;
+		 cti:nm_programa_ies ?ppgNome ;
+		 cti:sediado ?ict .
+
+	?ict cti:sg_entidade_ensino ?siglaIct .
+
+	?docente a cti:Docente ;
+			 cti:membro ?ppg ;
+			 cti:nm_pessoa ?docenteNome .
+}
+ORDER BY ?siglaIct ?ppgNome ?docenteNome

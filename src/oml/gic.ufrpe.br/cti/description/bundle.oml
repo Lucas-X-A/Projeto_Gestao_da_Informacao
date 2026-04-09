@@ -1,0 +1,12 @@
+@dc:description "Description bundle para raciocínio fechado sobre CT&I"
+description bundle <http://gic.ufrpe.br/cti/description/bundle#> as ^bundle {
+
+	uses <http://purl.org/dc/elements/1.1/> as dc
+
+	// O description bundle "usa" o vocabulary bundle de CT&I
+	uses <http://gic.ufrpe.br/cti/vocabulary/bundle#>
+
+	// O description bundle "inclui" a descrição CTI-PE
+	includes <http://gic.ufrpe.br/cti/description/cti-pe#>
+
+}

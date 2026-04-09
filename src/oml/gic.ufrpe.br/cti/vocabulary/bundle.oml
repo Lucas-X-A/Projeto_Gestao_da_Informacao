@@ -1,0 +1,6 @@
+vocabulary bundle <http://gic.ufrpe.br/cti/vocabulary/bundle#> as ^bundle {
+
+	// O vocabulary bundle "inclui" o vocabulário CTI
+	includes <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+}

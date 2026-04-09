@@ -1,0 +1,5595 @@
+@dc:description "Descrição de elementos de Ciência, Tecnologia e Inovação em Pernambuco"
+description <http://gic.ufrpe.br/cti/description/cti-pe#> as cti-pe {
+
+	uses <http://purl.org/dc/elements/1.1/> as dc
+	uses <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti
+
+	// =====================================================================
+	// INSTITUIÇÕES DE CIÊNCIA E TECNOLOGIA (ICT)
+	// =====================================================================
+
+	instance ict_25001019 : cti:ICT [
+		cti:cd_entidade_capes "25001019"
+		cti:sg_entidade_ensino "UFPE"
+		cti:nm_entidade_ensino "UNIVERSIDADE FEDERAL DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25002015 : cti:ICT [
+		cti:cd_entidade_capes "25002015"
+		cti:sg_entidade_ensino "UNICAP"
+		cti:nm_entidade_ensino "UNIVERSIDADE CATÓLICA DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25003011 : cti:ICT [
+		cti:cd_entidade_capes "25003011"
+		cti:sg_entidade_ensino "UFRPE"
+		cti:nm_entidade_ensino "UNIVERSIDADE FEDERAL RURAL DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25004018 : cti:ICT [
+		cti:cd_entidade_capes "25004018"
+		cti:sg_entidade_ensino "UPE"
+		cti:nm_entidade_ensino "UNIVERSIDADE DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25005014 : cti:ICT [
+		cti:cd_entidade_capes "25005014"
+		cti:sg_entidade_ensino "IMIP"
+		cti:nm_entidade_ensino "INSTITUTO DE MEDICINA INTEGRAL PROFESSOR FERNANDO FIGUEIRA"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25007017 : cti:ICT [
+		cti:cd_entidade_capes "25007017"
+		cti:sg_entidade_ensino "FIOCRUZ-NESC/CPQAM"
+		cti:nm_entidade_ensino "FIOCRUZ ( CENTRO DE PESQUISA AGGEU MAGALHÃES )"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25009010 : cti:ICT [
+		cti:cd_entidade_capes "25009010"
+		cti:sg_entidade_ensino "IFPE"
+		cti:nm_entidade_ensino "INSTITUTO FED. DE EDUC., CIÊNCIA E TECNOLOGIA DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25017012 : cti:ICT [
+		cti:cd_entidade_capes "25017012"
+		cti:sg_entidade_ensino "ITEP"
+		cti:nm_entidade_ensino "ASSOCIAÇÃO INSTITUTO DE TECNOLOGIA DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25018019 : cti:ICT [
+		cti:cd_entidade_capes "25018019"
+		cti:sg_entidade_ensino "UNIFBV-WYDEN"
+		cti:nm_entidade_ensino "CENTRO UNIVERSITÁRIO FBV WYDEN"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25019015 : cti:ICT [
+		cti:cd_entidade_capes "25019015"
+		cti:sg_entidade_ensino "CESAR"
+		cti:nm_entidade_ensino "CENTRO DE ESTUDOS E SISTEMAS AVANÇADOS DO RECIFE (PE)"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25020013 : cti:ICT [
+		cti:cd_entidade_capes "25020013"
+		cti:sg_entidade_ensino "UNIVASF"
+		cti:nm_entidade_ensino "UNIVERSIDADE FEDERAL DO VALE DO SÃO FRANCISCO"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_25025015 : cti:ICT [
+		cti:cd_entidade_capes "25025015"
+		cti:sg_entidade_ensino "FPS"
+		cti:nm_entidade_ensino "FACULDADE PERNAMBUCANA DE SAÚDE"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_26017008 : cti:ICT [
+		cti:cd_entidade_capes "26017008"
+		cti:sg_entidade_ensino "FADIC"
+		cti:nm_entidade_ensino "FACULDADE DAMAS DA INSTRUÇÃO CRISTÃ"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_26038005 : cti:ICT [
+		cti:cd_entidade_capes "26038005"
+		cti:sg_entidade_ensino "CERS"
+		cti:nm_entidade_ensino "FACULDADE CERS"
+		cti:sg_uf "PE"
+	]
+
+	instance ict_26041006 : cti:ICT [
+		cti:cd_entidade_capes "26041006"
+		cti:sg_entidade_ensino "UFAPE"
+		cti:nm_entidade_ensino "UNIVERSIDADE FEDERAL DO AGRESTE DE PERNAMBUCO"
+		cti:sg_uf "PE"
+	]
+
+	// =====================================================================
+	// PROGRAMAS DE PÓS-GRADUAÇÃO (PPG)
+	// Relacionados a ICT via "sediado"
+	// Relacionados a Conceitos via "avaliado"
+	// =====================================================================
+
+	instance ppg_25001019092P2 : cti:PPG [
+		cti:cd_programa_ies "25001019092P2"
+		cti:nm_programa_ies "GERONTOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019092P2_2021
+		cti:avaliado conceito_25001019092P2_2022
+		cti:avaliado conceito_25001019092P2_2023
+		cti:avaliado conceito_25001019092P2_2024
+	]
+
+	instance ppg_25001019173P2 : cti:PPG [
+		cti:cd_programa_ies "25001019173P2"
+		cti:nm_programa_ies "GESTÃO, INOVAÇÃO E CONSUMO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019173P2_2021
+		cti:avaliado conceito_25001019173P2_2022
+		cti:avaliado conceito_25001019173P2_2023
+		cti:avaliado conceito_25001019173P2_2024
+	]
+
+	instance ppg_25001019020P1 : cti:PPG [
+		cti:cd_programa_ies "25001019020P1"
+		cti:nm_programa_ies "TECNOLOGIAS ENERGÉTICAS E NUCLEARES"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA NUCLEAR"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019020P1_2021
+		cti:avaliado conceito_25001019020P1_2022
+		cti:avaliado conceito_25001019020P1_2023
+		cti:avaliado conceito_25001019020P1_2024
+	]
+
+	instance ppg_25001019066P1 : cti:PPG [
+		cti:cd_programa_ies "25001019066P1"
+		cti:nm_programa_ies "PSICOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "PSICOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019066P1_2021
+		cti:avaliado conceito_25001019066P1_2022
+		cti:avaliado conceito_25001019066P1_2023
+		cti:avaliado conceito_25001019066P1_2024
+	]
+
+	instance ppg_25001019019P3 : cti:PPG [
+		cti:cd_programa_ies "25001019019P3"
+		cti:nm_programa_ies "ENGENHARIA ELÉTRICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA ELÉTRICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019019P3_2021
+		cti:avaliado conceito_25001019019P3_2022
+		cti:avaliado conceito_25001019019P3_2023
+		cti:avaliado conceito_25001019019P3_2024
+	]
+
+	instance ppg_25001019032P0 : cti:PPG [
+		cti:cd_programa_ies "25001019032P0"
+		cti:nm_programa_ies "LETRAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "LETRAS"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019032P0_2021
+		cti:avaliado conceito_25001019032P0_2022
+		cti:avaliado conceito_25001019032P0_2023
+		cti:avaliado conceito_25001019032P0_2024
+	]
+
+	instance ppg_25001019013P5 : cti:PPG [
+		cti:cd_programa_ies "25001019013P5"
+		cti:nm_programa_ies "ANTROPOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ANTROPOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019013P5_2021
+		cti:avaliado conceito_25001019013P5_2022
+		cti:avaliado conceito_25001019013P5_2023
+		cti:avaliado conceito_25001019013P5_2024
+	]
+
+	instance ppg_25001019002P3 : cti:PPG [
+		cti:cd_programa_ies "25001019002P3"
+		cti:nm_programa_ies "FÍSICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FÍSICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019002P3_2021
+		cti:avaliado conceito_25001019002P3_2022
+		cti:avaliado conceito_25001019002P3_2023
+		cti:avaliado conceito_25001019002P3_2024
+	]
+
+	instance ppg_25001019028P2 : cti:PPG [
+		cti:cd_programa_ies "25001019028P2"
+		cti:nm_programa_ies "NUTRIÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "NUTRIÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019028P2_2021
+		cti:avaliado conceito_25001019028P2_2022
+		cti:avaliado conceito_25001019028P2_2023
+		cti:avaliado conceito_25001019028P2_2024
+	]
+
+	instance ppg_25001019060P3 : cti:PPG [
+		cti:cd_programa_ies "25001019060P3"
+		cti:nm_programa_ies "DESENVOLVIMENTO E MEIO AMBIENTE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIAS AMBIENTAIS"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019060P3_2021
+		cti:avaliado conceito_25001019060P3_2022
+		cti:avaliado conceito_25001019060P3_2023
+		cti:avaliado conceito_25001019060P3_2024
+	]
+
+	instance ppg_25001019095P1 : cti:PPG [
+		cti:cd_programa_ies "25001019095P1"
+		cti:nm_programa_ies "EDUCAÇÃO EM CIÊNCIAS E MATEMÁTICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENSINO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019095P1_2021
+		cti:avaliado conceito_25001019095P1_2022
+		cti:avaliado conceito_25001019095P1_2023
+		cti:avaliado conceito_25001019095P1_2024
+	]
+
+	instance ppg_25001019016P4 : cti:PPG [
+		cti:cd_programa_ies "25001019016P4"
+		cti:nm_programa_ies "GEOGRAFIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "GEOGRAFIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019016P4_2021
+		cti:avaliado conceito_25001019016P4_2022
+		cti:avaliado conceito_25001019016P4_2023
+		cti:avaliado conceito_25001019016P4_2024
+	]
+
+	instance ppg_25001019072P1 : cti:PPG [
+		cti:cd_programa_ies "25001019072P1"
+		cti:nm_programa_ies "FISIOTERAPIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FISIOTERAPIA E TERAPIA OCUPACIONAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019072P1_2021
+		cti:avaliado conceito_25001019072P1_2022
+		cti:avaliado conceito_25001019072P1_2023
+		cti:avaliado conceito_25001019072P1_2024
+	]
+
+	instance ppg_25001019156P0 : cti:PPG [
+		cti:cd_programa_ies "25001019156P0"
+		cti:nm_programa_ies "EDUCAÇÃO FÍSICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "EDUCAÇÃO FÍSICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019156P0_2021
+		cti:avaliado conceito_25001019156P0_2022
+		cti:avaliado conceito_25001019156P0_2023
+		cti:avaliado conceito_25001019156P0_2024
+	]
+
+	instance ppg_25001019048P3 : cti:PPG [
+		cti:cd_programa_ies "25001019048P3"
+		cti:nm_programa_ies "ESTATÍSTICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "PROBABILIDADE E ESTATÍSTICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019048P3_2021
+		cti:avaliado conceito_25001019048P3_2022
+		cti:avaliado conceito_25001019048P3_2023
+		cti:avaliado conceito_25001019048P3_2024
+	]
+
+	instance ppg_25001019044P8 : cti:PPG [
+		cti:cd_programa_ies "25001019044P8"
+		cti:nm_programa_ies "ENGENHARIA QUÍMICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA QUÍMICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019044P8_2021
+		cti:avaliado conceito_25001019044P8_2022
+		cti:avaliado conceito_25001019044P8_2023
+		cti:avaliado conceito_25001019044P8_2024
+	]
+
+	instance ppg_25001019053P7 : cti:PPG [
+		cti:cd_programa_ies "25001019053P7"
+		cti:nm_programa_ies "CIÊNCIA DE MATERIAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MATERIAIS"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019053P7_2021
+		cti:avaliado conceito_25001019053P7_2022
+		cti:avaliado conceito_25001019053P7_2023
+		cti:avaliado conceito_25001019053P7_2024
+	]
+
+	instance ppg_25001019080P4 : cti:PPG [
+		cti:cd_programa_ies "25001019080P4"
+		cti:nm_programa_ies "ENGENHARIA CIVIL E AMBIENTAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA CIVIL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019080P4_2021
+		cti:avaliado conceito_25001019080P4_2022
+		cti:avaliado conceito_25001019080P4_2023
+		cti:avaliado conceito_25001019080P4_2024
+	]
+
+	instance ppg_25001019003P0 : cti:PPG [
+		cti:cd_programa_ies "25001019003P0"
+		cti:nm_programa_ies "MATEMÁTICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MATEMÁTICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019003P0_2021
+		cti:avaliado conceito_25001019003P0_2022
+		cti:avaliado conceito_25001019003P0_2023
+		cti:avaliado conceito_25001019003P0_2024
+	]
+
+	instance ppg_25001019004P6 : cti:PPG [
+		cti:cd_programa_ies "25001019004P6"
+		cti:nm_programa_ies "CIÊNCIAS DA COMPUTAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIA DA COMPUTAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019004P6_2021
+		cti:avaliado conceito_25001019004P6_2022
+		cti:avaliado conceito_25001019004P6_2023
+		cti:avaliado conceito_25001019004P6_2024
+	]
+
+	instance ppg_25001019085P6 : cti:PPG [
+		cti:cd_programa_ies "25001019085P6"
+		cti:nm_programa_ies "ERGONOMIA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "DESENHO INDUSTRIAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019085P6_2021
+		cti:avaliado conceito_25001019085P6_2022
+		cti:avaliado conceito_25001019085P6_2023
+		cti:avaliado conceito_25001019085P6_2024
+	]
+
+	instance ppg_25001019034P2 : cti:PPG [
+		cti:cd_programa_ies "25001019034P2"
+		cti:nm_programa_ies "OCEANOGRAFIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "OCEANOGRAFIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019034P2_2021
+		cti:avaliado conceito_25001019034P2_2022
+		cti:avaliado conceito_25001019034P2_2023
+		cti:avaliado conceito_25001019034P2_2024
+	]
+
+	instance ppg_25001019055P0 : cti:PPG [
+		cti:cd_programa_ies "25001019055P0"
+		cti:nm_programa_ies "GESTÃO PÚBLICA PARA O DESENVOLVIMENTO DO NORDESTE"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019055P0_2021
+		cti:avaliado conceito_25001019055P0_2022
+		cti:avaliado conceito_25001019055P0_2023
+		cti:avaliado conceito_25001019055P0_2024
+	]
+
+	instance ppg_25001019087P9 : cti:PPG [
+		cti:cd_programa_ies "25001019087P9"
+		cti:nm_programa_ies "GESTÃO E ECONOMIA DA SAÚDE"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ECONOMIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019087P9_2021
+		cti:avaliado conceito_25001019087P9_2022
+		cti:avaliado conceito_25001019087P9_2023
+		cti:avaliado conceito_25001019087P9_2024
+	]
+
+	instance ppg_25001019038P8 : cti:PPG [
+		cti:cd_programa_ies "25001019038P8"
+		cti:nm_programa_ies "BIOLOGIA VEGETAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BOTÂNICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019038P8_2021
+		cti:avaliado conceito_25001019038P8_2022
+		cti:avaliado conceito_25001019038P8_2023
+		cti:avaliado conceito_25001019038P8_2024
+	]
+
+	instance ppg_25001019009P8 : cti:PPG [
+		cti:cd_programa_ies "25001019009P8"
+		cti:nm_programa_ies "BIOQUÍMICA E FISIOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BIOQUÍMICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019009P8_2021
+		cti:avaliado conceito_25001019009P8_2022
+		cti:avaliado conceito_25001019009P8_2023
+		cti:avaliado conceito_25001019009P8_2024
+	]
+
+	instance ppg_25001019058P9 : cti:PPG [
+		cti:cd_programa_ies "25001019058P9"
+		cti:nm_programa_ies "ODONTOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ODONTOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019058P9_2021
+		cti:avaliado conceito_25001019058P9_2022
+		cti:avaliado conceito_25001019058P9_2023
+		cti:avaliado conceito_25001019058P9_2024
+	]
+
+	instance ppg_25001019018P7 : cti:PPG [
+		cti:cd_programa_ies "25001019018P7"
+		cti:nm_programa_ies "PSICOLOGIA COGNITIVA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "PSICOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019018P7_2021
+		cti:avaliado conceito_25001019018P7_2022
+		cti:avaliado conceito_25001019018P7_2023
+		cti:avaliado conceito_25001019018P7_2024
+	]
+
+	instance ppg_25001019071P5 : cti:PPG [
+		cti:cd_programa_ies "25001019071P5"
+		cti:nm_programa_ies "FILOSOFIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FILOSOFIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019071P5_2021
+		cti:avaliado conceito_25001019071P5_2023
+	]
+
+	instance ppg_25001019082P7 : cti:PPG [
+		cti:cd_programa_ies "25001019082P7"
+		cti:nm_programa_ies "ENFERMAGEM"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENFERMAGEM"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019082P7_2021
+		cti:avaliado conceito_25001019082P7_2022
+		cti:avaliado conceito_25001019082P7_2023
+		cti:avaliado conceito_25001019082P7_2024
+	]
+
+	instance ppg_25001019045P4 : cti:PPG [
+		cti:cd_programa_ies "25001019045P4"
+		cti:nm_programa_ies "CIÊNCIAS BIOLÓGICAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BIOLOGIA GERAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019045P4_2021
+		cti:avaliado conceito_25001019045P4_2022
+		cti:avaliado conceito_25001019045P4_2023
+		cti:avaliado conceito_25001019045P4_2024
+	]
+
+	instance ppg_25001019029P9 : cti:PPG [
+		cti:cd_programa_ies "25001019029P9"
+		cti:nm_programa_ies "DIREITO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "DIREITO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019029P9_2021
+		cti:avaliado conceito_25001019029P9_2022
+		cti:avaliado conceito_25001019029P9_2023
+		cti:avaliado conceito_25001019029P9_2024
+	]
+
+	instance ppg_25001019090P0 : cti:PPG [
+		cti:cd_programa_ies "25001019090P0"
+		cti:nm_programa_ies "ENGENHARIA DE PRODUÇÃO - CENTRO ACADÊMICO DO AGRESTE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA DE PRODUÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019090P0_2021
+		cti:avaliado conceito_25001019090P0_2022
+		cti:avaliado conceito_25001019090P0_2023
+		cti:avaliado conceito_25001019090P0_2024
+	]
+
+	instance ppg_25001019081P0 : cti:PPG [
+		cti:cd_programa_ies "25001019081P0"
+		cti:nm_programa_ies "BIOTECNOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BIOTECNOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019081P0_2021
+		cti:avaliado conceito_25001019081P0_2022
+		cti:avaliado conceito_25001019081P0_2023
+		cti:avaliado conceito_25001019081P0_2024
+	]
+
+	instance ppg_25001019079P6 : cti:PPG [
+		cti:cd_programa_ies "25001019079P6"
+		cti:nm_programa_ies "BIOLOGIA APLICADA À SAÚDE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BIOLOGIA GERAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019079P6_2021
+		cti:avaliado conceito_25001019079P6_2022
+		cti:avaliado conceito_25001019079P6_2023
+		cti:avaliado conceito_25001019079P6_2024
+	]
+
+	instance ppg_25001019021P8 : cti:PPG [
+		cti:cd_programa_ies "25001019021P8"
+		cti:nm_programa_ies "ENGENHARIA DE PRODUÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA DE PRODUÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019021P8_2021
+		cti:avaliado conceito_25001019021P8_2022
+		cti:avaliado conceito_25001019021P8_2023
+		cti:avaliado conceito_25001019021P8_2024
+	]
+
+	instance ppg_25001019046P0 : cti:PPG [
+		cti:cd_programa_ies "25001019046P0"
+		cti:nm_programa_ies "ADMINISTRAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019046P0_2021
+		cti:avaliado conceito_25001019046P0_2022
+		cti:avaliado conceito_25001019046P0_2023
+		cti:avaliado conceito_25001019046P0_2024
+	]
+
+	instance ppg_25001019088P5 : cti:PPG [
+		cti:cd_programa_ies "25001019088P5"
+		cti:nm_programa_ies "ENGENHARIA BIOMÉDICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA BIOMÉDICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019088P5_2021
+		cti:avaliado conceito_25001019088P5_2022
+		cti:avaliado conceito_25001019088P5_2023
+		cti:avaliado conceito_25001019088P5_2024
+	]
+
+	instance ppg_25001019012P9 : cti:PPG [
+		cti:cd_programa_ies "25001019012P9"
+		cti:nm_programa_ies "SOCIOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "SOCIOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019012P9_2021
+		cti:avaliado conceito_25001019012P9_2022
+		cti:avaliado conceito_25001019012P9_2023
+		cti:avaliado conceito_25001019012P9_2024
+	]
+
+	instance ppg_25001019172P6 : cti:PPG [
+		cti:cd_programa_ies "25001019172P6"
+		cti:nm_programa_ies "SAÚDE DA COMUNICAÇÃO HUMANA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FONOAUDIOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019172P6_2021
+		cti:avaliado conceito_25001019172P6_2022
+		cti:avaliado conceito_25001019172P6_2023
+		cti:avaliado conceito_25001019172P6_2024
+	]
+
+	instance ppg_25001019030P7 : cti:PPG [
+		cti:cd_programa_ies "25001019030P7"
+		cti:nm_programa_ies "DESENVOLVIMENTO URBANO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "PLANEJAMENTO URBANO E REGIONAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019030P7_2021
+		cti:avaliado conceito_25001019030P7_2022
+		cti:avaliado conceito_25001019030P7_2023
+		cti:avaliado conceito_25001019030P7_2024
+	]
+
+	instance ppg_25001019039P4 : cti:PPG [
+		cti:cd_programa_ies "25001019039P4"
+		cti:nm_programa_ies "CIÊNCIAS DA SAÚDE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019039P4_2021
+		cti:avaliado conceito_25001019039P4_2023
+	]
+
+	instance ppg_25001019065P5 : cti:PPG [
+		cti:cd_programa_ies "25001019065P5"
+		cti:nm_programa_ies "ENGENHARIA DE PRODUÇÃO"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ENGENHARIA DE PRODUÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019065P5_2021
+		cti:avaliado conceito_25001019065P5_2022
+		cti:avaliado conceito_25001019065P5_2023
+		cti:avaliado conceito_25001019065P5_2024
+	]
+
+	instance ppg_25001019069P0 : cti:PPG [
+		cti:cd_programa_ies "25001019069P0"
+		cti:nm_programa_ies "EDUCAÇÃO MATEMÁTICA E TECNOLÓGICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENSINO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019069P0_2021
+		cti:avaliado conceito_25001019069P0_2022
+		cti:avaliado conceito_25001019069P0_2023
+		cti:avaliado conceito_25001019069P0_2024
+	]
+
+	instance ppg_25001019007P5 : cti:PPG [
+		cti:cd_programa_ies "25001019007P5"
+		cti:nm_programa_ies "GEOCIÊNCIAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "GEOCIÊNCIAS"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019007P5_2021
+		cti:avaliado conceito_25001019007P5_2022
+		cti:avaliado conceito_25001019007P5_2023
+		cti:avaliado conceito_25001019007P5_2024
+	]
+
+	instance ppg_25001019041P9 : cti:PPG [
+		cti:cd_programa_ies "25001019041P9"
+		cti:nm_programa_ies "BIOLOGIA ANIMAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ZOOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019041P9_2021
+		cti:avaliado conceito_25001019041P9_2022
+		cti:avaliado conceito_25001019041P9_2023
+		cti:avaliado conceito_25001019041P9_2024
+	]
+
+	instance ppg_25001019037P1 : cti:PPG [
+		cti:cd_programa_ies "25001019037P1"
+		cti:nm_programa_ies "GENÉTICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "GENÉTICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019037P1_2021
+		cti:avaliado conceito_25001019037P1_2022
+		cti:avaliado conceito_25001019037P1_2023
+		cti:avaliado conceito_25001019037P1_2024
+	]
+
+	instance ppg_25001019074P4 : cti:PPG [
+		cti:cd_programa_ies "25001019074P4"
+		cti:nm_programa_ies "SAÚDE COLETIVA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "SAÚDE COLETIVA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019074P4_2021
+		cti:avaliado conceito_25001019074P4_2022
+		cti:avaliado conceito_25001019074P4_2023
+		cti:avaliado conceito_25001019074P4_2024
+	]
+
+	instance ppg_25001019015P8 : cti:PPG [
+		cti:cd_programa_ies "25001019015P8"
+		cti:nm_programa_ies "HISTÓRIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "HISTÓRIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019015P8_2021
+		cti:avaliado conceito_25001019015P8_2022
+		cti:avaliado conceito_25001019015P8_2023
+		cti:avaliado conceito_25001019015P8_2024
+	]
+
+	instance ppg_25001019097P4 : cti:PPG [
+		cti:cd_programa_ies "25001019097P4"
+		cti:nm_programa_ies "MORFOTECNOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MORFOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019097P4_2021
+		cti:avaliado conceito_25001019097P4_2022
+		cti:avaliado conceito_25001019097P4_2023
+		cti:avaliado conceito_25001019097P4_2024
+	]
+
+	instance ppg_25001019017P0 : cti:PPG [
+		cti:cd_programa_ies "25001019017P0"
+		cti:nm_programa_ies "ECONOMIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ECONOMIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019017P0_2021
+		cti:avaliado conceito_25001019017P0_2022
+		cti:avaliado conceito_25001019017P0_2023
+		cti:avaliado conceito_25001019017P0_2024
+	]
+
+	instance ppg_25001019061P0 : cti:PPG [
+		cti:cd_programa_ies "25001019061P0"
+		cti:nm_programa_ies "ENGENHARIA MINERAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA DE MINAS"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019061P0_2021
+		cti:avaliado conceito_25001019061P0_2023
+	]
+
+	instance ppg_25001019077P3 : cti:PPG [
+		cti:cd_programa_ies "25001019077P3"
+		cti:nm_programa_ies "CIÊNCIA DA INFORMAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIA DA INFORMAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019077P3_2021
+		cti:avaliado conceito_25001019077P3_2022
+		cti:avaliado conceito_25001019077P3_2023
+		cti:avaliado conceito_25001019077P3_2024
+	]
+
+	instance ppg_25001019054P3 : cti:PPG [
+		cti:cd_programa_ies "25001019054P3"
+		cti:nm_programa_ies "COMUNICAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "COMUNICAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019054P3_2021
+		cti:avaliado conceito_25001019054P3_2022
+		cti:avaliado conceito_25001019054P3_2023
+		cti:avaliado conceito_25001019054P3_2024
+	]
+
+	instance ppg_25001019068P4 : cti:PPG [
+		cti:cd_programa_ies "25001019068P4"
+		cti:nm_programa_ies "CIÊNCIAS CONTÁBEIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019068P4_2021
+		cti:avaliado conceito_25001019068P4_2022
+		cti:avaliado conceito_25001019068P4_2023
+		cti:avaliado conceito_25001019068P4_2024
+	]
+
+	instance ppg_25001019059P5 : cti:PPG [
+		cti:cd_programa_ies "25001019059P5"
+		cti:nm_programa_ies "ARQUEOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ARQUEOLOGIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019059P5_2021
+		cti:avaliado conceito_25001019059P5_2022
+		cti:avaliado conceito_25001019059P5_2023
+		cti:avaliado conceito_25001019059P5_2024
+	]
+
+	instance ppg_25001019083P3 : cti:PPG [
+		cti:cd_programa_ies "25001019083P3"
+		cti:nm_programa_ies "ECONOMIA - CAMPUS AGRESTE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ECONOMIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019083P3_2021
+		cti:avaliado conceito_25001019083P3_2022
+		cti:avaliado conceito_25001019083P3_2023
+		cti:avaliado conceito_25001019083P3_2024
+	]
+
+	instance ppg_25001019010P6 : cti:PPG [
+		cti:cd_programa_ies "25001019010P6"
+		cti:nm_programa_ies "BIOLOGIA DE FUNGOS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BOTÂNICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019010P6_2021
+		cti:avaliado conceito_25001019010P6_2022
+		cti:avaliado conceito_25001019010P6_2023
+		cti:avaliado conceito_25001019010P6_2024
+	]
+
+	instance ppg_25001019084P0 : cti:PPG [
+		cti:cd_programa_ies "25001019084P0"
+		cti:nm_programa_ies "EDUCAÇÃO CONTEMPORÂNEA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019084P0_2021
+		cti:avaliado conceito_25001019084P0_2022
+		cti:avaliado conceito_25001019084P0_2023
+		cti:avaliado conceito_25001019084P0_2024
+	]
+
+	instance ppg_25001019040P2 : cti:PPG [
+		cti:cd_programa_ies "25001019040P2"
+		cti:nm_programa_ies "ENGENHARIA CIVIL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA CIVIL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019040P2_2021
+		cti:avaliado conceito_25001019040P2_2022
+		cti:avaliado conceito_25001019040P2_2023
+		cti:avaliado conceito_25001019040P2_2024
+	]
+
+	instance ppg_25001019027P6 : cti:PPG [
+		cti:cd_programa_ies "25001019027P6"
+		cti:nm_programa_ies "CIÊNCIAS FARMACÊUTICAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FARMÁCIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019027P6_2021
+		cti:avaliado conceito_25001019027P6_2022
+		cti:avaliado conceito_25001019027P6_2023
+		cti:avaliado conceito_25001019027P6_2024
+	]
+
+	instance ppg_25001019089P1 : cti:PPG [
+		cti:cd_programa_ies "25001019089P1"
+		cti:nm_programa_ies "DIREITOS HUMANOS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019089P1_2021
+		cti:avaliado conceito_25001019089P1_2022
+		cti:avaliado conceito_25001019089P1_2023
+		cti:avaliado conceito_25001019089P1_2024
+	]
+
+	instance ppg_25001019094P5 : cti:PPG [
+		cti:cd_programa_ies "25001019094P5"
+		cti:nm_programa_ies "FILOSOFIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FILOSOFIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019094P5_2021
+		cti:avaliado conceito_25001019094P5_2022
+		cti:avaliado conceito_25001019094P5_2023
+		cti:avaliado conceito_25001019094P5_2024
+	]
+
+	instance ppg_25001019078P0 : cti:PPG [
+		cti:cd_programa_ies "25001019078P0"
+		cti:nm_programa_ies "ADMINISTRAÇÃO"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019078P0_2021
+		cti:avaliado conceito_25001019078P0_2022
+		cti:avaliado conceito_25001019078P0_2023
+	]
+
+	instance ppg_25001019091P6 : cti:PPG [
+		cti:cd_programa_ies "25001019091P6"
+		cti:nm_programa_ies "POLÍTICAS PÚBLICAS"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "CIÊNCIA POLÍTICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019091P6_2021
+		cti:avaliado conceito_25001019091P6_2022
+		cti:avaliado conceito_25001019091P6_2023
+		cti:avaliado conceito_25001019091P6_2024
+	]
+
+	instance ppg_25001019093P9 : cti:PPG [
+		cti:cd_programa_ies "25001019093P9"
+		cti:nm_programa_ies "NUTRIÇÃO, ATIVIDADE FÍSICA E PLASTICIDADE FENOTÍPICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "NUTRIÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019093P9_2021
+		cti:avaliado conceito_25001019093P9_2022
+		cti:avaliado conceito_25001019093P9_2023
+		cti:avaliado conceito_25001019093P9_2024
+	]
+
+	instance ppg_25001019171P0 : cti:PPG [
+		cti:cd_programa_ies "25001019171P0"
+		cti:nm_programa_ies "HOTELARIA E TURISMO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "TURISMO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019171P0_2021
+		cti:avaliado conceito_25001019171P0_2022
+		cti:avaliado conceito_25001019171P0_2023
+		cti:avaliado conceito_25001019171P0_2024
+	]
+
+	instance ppg_25001019157P7 : cti:PPG [
+		cti:cd_programa_ies "25001019157P7"
+		cti:nm_programa_ies "MÚSICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ARTES"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019157P7_2021
+		cti:avaliado conceito_25001019157P7_2022
+		cti:avaliado conceito_25001019157P7_2023
+		cti:avaliado conceito_25001019157P7_2024
+	]
+
+	instance ppg_25001019036P5 : cti:PPG [
+		cti:cd_programa_ies "25001019036P5"
+		cti:nm_programa_ies "QUÍMICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "QUÍMICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019036P5_2021
+		cti:avaliado conceito_25001019036P5_2022
+		cti:avaliado conceito_25001019036P5_2023
+		cti:avaliado conceito_25001019036P5_2024
+	]
+
+	instance ppg_25001019043P1 : cti:PPG [
+		cti:cd_programa_ies "25001019043P1"
+		cti:nm_programa_ies "NEUROPSIQUIATRIA E CIÊNCIAS DO COMPORTAMENTO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019043P1_2021
+		cti:avaliado conceito_25001019043P1_2022
+		cti:avaliado conceito_25001019043P1_2023
+		cti:avaliado conceito_25001019043P1_2024
+	]
+
+	instance ppg_25001019057P2 : cti:PPG [
+		cti:cd_programa_ies "25001019057P2"
+		cti:nm_programa_ies "DESIGN"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "DESENHO INDUSTRIAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019057P2_2021
+		cti:avaliado conceito_25001019057P2_2022
+		cti:avaliado conceito_25001019057P2_2023
+		cti:avaliado conceito_25001019057P2_2024
+	]
+
+	instance ppg_25001019001P7 : cti:PPG [
+		cti:cd_programa_ies "25001019001P7"
+		cti:nm_programa_ies "EDUCAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019001P7_2021
+		cti:avaliado conceito_25001019001P7_2022
+		cti:avaliado conceito_25001019001P7_2023
+		cti:avaliado conceito_25001019001P7_2024
+	]
+
+	instance ppg_25001019026P0 : cti:PPG [
+		cti:cd_programa_ies "25001019026P0"
+		cti:nm_programa_ies "SAÚDE DA CRIANÇA E DO ADOLESCENTE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019026P0_2021
+		cti:avaliado conceito_25001019026P0_2022
+		cti:avaliado conceito_25001019026P0_2023
+		cti:avaliado conceito_25001019026P0_2024
+	]
+
+	instance ppg_25001019033P6 : cti:PPG [
+		cti:cd_programa_ies "25001019033P6"
+		cti:nm_programa_ies "CIÊNCIA POLÍTICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIA POLÍTICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019033P6_2021
+		cti:avaliado conceito_25001019033P6_2022
+		cti:avaliado conceito_25001019033P6_2023
+		cti:avaliado conceito_25001019033P6_2024
+	]
+
+	instance ppg_25001019050P8 : cti:PPG [
+		cti:cd_programa_ies "25001019050P8"
+		cti:nm_programa_ies "ENGENHARIA MECÂNICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA MECÂNICA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019050P8_2021
+		cti:avaliado conceito_25001019050P8_2022
+		cti:avaliado conceito_25001019050P8_2023
+		cti:avaliado conceito_25001019050P8_2024
+	]
+
+	instance ppg_25001019024P7 : cti:PPG [
+		cti:cd_programa_ies "25001019024P7"
+		cti:nm_programa_ies "MEDICINA TROPICAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019024P7_2021
+		cti:avaliado conceito_25001019024P7_2022
+		cti:avaliado conceito_25001019024P7_2023
+		cti:avaliado conceito_25001019024P7_2024
+	]
+
+	instance ppg_25001019062P6 : cti:PPG [
+		cti:cd_programa_ies "25001019062P6"
+		cti:nm_programa_ies "CIÊNCIAS DA COMPUTAÇÃO"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "CIÊNCIA DA COMPUTAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019062P6_2021
+		cti:avaliado conceito_25001019062P6_2022
+		cti:avaliado conceito_25001019062P6_2023
+		cti:avaliado conceito_25001019062P6_2024
+	]
+
+	instance ppg_25001019174P9 : cti:PPG [
+		cti:cd_programa_ies "25001019174P9"
+		cti:nm_programa_ies "SAÚDE TRANSLACIONAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019174P9_2021
+		cti:avaliado conceito_25001019174P9_2022
+		cti:avaliado conceito_25001019174P9_2023
+		cti:avaliado conceito_25001019174P9_2024
+	]
+
+	instance ppg_25001019063P2 : cti:PPG [
+		cti:cd_programa_ies "25001019063P2"
+		cti:nm_programa_ies "ECONOMIA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ECONOMIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019063P2_2021
+		cti:avaliado conceito_25001019063P2_2022
+		cti:avaliado conceito_25001019063P2_2023
+	]
+
+	instance ppg_25001019031P3 : cti:PPG [
+		cti:cd_programa_ies "25001019031P3"
+		cti:nm_programa_ies "SERVIÇO SOCIAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "SERVIÇO SOCIAL"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019031P3_2021
+		cti:avaliado conceito_25001019031P3_2022
+		cti:avaliado conceito_25001019031P3_2023
+		cti:avaliado conceito_25001019031P3_2024
+	]
+
+	instance ppg_25001019052P0 : cti:PPG [
+		cti:cd_programa_ies "25001019052P0"
+		cti:nm_programa_ies "CIÊNCIAS GEODÉSICAS E TECNOLOGIAS DA GEOINFORMAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "GEOCIÊNCIAS"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019052P0_2021
+		cti:avaliado conceito_25001019052P0_2022
+		cti:avaliado conceito_25001019052P0_2023
+		cti:avaliado conceito_25001019052P0_2024
+	]
+
+	instance ppg_25001019023P0 : cti:PPG [
+		cti:cd_programa_ies "25001019023P0"
+		cti:nm_programa_ies "CIRURGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019023P0_2021
+		cti:avaliado conceito_25001019023P0_2022
+		cti:avaliado conceito_25001019023P0_2023
+		cti:avaliado conceito_25001019023P0_2024
+	]
+
+	instance ppg_25001019073P8 : cti:PPG [
+		cti:cd_programa_ies "25001019073P8"
+		cti:nm_programa_ies "INOVAÇÃO TERAPÊUTICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FARMÁCIA"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019073P8_2021
+		cti:avaliado conceito_25001019073P8_2022
+		cti:avaliado conceito_25001019073P8_2023
+		cti:avaliado conceito_25001019073P8_2024
+	]
+
+	instance ppg_25002015010P2 : cti:PPG [
+		cti:cd_programa_ies "25002015010P2"
+		cti:nm_programa_ies "FILOSOFIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FILOSOFIA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015010P2_2021
+		cti:avaliado conceito_25002015010P2_2022
+		cti:avaliado conceito_25002015010P2_2023
+		cti:avaliado conceito_25002015010P2_2024
+	]
+
+	instance ppg_25002015002P0 : cti:PPG [
+		cti:cd_programa_ies "25002015002P0"
+		cti:nm_programa_ies "ENGENHARIA CIVIL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA CIVIL"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015002P0_2021
+		cti:avaliado conceito_25002015002P0_2022
+		cti:avaliado conceito_25002015002P0_2023
+	]
+
+	instance ppg_25002015001P3 : cti:PPG [
+		cti:cd_programa_ies "25002015001P3"
+		cti:nm_programa_ies "PSICOLOGIA CLÍNICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "PSICOLOGIA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015001P3_2021
+		cti:avaliado conceito_25002015001P3_2022
+		cti:avaliado conceito_25002015001P3_2023
+		cti:avaliado conceito_25002015001P3_2024
+	]
+
+	instance ppg_25002015004P2 : cti:PPG [
+		cti:cd_programa_ies "25002015004P2"
+		cti:nm_programa_ies "CIÊNCIAS DA RELIGIÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "TEOLOGIA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015004P2_2021
+		cti:avaliado conceito_25002015004P2_2022
+		cti:avaliado conceito_25002015004P2_2023
+		cti:avaliado conceito_25002015004P2_2024
+	]
+
+	instance ppg_25002015005P9 : cti:PPG [
+		cti:cd_programa_ies "25002015005P9"
+		cti:nm_programa_ies "DESENVOLVIMENTO DE PROCESSOS AMBIENTAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA QUÍMICA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015005P9_2021
+		cti:avaliado conceito_25002015005P9_2022
+		cti:avaliado conceito_25002015005P9_2023
+		cti:avaliado conceito_25002015005P9_2024
+	]
+
+	instance ppg_25002015008P8 : cti:PPG [
+		cti:cd_programa_ies "25002015008P8"
+		cti:nm_programa_ies "INDÚSTRIAS CRIATIVAS"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "COMUNICAÇÃO"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015008P8_2021
+		cti:avaliado conceito_25002015008P8_2022
+		cti:avaliado conceito_25002015008P8_2023
+		cti:avaliado conceito_25002015008P8_2024
+	]
+
+	instance ppg_25002015006P5 : cti:PPG [
+		cti:cd_programa_ies "25002015006P5"
+		cti:nm_programa_ies "DIREITO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "DIREITO"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015006P5_2021
+		cti:avaliado conceito_25002015006P5_2022
+		cti:avaliado conceito_25002015006P5_2023
+		cti:avaliado conceito_25002015006P5_2024
+	]
+
+	instance ppg_25002015007P1 : cti:PPG [
+		cti:cd_programa_ies "25002015007P1"
+		cti:nm_programa_ies "TEOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "TEOLOGIA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015007P1_2021
+		cti:avaliado conceito_25002015007P1_2022
+		cti:avaliado conceito_25002015007P1_2023
+		cti:avaliado conceito_25002015007P1_2024
+	]
+
+	instance ppg_25002015003P6 : cti:PPG [
+		cti:cd_programa_ies "25002015003P6"
+		cti:nm_programa_ies "CIÊNCIAS DA LINGUAGEM"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "LINGÜÍSTICA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015003P6_2021
+		cti:avaliado conceito_25002015003P6_2022
+		cti:avaliado conceito_25002015003P6_2023
+		cti:avaliado conceito_25002015003P6_2024
+	]
+
+	instance ppg_25002015009P4 : cti:PPG [
+		cti:cd_programa_ies "25002015009P4"
+		cti:nm_programa_ies "HISTÓRIA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "HISTÓRIA"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015009P4_2021
+		cti:avaliado conceito_25002015009P4_2022
+		cti:avaliado conceito_25002015009P4_2023
+		cti:avaliado conceito_25002015009P4_2024
+	]
+
+	instance ppg_25003011075P3 : cti:PPG [
+		cti:cd_programa_ies "25003011075P3"
+		cti:nm_programa_ies "ESTUDOS DA LINGUAGEM"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "LETRAS"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011075P3_2021
+		cti:avaliado conceito_25003011075P3_2022
+		cti:avaliado conceito_25003011075P3_2023
+		cti:avaliado conceito_25003011075P3_2024
+	]
+
+	instance ppg_25003011002P6 : cti:PPG [
+		cti:cd_programa_ies "25003011002P6"
+		cti:nm_programa_ies "FITOPATOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011002P6_2021
+		cti:avaliado conceito_25003011002P6_2022
+		cti:avaliado conceito_25003011002P6_2023
+		cti:avaliado conceito_25003011002P6_2024
+	]
+
+	instance ppg_25003011005P5 : cti:PPG [
+		cti:cd_programa_ies "25003011005P5"
+		cti:nm_programa_ies "MEDICINA VETERINÁRIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA VETERINÁRIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011005P5_2021
+		cti:avaliado conceito_25003011005P5_2022
+		cti:avaliado conceito_25003011005P5_2023
+		cti:avaliado conceito_25003011005P5_2024
+	]
+
+	instance ppg_25003011024P0 : cti:PPG [
+		cti:cd_programa_ies "25003011024P0"
+		cti:nm_programa_ies "FÍSICA APLICADA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FÍSICA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011024P0_2021
+		cti:avaliado conceito_25003011024P0_2022
+		cti:avaliado conceito_25003011024P0_2023
+		cti:avaliado conceito_25003011024P0_2024
+	]
+
+	instance ppg_25003011010P9 : cti:PPG [
+		cti:cd_programa_ies "25003011010P9"
+		cti:nm_programa_ies "BIOMETRIA E ESTATÍSTICA APLICADA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011010P9_2021
+		cti:avaliado conceito_25003011010P9_2022
+		cti:avaliado conceito_25003011010P9_2023
+		cti:avaliado conceito_25003011010P9_2024
+	]
+
+	instance ppg_25003011028P5 : cti:PPG [
+		cti:cd_programa_ies "25003011028P5"
+		cti:nm_programa_ies "PRODUÇÃO AGRÍCOLA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011028P5_2021
+		cti:avaliado conceito_25003011028P5_2022
+		cti:avaliado conceito_25003011028P5_2023
+	]
+
+	instance ppg_25003011033P9 : cti:PPG [
+		cti:cd_programa_ies "25003011033P9"
+		cti:nm_programa_ies "ETNOBIOLOGIA E CONSERVAÇÃO DA NATUREZA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ECOLOGIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011033P9_2021
+		cti:avaliado conceito_25003011033P9_2022
+		cti:avaliado conceito_25003011033P9_2023
+		cti:avaliado conceito_25003011033P9_2024
+	]
+
+	instance ppg_25003011027P9 : cti:PPG [
+		cti:cd_programa_ies "25003011027P9"
+		cti:nm_programa_ies "CIÊNCIA ANIMAL E PASTAGENS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ZOOTECNIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011027P9_2021
+		cti:avaliado conceito_25003011027P9_2022
+		cti:avaliado conceito_25003011027P9_2023
+	]
+
+	instance ppg_25003011019P6 : cti:PPG [
+		cti:cd_programa_ies "25003011019P6"
+		cti:nm_programa_ies "HISTÓRIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "HISTÓRIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011019P6_2021
+		cti:avaliado conceito_25003011019P6_2022
+		cti:avaliado conceito_25003011019P6_2023
+		cti:avaliado conceito_25003011019P6_2024
+	]
+
+	instance ppg_25003011003P2 : cti:PPG [
+		cti:cd_programa_ies "25003011003P2"
+		cti:nm_programa_ies "CIÊNCIA DO SOLO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011003P2_2021
+		cti:avaliado conceito_25003011003P2_2022
+		cti:avaliado conceito_25003011003P2_2023
+		cti:avaliado conceito_25003011003P2_2024
+	]
+
+	instance ppg_25003011038P0 : cti:PPG [
+		cti:cd_programa_ies "25003011038P0"
+		cti:nm_programa_ies "EDUCAÇÃO, CULTURAS E IDENTIDADES"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011038P0_2021
+		cti:avaliado conceito_25003011038P0_2022
+		cti:avaliado conceito_25003011038P0_2023
+		cti:avaliado conceito_25003011038P0_2024
+	]
+
+	instance ppg_25003011037P4 : cti:PPG [
+		cti:cd_programa_ies "25003011037P4"
+		cti:nm_programa_ies "CONSUMO, COTIDIANO E DESENVOLVIMENTO SOCIAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ECONOMIA DOMÉSTICA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011037P4_2021
+	]
+
+	instance ppg_25003011016P7 : cti:PPG [
+		cti:cd_programa_ies "25003011016P7"
+		cti:nm_programa_ies "EXTENSÃO RURAL E DESENVOLVIMENTO LOCAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011016P7_2021
+		cti:avaliado conceito_25003011016P7_2023
+	]
+
+	instance ppg_25003011020P4 : cti:PPG [
+		cti:cd_programa_ies "25003011020P4"
+		cti:nm_programa_ies "QUIMICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "QUÍMICA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011020P4_2021
+		cti:avaliado conceito_25003011020P4_2022
+		cti:avaliado conceito_25003011020P4_2023
+		cti:avaliado conceito_25003011020P4_2024
+	]
+
+	instance ppg_25003011011P5 : cti:PPG [
+		cti:cd_programa_ies "25003011011P5"
+		cti:nm_programa_ies "RECURSOS PESQUEIROS E AQUICULTURA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "RECURSOS PESQUEIROS E ENGENHARIA DE PESCA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011011P5_2021
+		cti:avaliado conceito_25003011011P5_2022
+		cti:avaliado conceito_25003011011P5_2023
+		cti:avaliado conceito_25003011011P5_2024
+	]
+
+	instance ppg_25003011021P0 : cti:PPG [
+		cti:cd_programa_ies "25003011021P0"
+		cti:nm_programa_ies "CIÊNCIA E TECNOLOGIA DE ALIMENTOS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIA E TECNOLOGIA DE ALIMENTOS"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011021P0_2021
+		cti:avaliado conceito_25003011021P0_2022
+		cti:avaliado conceito_25003011021P0_2023
+		cti:avaliado conceito_25003011021P0_2024
+	]
+
+	instance ppg_25003011025P6 : cti:PPG [
+		cti:cd_programa_ies "25003011025P6"
+		cti:nm_programa_ies "SANIDADE E REPRODUÇÃO DE ANIMAIS DE PRODUÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA VETERINÁRIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011025P6_2021
+		cti:avaliado conceito_25003011025P6_2022
+	]
+
+	instance ppg_25003011015P0 : cti:PPG [
+		cti:cd_programa_ies "25003011015P0"
+		cti:nm_programa_ies "AGRONOMIA ( MELHORAMENTO GENÉTICO DE PLANTAS)"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011015P0_2021
+		cti:avaliado conceito_25003011015P0_2022
+		cti:avaliado conceito_25003011015P0_2023
+		cti:avaliado conceito_25003011015P0_2024
+	]
+
+	instance ppg_25003011001P0 : cti:PPG [
+		cti:cd_programa_ies "25003011001P0"
+		cti:nm_programa_ies "BIODIVERSIDADE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BOTÂNICA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011001P0_2021
+		cti:avaliado conceito_25003011001P0_2022
+		cti:avaliado conceito_25003011001P0_2023
+		cti:avaliado conceito_25003011001P0_2024
+	]
+
+	instance ppg_25003011030P0 : cti:PPG [
+		cti:cd_programa_ies "25003011030P0"
+		cti:nm_programa_ies "PRODUÇÃO VEGETAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011030P0_2021
+		cti:avaliado conceito_25003011030P0_2022
+		cti:avaliado conceito_25003011030P0_2023
+		cti:avaliado conceito_25003011030P0_2024
+	]
+
+	instance ppg_25003011012P1 : cti:PPG [
+		cti:cd_programa_ies "25003011012P1"
+		cti:nm_programa_ies "ENSINO DAS CIÊNCIAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENSINO"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011012P1_2021
+		cti:avaliado conceito_25003011012P1_2022
+		cti:avaliado conceito_25003011012P1_2023
+		cti:avaliado conceito_25003011012P1_2024
+	]
+
+	instance ppg_25003011014P4 : cti:PPG [
+		cti:cd_programa_ies "25003011014P4"
+		cti:nm_programa_ies "ADMINISTRAÇÃO E DESENVOLVIMENTO RURAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011014P4_2021
+		cti:avaliado conceito_25003011014P4_2022
+		cti:avaliado conceito_25003011014P4_2023
+		cti:avaliado conceito_25003011014P4_2024
+	]
+
+	instance ppg_25003011022P7 : cti:PPG [
+		cti:cd_programa_ies "25003011022P7"
+		cti:nm_programa_ies "BIOCIÊNCIA ANIMAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA VETERINÁRIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011022P7_2021
+		cti:avaliado conceito_25003011022P7_2022
+		cti:avaliado conceito_25003011022P7_2023
+		cti:avaliado conceito_25003011022P7_2024
+	]
+
+	instance ppg_25003011073P0 : cti:PPG [
+		cti:cd_programa_ies "25003011073P0"
+		cti:nm_programa_ies "SAÚDE ÚNICA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "MEDICINA VETERINÁRIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011073P0_2021
+		cti:avaliado conceito_25003011073P0_2022
+		cti:avaliado conceito_25003011073P0_2023
+		cti:avaliado conceito_25003011073P0_2024
+	]
+
+	instance ppg_25003011018P0 : cti:PPG [
+		cti:cd_programa_ies "25003011018P0"
+		cti:nm_programa_ies "ENGENHARIA AGRÍCOLA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA AGRÍCOLA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011018P0_2021
+		cti:avaliado conceito_25003011018P0_2022
+		cti:avaliado conceito_25003011018P0_2023
+		cti:avaliado conceito_25003011018P0_2024
+	]
+
+	instance ppg_25003011017P3 : cti:PPG [
+		cti:cd_programa_ies "25003011017P3"
+		cti:nm_programa_ies "ENTOMOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011017P3_2021
+		cti:avaliado conceito_25003011017P3_2022
+		cti:avaliado conceito_25003011017P3_2023
+		cti:avaliado conceito_25003011017P3_2024
+	]
+
+	instance ppg_25003011070P1 : cti:PPG [
+		cti:cd_programa_ies "25003011070P1"
+		cti:nm_programa_ies "CONTROLADORIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011070P1_2021
+		cti:avaliado conceito_25003011070P1_2022
+		cti:avaliado conceito_25003011070P1_2023
+		cti:avaliado conceito_25003011070P1_2024
+	]
+
+	instance ppg_25003011032P2 : cti:PPG [
+		cti:cd_programa_ies "25003011032P2"
+		cti:nm_programa_ies "INFORMÁTICA APLICADA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIA DA COMPUTAÇÃO"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011032P2_2021
+		cti:avaliado conceito_25003011032P2_2022
+		cti:avaliado conceito_25003011032P2_2023
+		cti:avaliado conceito_25003011032P2_2024
+	]
+
+	instance ppg_25003011072P4 : cti:PPG [
+		cti:cd_programa_ies "25003011072P4"
+		cti:nm_programa_ies "CIÊNCIAS AMBIENTAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIAS AMBIENTAIS"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011072P4_2021
+		cti:avaliado conceito_25003011072P4_2022
+		cti:avaliado conceito_25003011072P4_2023
+	]
+
+	instance ppg_25003011074P7 : cti:PPG [
+		cti:cd_programa_ies "25003011074P7"
+		cti:nm_programa_ies "ENGENHARIA FÍSICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MATERIAIS"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011074P7_2021
+		cti:avaliado conceito_25003011074P7_2022
+		cti:avaliado conceito_25003011074P7_2023
+		cti:avaliado conceito_25003011074P7_2024
+	]
+
+	instance ppg_25003011036P8 : cti:PPG [
+		cti:cd_programa_ies "25003011036P8"
+		cti:nm_programa_ies "ENGENHARIA AMBIENTAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA SANITÁRIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011036P8_2021
+		cti:avaliado conceito_25003011036P8_2022
+		cti:avaliado conceito_25003011036P8_2023
+		cti:avaliado conceito_25003011036P8_2024
+	]
+
+	instance ppg_25003011071P8 : cti:PPG [
+		cti:cd_programa_ies "25003011071P8"
+		cti:nm_programa_ies "BIODIVERSIDADE E CONSERVAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ECOLOGIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011071P8_2021
+		cti:avaliado conceito_25003011071P8_2022
+		cti:avaliado conceito_25003011071P8_2023
+		cti:avaliado conceito_25003011071P8_2024
+	]
+
+	instance ppg_25003011006P1 : cti:PPG [
+		cti:cd_programa_ies "25003011006P1"
+		cti:nm_programa_ies "ZOOTECNIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ZOOTECNIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011006P1_2021
+		cti:avaliado conceito_25003011006P1_2022
+		cti:avaliado conceito_25003011006P1_2023
+		cti:avaliado conceito_25003011006P1_2024
+	]
+
+	instance ppg_25003011029P1 : cti:PPG [
+		cti:cd_programa_ies "25003011029P1"
+		cti:nm_programa_ies "TECNOLOGIA E GESTÃO EM EDUCAÇÃO A DISTÂNCIA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011029P1_2021
+		cti:avaliado conceito_25003011029P1_2022
+		cti:avaliado conceito_25003011029P1_2023
+		cti:avaliado conceito_25003011029P1_2024
+	]
+
+	instance ppg_25003011013P8 : cti:PPG [
+		cti:cd_programa_ies "25003011013P8"
+		cti:nm_programa_ies "CIÊNCIAS FLORESTAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "RECURSOS FLORESTAIS E ENGENHARIA FLORESTAL"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011013P8_2021
+		cti:avaliado conceito_25003011013P8_2022
+		cti:avaliado conceito_25003011013P8_2023
+		cti:avaliado conceito_25003011013P8_2024
+	]
+
+	instance ppg_25004018015P7 : cti:PPG [
+		cti:cd_programa_ies "25004018015P7"
+		cti:nm_programa_ies "ENFERMAGEM - FESP-UPE - UEPB"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENFERMAGEM"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018015P7_2021
+		cti:avaliado conceito_25004018015P7_2022
+		cti:avaliado conceito_25004018015P7_2023
+		cti:avaliado conceito_25004018015P7_2024
+	]
+
+	instance ppg_25004018010P5 : cti:PPG [
+		cti:cd_programa_ies "25004018010P5"
+		cti:nm_programa_ies "GESTÃO DO DESENVOLVIMENTO LOCAL SUSTENTÁVEL"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018010P5_2021
+		cti:avaliado conceito_25004018010P5_2022
+		cti:avaliado conceito_25004018010P5_2023
+		cti:avaliado conceito_25004018010P5_2024
+	]
+
+	instance ppg_25004018072P0 : cti:PPG [
+		cti:cd_programa_ies "25004018072P0"
+		cti:nm_programa_ies "CIÊNCIA E TECNOLOGIA AMBIENTAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIAS AMBIENTAIS"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018072P0_2021
+		cti:avaliado conceito_25004018072P0_2022
+		cti:avaliado conceito_25004018072P0_2023
+		cti:avaliado conceito_25004018072P0_2024
+	]
+
+	instance ppg_25004018070P8 : cti:PPG [
+		cti:cd_programa_ies "25004018070P8"
+		cti:nm_programa_ies "FORMAÇÃO DE PROFESSORES E PRÁTICAS INTERDISCIPLINARES"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018070P8_2021
+		cti:avaliado conceito_25004018070P8_2022
+		cti:avaliado conceito_25004018070P8_2023
+		cti:avaliado conceito_25004018070P8_2024
+	]
+
+	instance ppg_25004018006P8 : cti:PPG [
+		cti:cd_programa_ies "25004018006P8"
+		cti:nm_programa_ies "ODONTOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ODONTOLOGIA"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018006P8_2021
+		cti:avaliado conceito_25004018006P8_2022
+		cti:avaliado conceito_25004018006P8_2023
+		cti:avaliado conceito_25004018006P8_2024
+	]
+
+	instance ppg_25004018075P0 : cti:PPG [
+		cti:cd_programa_ies "25004018075P0"
+		cti:nm_programa_ies "SAÚDE E DESENVOLVIMENTO SOCIOAMBIENTAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018075P0_2021
+		cti:avaliado conceito_25004018075P0_2022
+		cti:avaliado conceito_25004018075P0_2023
+		cti:avaliado conceito_25004018075P0_2024
+	]
+
+	instance ppg_25004018071P4 : cti:PPG [
+		cti:cd_programa_ies "25004018071P4"
+		cti:nm_programa_ies "PRÁTICAS E INOVAÇÃO EM SAÚDE MENTAL"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "PSICOLOGIA"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018071P4_2021
+		cti:avaliado conceito_25004018071P4_2022
+		cti:avaliado conceito_25004018071P4_2023
+		cti:avaliado conceito_25004018071P4_2024
+	]
+
+	instance ppg_25004018014P0 : cti:PPG [
+		cti:cd_programa_ies "25004018014P0"
+		cti:nm_programa_ies "EDUCAÇÃO FÍSICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "EDUCAÇÃO FÍSICA"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018014P0_2021
+		cti:avaliado conceito_25004018014P0_2022
+		cti:avaliado conceito_25004018014P0_2023
+		cti:avaliado conceito_25004018014P0_2024
+	]
+
+	instance ppg_25004018012P8 : cti:PPG [
+		cti:cd_programa_ies "25004018012P8"
+		cti:nm_programa_ies "ENGENHARIA CIVIL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA CIVIL"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018012P8_2021
+		cti:avaliado conceito_25004018012P8_2022
+		cti:avaliado conceito_25004018012P8_2023
+		cti:avaliado conceito_25004018012P8_2024
+	]
+
+	instance ppg_25004018019P2 : cti:PPG [
+		cti:cd_programa_ies "25004018019P2"
+		cti:nm_programa_ies "EDUCAÇÃO"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018019P2_2021
+		cti:avaliado conceito_25004018019P2_2022
+		cti:avaliado conceito_25004018019P2_2023
+		cti:avaliado conceito_25004018019P2_2024
+	]
+
+	instance ppg_25004018009P7 : cti:PPG [
+		cti:cd_programa_ies "25004018009P7"
+		cti:nm_programa_ies "CIENCIAS DA SAUDE"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018009P7_2021
+		cti:avaliado conceito_25004018009P7_2022
+		cti:avaliado conceito_25004018009P7_2023
+		cti:avaliado conceito_25004018009P7_2024
+	]
+
+	instance ppg_25004018073P7 : cti:PPG [
+		cti:cd_programa_ies "25004018073P7"
+		cti:nm_programa_ies "CULTURAS AFRICANAS, DA DIÁSPORA, E DOS POVOS INDÍGENAS"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ANTROPOLOGIA"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018073P7_2021
+		cti:avaliado conceito_25004018073P7_2022
+		cti:avaliado conceito_25004018073P7_2023
+		cti:avaliado conceito_25004018073P7_2024
+	]
+
+	instance ppg_25004018013P4 : cti:PPG [
+		cti:cd_programa_ies "25004018013P4"
+		cti:nm_programa_ies "BIOLOGIA CELULAR E MOLECULAR APLICADA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "BIOLOGIA GERAL"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018013P4_2021
+		cti:avaliado conceito_25004018013P4_2022
+		cti:avaliado conceito_25004018013P4_2023
+		cti:avaliado conceito_25004018013P4_2024
+	]
+
+	instance ppg_25004018011P1 : cti:PPG [
+		cti:cd_programa_ies "25004018011P1"
+		cti:nm_programa_ies "ENGENHARIA DA COMPUTAÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIA DA COMPUTAÇÃO"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018011P1_2021
+		cti:avaliado conceito_25004018011P1_2022
+		cti:avaliado conceito_25004018011P1_2023
+		cti:avaliado conceito_25004018011P1_2024
+	]
+
+	instance ppg_25004018016P3 : cti:PPG [
+		cti:cd_programa_ies "25004018016P3"
+		cti:nm_programa_ies "PERÍCIAS FORENSES"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018016P3_2021
+		cti:avaliado conceito_25004018016P3_2022
+		cti:avaliado conceito_25004018016P3_2023
+		cti:avaliado conceito_25004018016P3_2024
+	]
+
+	instance ppg_25004018008P0 : cti:PPG [
+		cti:cd_programa_ies "25004018008P0"
+		cti:nm_programa_ies "HEBIATRIA - DETERMINANTES DE SAÚDE NA ADOLESCENCIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018008P0_2021
+		cti:avaliado conceito_25004018008P0_2022
+		cti:avaliado conceito_25004018008P0_2023
+		cti:avaliado conceito_25004018008P0_2024
+	]
+
+	instance ppg_25004018018P6 : cti:PPG [
+		cti:cd_programa_ies "25004018018P6"
+		cti:nm_programa_ies "ENGENHARIA DE SISTEMAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA ELÉTRICA"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018018P6_2021
+		cti:avaliado conceito_25004018018P6_2022
+		cti:avaliado conceito_25004018018P6_2023
+		cti:avaliado conceito_25004018018P6_2024
+	]
+
+	instance ppg_25004018074P3 : cti:PPG [
+		cti:cd_programa_ies "25004018074P3"
+		cti:nm_programa_ies "REABILITAÇÃO E DESEMPENHO FUNCIONAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FISIOTERAPIA E TERAPIA OCUPACIONAL"
+		cti:sediado ict_25004018
+		cti:avaliado conceito_25004018074P3_2021
+		cti:avaliado conceito_25004018074P3_2022
+		cti:avaliado conceito_25004018074P3_2023
+		cti:avaliado conceito_25004018074P3_2024
+	]
+
+	instance ppg_25005014001P2 : cti:PPG [
+		cti:cd_programa_ies "25005014001P2"
+		cti:nm_programa_ies "SAÚDE INTEGRAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25005014
+		cti:avaliado conceito_25005014001P2_2021
+		cti:avaliado conceito_25005014001P2_2022
+		cti:avaliado conceito_25005014001P2_2023
+		cti:avaliado conceito_25005014001P2_2024
+	]
+
+	instance ppg_25005014004P1 : cti:PPG [
+		cti:cd_programa_ies "25005014004P1"
+		cti:nm_programa_ies "CUIDADOS PALIATIVOS"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25005014
+		cti:avaliado conceito_25005014004P1_2021
+		cti:avaliado conceito_25005014004P1_2022
+		cti:avaliado conceito_25005014004P1_2023
+		cti:avaliado conceito_25005014004P1_2024
+	]
+
+	instance ppg_25005014003P5 : cti:PPG [
+		cti:cd_programa_ies "25005014003P5"
+		cti:nm_programa_ies "CUIDADOS INTENSIVOS"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "MEDICINA"
+		cti:sediado ict_25005014
+		cti:avaliado conceito_25005014003P5_2021
+		cti:avaliado conceito_25005014003P5_2022
+		cti:avaliado conceito_25005014003P5_2023
+		cti:avaliado conceito_25005014003P5_2024
+	]
+
+	instance ppg_25005014002P9 : cti:PPG [
+		cti:cd_programa_ies "25005014002P9"
+		cti:nm_programa_ies "AVALIAÇÃO EM SAÚDE"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "SAÚDE COLETIVA"
+		cti:sediado ict_25005014
+		cti:avaliado conceito_25005014002P9_2021
+		cti:avaliado conceito_25005014002P9_2022
+		cti:avaliado conceito_25005014002P9_2023
+		cti:avaliado conceito_25005014002P9_2024
+	]
+
+	instance ppg_25007017001P5 : cti:PPG [
+		cti:cd_programa_ies "25007017001P5"
+		cti:nm_programa_ies "SAÚDE PÚBLICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "SAÚDE COLETIVA"
+		cti:sediado ict_25007017
+		cti:avaliado conceito_25007017001P5_2021
+		cti:avaliado conceito_25007017001P5_2022
+		cti:avaliado conceito_25007017001P5_2023
+		cti:avaliado conceito_25007017001P5_2024
+	]
+
+	instance ppg_25007017002P1 : cti:PPG [
+		cti:cd_programa_ies "25007017002P1"
+		cti:nm_programa_ies "SAÚDE PÚBLICA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "SAÚDE COLETIVA"
+		cti:sediado ict_25007017
+		cti:avaliado conceito_25007017002P1_2021
+		cti:avaliado conceito_25007017002P1_2022
+		cti:avaliado conceito_25007017002P1_2023
+		cti:avaliado conceito_25007017002P1_2024
+	]
+
+	instance ppg_25009010001P1 : cti:PPG [
+		cti:cd_programa_ies "25009010001P1"
+		cti:nm_programa_ies "GESTÃO AMBIENTAL"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "CIÊNCIAS AMBIENTAIS"
+		cti:sediado ict_25009010
+		cti:avaliado conceito_25009010001P1_2021
+		cti:avaliado conceito_25009010001P1_2022
+		cti:avaliado conceito_25009010001P1_2023
+		cti:avaliado conceito_25009010001P1_2024
+	]
+
+	instance ppg_25017012001P7 : cti:PPG [
+		cti:cd_programa_ies "25017012001P7"
+		cti:nm_programa_ies "TECNOLOGIA AMBIENTAL"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "CIÊNCIAS AMBIENTAIS"
+		cti:sediado ict_25017012
+		cti:avaliado conceito_25017012001P7_2021
+		cti:avaliado conceito_25017012001P7_2022
+		cti:avaliado conceito_25017012001P7_2023
+		cti:avaliado conceito_25017012001P7_2024
+	]
+
+	instance ppg_25018019001P3 : cti:PPG [
+		cti:cd_programa_ies "25018019001P3"
+		cti:nm_programa_ies "GESTÃO EMPRESARIAL"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ADMINISTRAÇÃO"
+		cti:sediado ict_25018019
+		cti:avaliado conceito_25018019001P3_2021
+		cti:avaliado conceito_25018019001P3_2022
+		cti:avaliado conceito_25018019001P3_2023
+		cti:avaliado conceito_25018019001P3_2024
+	]
+
+	instance ppg_25019015001P0 : cti:PPG [
+		cti:cd_programa_ies "25019015001P0"
+		cti:nm_programa_ies "ENGENHARIA DE SOFTWARE"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "CIÊNCIA DA COMPUTAÇÃO"
+		cti:sediado ict_25019015
+		cti:avaliado conceito_25019015001P0_2021
+		cti:avaliado conceito_25019015001P0_2022
+		cti:avaliado conceito_25019015001P0_2023
+		cti:avaliado conceito_25019015001P0_2024
+	]
+
+	instance ppg_25019015002P6 : cti:PPG [
+		cti:cd_programa_ies "25019015002P6"
+		cti:nm_programa_ies "DESIGN"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "DESENHO INDUSTRIAL"
+		cti:sediado ict_25019015
+		cti:avaliado conceito_25019015002P6_2021
+		cti:avaliado conceito_25019015002P6_2022
+		cti:avaliado conceito_25019015002P6_2023
+		cti:avaliado conceito_25019015002P6_2024
+	]
+
+	instance ppg_25020013008P9 : cti:PPG [
+		cti:cd_programa_ies "25020013008P9"
+		cti:nm_programa_ies "AGRONOMIA PRODUÇÃO VEGETAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013008P9_2021
+		cti:avaliado conceito_25020013008P9_2022
+		cti:avaliado conceito_25020013008P9_2023
+		cti:avaliado conceito_25020013008P9_2024
+	]
+
+	instance ppg_25020013006P6 : cti:PPG [
+		cti:cd_programa_ies "25020013006P6"
+		cti:nm_programa_ies "CIÊNCIAS VETERINÁRIAS NO SEMIÁRIDO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA VETERINÁRIA"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013006P6_2021
+		cti:avaliado conceito_25020013006P6_2022
+		cti:avaliado conceito_25020013006P6_2023
+		cti:avaliado conceito_25020013006P6_2024
+	]
+
+	instance ppg_25020013040P0 : cti:PPG [
+		cti:cd_programa_ies "25020013040P0"
+		cti:nm_programa_ies "DINÂMICAS DE DESENVOLVIMENTO DO SEMIÁRIDO"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013040P0_2021
+		cti:avaliado conceito_25020013040P0_2022
+		cti:avaliado conceito_25020013040P0_2023
+		cti:avaliado conceito_25020013040P0_2024
+	]
+
+	instance ppg_25020013005P0 : cti:PPG [
+		cti:cd_programa_ies "25020013005P0"
+		cti:nm_programa_ies "CIÊNCIAS DA SAÚDE E BIOLÓGICAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "INTERDISCIPLINAR"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013005P0_2021
+		cti:avaliado conceito_25020013005P0_2022
+		cti:avaliado conceito_25020013005P0_2023
+		cti:avaliado conceito_25020013005P0_2024
+	]
+
+	instance ppg_25020013003P7 : cti:PPG [
+		cti:cd_programa_ies "25020013003P7"
+		cti:nm_programa_ies "BIOCIÊNCIAS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "FARMÁCIA"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013003P7_2021
+		cti:avaliado conceito_25020013003P7_2022
+		cti:avaliado conceito_25020013003P7_2023
+		cti:avaliado conceito_25020013003P7_2024
+	]
+
+	instance ppg_25020013002P0 : cti:PPG [
+		cti:cd_programa_ies "25020013002P0"
+		cti:nm_programa_ies "CIÊNCIA ANIMAL"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ZOOTECNIA"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013002P0_2021
+		cti:avaliado conceito_25020013002P0_2022
+		cti:avaliado conceito_25020013002P0_2023
+		cti:avaliado conceito_25020013002P0_2024
+	]
+
+	instance ppg_25020013001P4 : cti:PPG [
+		cti:cd_programa_ies "25020013001P4"
+		cti:nm_programa_ies "CIÊNCIA DOS MATERIAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MATERIAIS"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013001P4_2021
+		cti:avaliado conceito_25020013001P4_2022
+		cti:avaliado conceito_25020013001P4_2023
+		cti:avaliado conceito_25020013001P4_2024
+	]
+
+	instance ppg_25020013010P3 : cti:PPG [
+		cti:cd_programa_ies "25020013010P3"
+		cti:nm_programa_ies "EDUCAÇÃO FÍSICA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "EDUCAÇÃO FÍSICA"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013010P3_2021
+		cti:avaliado conceito_25020013010P3_2022
+		cti:avaliado conceito_25020013010P3_2023
+		cti:avaliado conceito_25020013010P3_2024
+	]
+
+	instance ppg_25020013009P5 : cti:PPG [
+		cti:cd_programa_ies "25020013009P5"
+		cti:nm_programa_ies "PSICOLOGIA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "PSICOLOGIA"
+		cti:sediado ict_25020013
+		cti:avaliado conceito_25020013009P5_2021
+		cti:avaliado conceito_25020013009P5_2022
+		cti:avaliado conceito_25020013009P5_2023
+		cti:avaliado conceito_25020013009P5_2024
+	]
+
+	instance ppg_25025015001P6 : cti:PPG [
+		cti:cd_programa_ies "25025015001P6"
+		cti:nm_programa_ies "EDUCAÇÃO PARA O ENSINO NA ÁREA DE SAÚDE"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "ENSINO"
+		cti:sediado ict_25025015
+		cti:avaliado conceito_25025015001P6_2021
+		cti:avaliado conceito_25025015001P6_2022
+		cti:avaliado conceito_25025015001P6_2023
+		cti:avaliado conceito_25025015001P6_2024
+	]
+
+	instance ppg_25025015002P2 : cti:PPG [
+		cti:cd_programa_ies "25025015002P2"
+		cti:nm_programa_ies "PSICOLOGIA DA SAÚDE"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "PSICOLOGIA"
+		cti:sediado ict_25025015
+		cti:avaliado conceito_25025015002P2_2021
+		cti:avaliado conceito_25025015002P2_2022
+		cti:avaliado conceito_25025015002P2_2023
+		cti:avaliado conceito_25025015002P2_2024
+	]
+
+	instance ppg_26017008001P4 : cti:PPG [
+		cti:cd_programa_ies "26017008001P4"
+		cti:nm_programa_ies "DIREITO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "DIREITO"
+		cti:sediado ict_26017008
+		cti:avaliado conceito_26017008001P4_2021
+		cti:avaliado conceito_26017008001P4_2022
+		cti:avaliado conceito_26017008001P4_2023
+		cti:avaliado conceito_26017008001P4_2024
+	]
+
+	instance ppg_26038005001P4 : cti:PPG [
+		cti:cd_programa_ies "26038005001P4"
+		cti:nm_programa_ies "DIREITO, MERCADO, COMPLIANCE E SEGURANÇA HUMANA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "DIREITO"
+		cti:sediado ict_26038005
+		cti:avaliado conceito_26038005001P4_2021
+		cti:avaliado conceito_26038005001P4_2022
+		cti:avaliado conceito_26038005001P4_2023
+	]
+
+	instance ppg_25001019175P5 : cti:PPG [
+		cti:cd_programa_ies "25001019175P5"
+		cti:nm_programa_ies "EDUCAÇÃO BÁSICA"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "EDUCAÇÃO"
+		cti:sediado ict_25001019
+		cti:avaliado conceito_25001019175P5_2022
+		cti:avaliado conceito_25001019175P5_2023
+		cti:avaliado conceito_25001019175P5_2024
+	]
+
+	instance ppg_26041006004P0 : cti:PPG [
+		cti:cd_programa_ies "26041006004P0"
+		cti:nm_programa_ies "SANIDADE E REPRODUÇÃO DE ANIMAIS DE PRODUÇÃO"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "MEDICINA VETERINÁRIA"
+		cti:sediado ict_26041006
+		cti:avaliado conceito_26041006004P0_2023
+		cti:avaliado conceito_26041006004P0_2024
+	]
+
+	instance ppg_26041006001P1 : cti:PPG [
+		cti:cd_programa_ies "26041006001P1"
+		cti:nm_programa_ies "CIÊNCIA ANIMAL E PASTAGENS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ZOOTECNIA"
+		cti:sediado ict_26041006
+		cti:avaliado conceito_26041006001P1_2023
+		cti:avaliado conceito_26041006001P1_2024
+	]
+
+	instance ppg_26041006003P4 : cti:PPG [
+		cti:cd_programa_ies "26041006003P4"
+		cti:nm_programa_ies "PRODUÇÃO AGRÍCOLA"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "AGRONOMIA"
+		cti:sediado ict_26041006
+		cti:avaliado conceito_26041006003P4_2023
+		cti:avaliado conceito_26041006003P4_2024
+	]
+
+	instance ppg_26041006002P8 : cti:PPG [
+		cti:cd_programa_ies "26041006002P8"
+		cti:nm_programa_ies "CIÊNCIAS AMBIENTAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "CIÊNCIAS AMBIENTAIS"
+		cti:sediado ict_26041006
+		cti:avaliado conceito_26041006002P8_2023
+		cti:avaliado conceito_26041006002P8_2024
+	]
+
+	instance ppg_25002015011P9 : cti:PPG [
+		cti:cd_programa_ies "25002015011P9"
+		cti:nm_programa_ies "DIREITO E INOVAÇÃO"
+		cti:nm_modalidade_programa "PROFISSIONAL"
+		cti:nm_area_conhecimento "DIREITO"
+		cti:sediado ict_25002015
+		cti:avaliado conceito_25002015011P9_2024
+	]
+
+	instance ppg_25003011076P0 : cti:PPG [
+		cti:cd_programa_ies "25003011076P0"
+		cti:nm_programa_ies "ENGENHARIA DE SISTEMAS DE ENERGIA (PPGESE)"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "ENGENHARIA ELÉTRICA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011076P0_2024
+	]
+
+	instance ppg_25003011077P6 : cti:PPG [
+		cti:cd_programa_ies "25003011077P6"
+		cti:nm_programa_ies "CIÊNCIAS SOCIAIS"
+		cti:nm_modalidade_programa "ACADÊMICO"
+		cti:nm_area_conhecimento "SOCIOLOGIA"
+		cti:sediado ict_25003011
+		cti:avaliado conceito_25003011077P6_2024
+	]
+
+	// =====================================================================
+	// CONCEITOS DE AVALIAÇÃO CAPES (Conceito_PPG)
+	// Cada conceito é uma avaliação de um PPG em um ano
+	// =====================================================================
+
+	instance conceito_25001019092P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019173P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019020P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019066P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019019P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019032P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019013P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019002P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019028P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019060P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019095P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019016P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019072P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019156P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019048P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019044P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019053P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019080P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019003P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019004P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019085P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019034P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019055P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019087P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019038P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019009P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019058P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019018P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019071P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019082P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019045P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019029P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019090P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019081P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019079P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019021P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019046P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019088P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019012P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019172P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019030P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019039P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019065P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019069P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019007P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019041P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019037P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019074P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019015P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019097P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019017P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019061P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019077P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019054P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019068P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019059P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019083P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019010P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019084P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019040P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019027P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019089P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019094P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019078P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019091P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019093P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019171P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019157P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019036P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019043P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019057P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019001P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019026P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019033P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019050P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019024P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019062P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019174P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019063P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019031P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019052P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019023P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019073P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015010P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015002P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015001P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015004P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015005P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015008P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015006P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015007P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015003P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25002015009P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011075P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011002P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011005P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011024P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011010P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011028P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011033P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011027P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011019P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011003P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011038P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011037P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011016P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011020P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011011P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011021P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011025P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011015P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011001P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011030P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011012P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011014P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011022P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011073P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011018P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011017P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011070P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011032P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011072P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011074P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011036P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011071P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011006P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011029P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25003011013P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018015P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018010P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018072P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018070P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018006P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018075P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018071P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018014P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018012P8_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018019P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018009P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018073P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018013P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018011P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018016P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018008P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018018P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25004018074P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25005014001P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25005014004P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25005014003P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25005014002P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25007017001P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25007017002P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25009010001P1_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25017012001P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25018019001P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25019015001P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25019015002P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013008P9_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013006P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013040P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013005P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013003P7_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013002P0_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013001P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013010P3_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25020013009P5_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25025015001P6_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25025015002P2_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_26017008001P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_26038005001P4_2021 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2021
+	]
+
+	instance conceito_25001019060P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019046P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019048P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019065P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019038P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019081P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019078P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019015P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019053P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019004P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019083P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019033P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019073P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019082P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019020P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019018P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019066P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019079P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019026P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019037P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019092P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019077P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019085P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019036P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019019P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019024P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019027P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019030P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019062P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019095P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019045P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019091P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019174P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019084P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019157P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019057P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019063P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019050P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019088P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019032P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019054P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019017P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019041P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019069P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019016P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019090P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019002P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019089P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019007P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019175P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "A"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019097P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019040P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019012P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019094P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019023P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019156P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019074P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019029P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019044P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019173P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019010P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019072P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019171P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019028P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019058P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019080P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019001P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019009P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019068P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019052P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019003P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019087P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019031P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019013P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019034P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019172P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019059P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019055P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019043P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019021P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019093P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015003P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015009P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015005P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015001P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015007P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015006P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015008P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015004P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015002P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25002015010P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011019P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011038P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011012P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011071P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011001P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011015P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011006P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011028P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011072P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011033P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011070P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011030P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011022P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011010P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011018P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011025P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011024P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011014P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011027P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011017P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011029P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011032P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011073P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011011P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011002P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011013P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011036P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011003P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011020P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011075P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011005P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011021P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25003011074P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018009P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018013P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018015P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018070P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018072P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018014P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018011P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018012P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018071P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018019P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018074P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018016P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018018P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018006P8_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018075P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018008P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018073P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25004018010P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25005014002P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25005014003P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25005014001P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25005014004P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25007017002P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25007017001P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25009010001P1_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25017012001P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25018019001P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25019015002P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25019015001P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013009P5_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013005P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013008P9_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013040P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013006P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013010P3_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013002P0_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013003P7_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25020013001P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25025015002P2_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25025015001P6_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_26017008001P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_26038005001P4_2022 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2022
+	]
+
+	instance conceito_25001019092P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019029P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019007P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019030P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019085P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019072P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019094P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019055P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019173P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019015P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019065P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019078P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019083P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019016P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019041P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019040P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019020P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019084P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019156P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019019P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019018P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019087P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019074P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019172P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019027P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019036P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019012P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019097P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019068P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019044P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019157P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019002P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019009P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019034P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019050P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019058P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019088P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019079P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019004P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019171P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019028P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019010P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019031P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019093P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019062P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019017P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019043P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019066P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019080P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019024P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019060P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019026P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019081P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019039P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019063P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019037P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019045P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019061P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019057P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019089P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019054P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019038P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019053P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019003P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019059P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019174P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019069P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019090P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019095P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019001P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019175P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "A"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019073P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019082P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019046P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019013P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019077P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019052P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019071P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019021P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019032P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019048P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019091P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019033P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019023P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015006P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015001P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015002P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015004P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015008P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015010P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015007P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015005P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015009P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25002015003P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011032P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011013P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011024P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011005P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011001P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011019P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011028P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011075P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011014P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011027P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011074P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011030P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011011P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011018P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011003P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011070P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011017P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011038P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011036P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011021P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011020P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011022P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011010P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011029P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011072P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011016P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "2"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011015P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011073P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011033P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011006P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011002P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011012P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25003011071P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018072P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018013P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018019P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018074P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018010P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018015P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018006P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018011P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018073P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018012P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018018P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018008P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018014P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018070P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018016P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018075P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018009P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25004018071P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25005014001P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25005014004P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25005014002P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25005014003P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25007017002P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25007017001P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25009010001P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25017012001P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25018019001P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25019015002P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25019015001P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013010P3_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013003P7_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013009P5_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013001P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013005P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013006P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013040P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013002P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25020013008P9_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25025015002P2_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25025015001P6_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_26017008001P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_26038005001P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_26041006004P0_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_26041006001P1_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_26041006003P4_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_26041006002P8_2023 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2023
+	]
+
+	instance conceito_25001019172P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019050P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019029P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019002P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019072P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019174P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019066P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019012P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019023P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019094P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019062P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019079P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019026P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019024P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019031P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019003P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019074P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019054P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019009P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019019P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019057P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019175P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "A"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019059P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019069P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019052P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019045P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019004P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019073P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019033P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019027P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019091P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019028P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019017P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019034P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019058P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019171P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019048P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019040P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019077P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019046P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019015P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019032P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019041P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019007P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019053P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019173P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019010P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019089P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019036P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019082P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019080P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019038P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019001P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019020P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019088P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019092P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019060P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019083P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019068P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019156P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019016P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019157P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019084P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019037P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019097P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019090P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019043P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019081P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019095P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019093P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019065P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019055P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019021P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "7"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019018P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019085P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019030P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019087P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019013P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25001019044P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015003P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015007P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015009P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015008P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015010P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015011P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "A"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015006P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015005P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015001P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25002015004P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011076P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "A"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011017P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011021P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011036P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011012P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011019P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011014P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011015P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011020P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011018P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011075P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011002P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011074P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011038P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011073P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011011P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011013P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011024P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011033P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011029P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011003P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011010P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011077P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "A"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011030P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011032P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011005P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011070P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011001P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011006P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011022P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25003011071P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018075P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018014P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018074P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018073P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "1"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018011P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018019P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018006P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018070P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018071P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018072P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018018P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018015P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018016P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018013P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018009P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018008P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018010P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25004018012P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25005014001P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "6"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25005014003P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25005014004P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25005014002P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25007017001P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25007017002P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25009010001P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25017012001P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25018019001P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25019015002P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25019015001P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013008P9_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013040P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013005P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013002P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013003P7_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013006P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013010P3_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013009P5_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25020013001P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25025015001P6_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_25025015002P2_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_26017008001P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_26041006003P4_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "5"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_26041006004P0_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_26041006002P8_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "4"
+		cti:an_base_conceito 2024
+	]
+
+	instance conceito_26041006001P1_2024 : cti:Conceito_PPG [
+		cti:cd_conceito_programa "3"
+		cti:an_base_conceito 2024
+	]
+
+}
