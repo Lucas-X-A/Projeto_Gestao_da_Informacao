@@ -220,3 +220,6 @@ __marimo__/
 
 /.settings/
 fuseki.pid
+
+.agents
+skills-lock.json
