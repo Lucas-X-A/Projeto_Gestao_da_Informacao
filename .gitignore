@@ -78,6 +78,12 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Data folder
+data/
+
+# State file
+*.pkl
+
 # IPython
 profile_default/
 ipython_config.py
