@@ -105,7 +105,7 @@ COLS_PRODUCAO = {
     "url": "DS_URL_ACESSO_PRODUCAO",
     "palavras": "DS_PALAVRA_CHAVE",
     "doi": "DS_DOI",
-    "veiculo": "NM_PERIODICO",
+    "veiculo": "DS_TITULO_PADRONIZADO",
     "issn": "DS_ISSN",
     "cd_prog": "CD_PROGRAMA_IES",
     "base_ano": "AN_BASE",
