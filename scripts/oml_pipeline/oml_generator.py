@@ -36,6 +36,11 @@ class OMLGenerator:
         for citacao in ext.citacao_instances:
             citacoes_by_autor[citacao.autor_id].append(citacao)
 
+        producoes_by_autor: Dict[str, List[str]] = defaultdict(list)
+        for producao in ext.producao_instances.values():
+            for autor_id in producao.autor_ids:
+                producoes_by_autor[autor_id].append(producao.id)
+
         lines = [
             "@dc:description "
             '"Descrição CT&I Pernambuco — gerado pelo pipeline GIC-UFRPE"',
@@ -95,9 +100,10 @@ class OMLGenerator:
             lines.append(f"\t\t{ns}:vinculado {discente.vinculado_id}")
             lines.append("\t]")
 
-        lines += self._section("AUTORES (subconceito de Pessoa)", "mensurado → Citacao   |   IDs Scopus/ORCID via enriquecimento")
+        lines += self._section("AUTORES (subconceito de Pessoa)", "mensurado → Citacao   |   autoria → Producao_Cientifica   |   IDs Scopus/ORCID via enriquecimento")
         for autor in ext.autor_instances.values():
             citacoes = citacoes_by_autor.get(autor.id, [])
+            producoes = producoes_by_autor.get(autor.id, [])
             lines += ["", f"\tinstance {autor.id} : {ns}:Autor ["]
             lines.append(f"\t\t{ns}:id_pessoa {autor.id_pessoa}")
             lines.append(f'\t\t{ns}:nm_pessoa "{escape_oml(autor.nm_pessoa)}"')
@@ -109,6 +115,8 @@ class OMLGenerator:
                 lines.append(f'\t\t{ns}:ds_url_google_scholar "{escape_oml(autor.ds_url_google_scholar)}"')
             for citacao in citacoes:
                 lines.append(f"\t\t{ns}:mensurado {citacao.id}")
+            for producao_id in producoes:
+                lines.append(f"\t\t{ns}:autoria {producao_id}")
             lines.append("\t]")
 
         lines += self._section("VEÍCULOS DE PUBLICAÇÃO")
@@ -123,7 +131,7 @@ class OMLGenerator:
                 lines.append(f"\t\t{ns}:nr_quartil_scopus {veiculo.nr_quartil_scopus}")
             lines.append("\t]")
 
-        lines += self._section("PRODUÇÕES CIENTÍFICAS", "autoria → Autor (N:N)   |   publicada → Veiculo_Publicacao")
+        lines += self._section("PRODUÇÕES CIENTÍFICAS", "publicada → Veiculo_Publicacao")
         for producao in ext.producao_instances.values():
             lines += ["", f"\tinstance {producao.id} : {ns}:Producao_Cientifica ["]
             lines.append(f'\t\t{ns}:nm_titulo "{escape_oml(producao.nm_titulo)}"')
@@ -139,8 +147,6 @@ class OMLGenerator:
             lines.append(f'\t\t{ns}:nr_citacoes_publicacao "{producao.nr_citacoes_publicacao}"')
             if producao.veiculo_id:
                 lines.append(f"\t\t{ns}:publicada {producao.veiculo_id}")
-            for autor_id in producao.autor_ids:
-                lines.append(f"\t\t{ns}:autoria {autor_id}")
             lines.append("\t]")
 
         lines += self._section("CITAÇÕES (métricas por autor)", "Vinculadas ao Autor via relação 'mensurado'")
