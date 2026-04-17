@@ -36,6 +36,11 @@ class OMLGenerator:
         for citacao in ext.citacao_instances:
             citacoes_by_autor[citacao.autor_id].append(citacao)
 
+        producoes_by_autor: Dict[str, List[str]] = defaultdict(list)
+        for producao in ext.producao_instances.values():
+            for autor_id in producao.autor_ids:
+                producoes_by_autor[autor_id].append(producao.id)
+
         lines = [
             "@dc:description "
             '"Descrição CT&I Pernambuco — gerado pelo pipeline GIC-UFRPE"',
@@ -116,6 +121,8 @@ class OMLGenerator:
                 lines.append(f"\t\t{ns}:autoria {producao_id}")
             for citacao in citacoes:
                 lines.append(f"\t\t{ns}:mensurado {citacao.id}")
+            for producao_id in producoes:
+                lines.append(f"\t\t{ns}:autoria {producao_id}")
             lines.append("\t]")
 
         lines += self._section("VEÍCULOS DE PUBLICAÇÃO")
