@@ -21,7 +21,14 @@ from .config import (
     SCOPUS_MODE_DEFAULT,
     SCOPUS_TIMEOUT_SECONDS,
 )
-from .models import AutorInstance, CitacaoInstance, ProducaoCientificaInstance
+from .models import (
+    AutorInstance, 
+    CitacaoInstance, 
+    DiscenteInstance, 
+    ICTInstance, 
+    PPGInstance, 
+    ProducaoCientificaInstance
+)
 from .utils import safe_int
 
 logger = logging.getLogger(__name__)
@@ -57,6 +64,38 @@ def _normalize_doi(raw: str) -> str:
             break
     return value.strip().lower()
 
+
+def _parse_author_name(full_name: str) -> Tuple[str, str]:
+    """
+    Extrai first_name e last_name de nome completo.
+    Ex: "Albert Einstein" → ("Albert", "Einstein")
+    Ex: "José Maria da Silva" → ("José", "Silva")
+    """
+    parts = [p.strip() for p in full_name.strip().split()]
+    if not parts:
+        return "", ""
+    if len(parts) == 1:
+        return parts[0], parts[0]
+    return parts[0], parts[-1]
+
+def _get_author_affiliation(
+    autor: AutorInstance,
+    discente_instances: Dict[str, DiscenteInstance],
+    ppg_instances: Dict[str, PPGInstance],
+    ict_instances: Dict[str, ICTInstance],
+) -> str:
+    """Extrai afiliação (nm_entidade_ensino) dado um autor."""
+    # Buscar discente correspondente
+    for disc in discente_instances.values():
+        if disc.id_pessoa == autor.id_pessoa:
+            # Buscar PPG do discente
+            ppg = ppg_instances.get(disc.vinculado_id)
+            if ppg:
+                # Buscar ICT do PPG
+                ict = ict_instances.get(ppg.ict_id)
+                if ict:
+                    return ict.nm_entidade_ensino
+    return ""
 
 class ScopusEnricher:
     BASE = "https://api.elsevier.com/content"
@@ -370,6 +409,9 @@ class ScopusEnricher:
     def enrich_autores(
         self,
         autor_instances: Dict[str, AutorInstance],
+        discente_instances: Dict[str, DiscenteInstance],
+        ppg_instances: Dict[str, PPGInstance],
+        ict_instances: Dict[str, ICTInstance],
         citacao_instances: List[CitacaoInstance],
         ano_base: int = 2024,
         max_items: int = 100,
@@ -413,10 +455,13 @@ class ScopusEnricher:
 
             scopus_id = autor.ds_scopus_id
             if not scopus_id:
+                first_name, last_name = _parse_author_name(autor.nm_pessoa)
+                query = f"authlast({last_name}) and authfirst({first_name})"
+                
                 data = self._get(
                     f"{self.BASE}/search/author",
                     {
-                        "query": f"AUTHNAME({autor.nm_pessoa})",
+                        "query": query,
                         "field": "dc:identifier,h-index",
                         "count": "1",
                     },
@@ -426,14 +471,25 @@ class ScopusEnricher:
                     continue
 
                 try:
-                    entries = data["search-results"]["entry"]
-                    if not entries or "error" in entries[0]:
+                    entries = data["search-results"].get("entry", [])
+                    if not entries or (isinstance(entries, dict) and "error" in entries):
                         self._mark_failure("author", author_key)
                         continue
                     raw_id = entries[0].get("dc:identifier", "")
                     scopus_id = raw_id.split(":")[-1] if ":" in raw_id else raw_id
                     autor.ds_scopus_id = scopus_id
+                    logger.debug(
+                        "[SCOPUS] Autor '%s' → Scopus ID %s (query: %s)",
+                        autor.nm_pessoa,
+                        scopus_id,
+                        query,
+                    )
                 except (KeyError, IndexError, TypeError):
+                    logger.debug(
+                        "[SCOPUS] Parse error buscando autor '%s' (query: %s)",
+                        autor.nm_pessoa,
+                        query,
+                    )
                     self._mark_failure("author", author_key)
                     continue
 
