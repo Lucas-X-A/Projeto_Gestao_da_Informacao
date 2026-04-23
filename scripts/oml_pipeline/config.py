@@ -48,6 +48,8 @@ CSV_CHUNKSIZE = int(os.getenv("CSV_CHUNKSIZE", "200000"))
 
 SCOPUS_CACHE_PATH = DATA_PROCESSED_DIR / "scopus_cache.json"
 SCOPUS_CHECKPOINT_PATH = DATA_PROCESSED_DIR / "scopus_checkpoint.json"
+SCOPUS_AUTHORS_PROCESSED_PATH = DATA_PROCESSED_DIR / "scopus_authors_processed.txt"
+SCOPUS_DOIS_PROCESSED_PATH = DATA_PROCESSED_DIR / "scopus_dois_processed.txt"
 
 _sit_raw = os.getenv("SITUACAO_FILTER", "TITULADO")
 SITUACAO_FILTER: Optional[List[str]] = (

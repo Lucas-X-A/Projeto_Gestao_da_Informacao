@@ -14,6 +14,8 @@ from .config import (
     SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
     SCOPUS_CACHE_PATH,
     SCOPUS_CHECKPOINT_PATH,
+    SCOPUS_AUTHORS_PROCESSED_PATH,  
+    SCOPUS_DOIS_PROCESSED_PATH,
     SCOPUS_DELAY,
     SCOPUS_MAX_RETRIES_DEFAULT,
     SCOPUS_MODE_DEFAULT,
@@ -105,6 +107,8 @@ class ScopusEnricher:
                 "author_pending": [],
                 "author_failures": {},
             }
+            SCOPUS_AUTHORS_PROCESSED_PATH.write_text("")
+            SCOPUS_DOIS_PROCESSED_PATH.write_text("")
             self._save_state()
 
         if not self.enabled:
@@ -121,9 +125,51 @@ class ScopusEnricher:
                 self.backoff_max_seconds,
             )
 
+    def _save_processed_list(self, kind: str, processed_list: List[str]):
+        """Salva lista de processados em arquivo txt legível."""
+        if kind == "author":
+            path = SCOPUS_AUTHORS_PROCESSED_PATH
+        elif kind == "doi":
+            path = SCOPUS_DOIS_PROCESSED_PATH
+        else:
+            return
+        
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(f"# {kind.upper()} - Processados em {len(processed_list)}\n")
+                f.write("# Atualizado automaticamente pelo pipeline\n\n")
+                for item in processed_list:
+                    f.write(f"{item}\n")
+            logger.debug(f"[SCOPUS] Lista de {kind}s salvos em {path}")
+        except Exception as e:
+            logger.warning(f"[SCOPUS] Erro ao salvar lista de {kind}s: {e}")
+    
     def _save_state(self):
         _write_json(SCOPUS_CACHE_PATH, self.cache)
         _write_json(SCOPUS_CHECKPOINT_PATH, self.checkpoint)
+        self._save_processed_list("author", self.checkpoint.get("author_done", []))
+        self._save_processed_list("doi", self.checkpoint.get("doi_done", []))
+        
+    def _load_processed_list(self, kind: str) -> set:
+        """Carrega lista de processados do arquivo txt."""
+        if kind == "author":
+            path = SCOPUS_AUTHORS_PROCESSED_PATH
+        elif kind == "doi":
+            path = SCOPUS_DOIS_PROCESSED_PATH
+        else:
+            return set()
+        
+        if not path.exists():
+            return set()
+        
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                items = {line.strip() for line in f if line.strip() and not line.startswith("#")}
+            return items
+        except Exception as e:
+            logger.warning(f"[SCOPUS] Erro ao carregar lista de {kind}s: {e}")
+            return set()
+
 
     def _get_lists_and_sets(self, kind: str) -> Tuple[List[str], set, List[str], Dict[str, int]]:
         done_list = self.checkpoint.get(f"{kind}_done", [])

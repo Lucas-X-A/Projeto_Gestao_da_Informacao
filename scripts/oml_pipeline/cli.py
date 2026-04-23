@@ -89,6 +89,12 @@ def build_parser() -> argparse.ArgumentParser:
         default=SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
         help="Backoff máximo em segundos para retries Scopus.",
     )
+    parser.add_argument(
+        "--scopus-batch-size",
+        type=int,
+        default=SCOPUS_MAX_ITEMS_DEFAULT,
+        help="Tamanho do lote para enriquecimento Scopus (itens por execução).",
+    )
     return parser
 
 
@@ -111,7 +117,7 @@ def main(argv=None) -> int:
     try:
         return run_pipeline(
             steps=steps,
-            scopus_limit=max(args.scopus_limit, 0),
+            scopus_limit=args.scopus_batch_size,
             scopus_mode=args.scopus_mode,
             scopus_reset_progress=bool(args.scopus_reset_progress),
             scopus_max_retries=max(args.scopus_max_retries, 0),
