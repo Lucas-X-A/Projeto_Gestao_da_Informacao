@@ -144,6 +144,9 @@ def run_pipeline(
             enricher.enrich_autores(
                 ext.autor_instances,
                 ext.citacao_instances,
+                discente_instances=ext.discente_instances,
+                ppg_instances=ext.ppg_instances,
+                ict_instances=ext.ict_instances,
                 ano_base=2024,
                 max_items=scopus_limit,
             )

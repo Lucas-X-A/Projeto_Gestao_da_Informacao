@@ -409,10 +409,10 @@ class ScopusEnricher:
     def enrich_autores(
         self,
         autor_instances: Dict[str, AutorInstance],
-        discente_instances: Dict[str, DiscenteInstance],
-        ppg_instances: Dict[str, PPGInstance],
-        ict_instances: Dict[str, ICTInstance],
         citacao_instances: List[CitacaoInstance],
+        discente_instances: Optional[Dict[str, DiscenteInstance]] = None,
+        ppg_instances: Optional[Dict[str, PPGInstance]] = None,
+        ict_instances: Optional[Dict[str, ICTInstance]] = None,
         ano_base: int = 2024,
         max_items: int = 100,
     ) -> int:
@@ -456,7 +456,17 @@ class ScopusEnricher:
             scopus_id = autor.ds_scopus_id
             if not scopus_id:
                 first_name, last_name = _parse_author_name(autor.nm_pessoa)
-                query = f"authlast({last_name}) and authfirst({first_name})"
+                query_parts = [f"authlast({last_name})", f"authfirst({first_name})"]
+                
+                # Adicionar afiliação se disponível
+                if discente_instances and ppg_instances and ict_instances:
+                    affiliation = _get_author_affiliation(
+                        autor, discente_instances, ppg_instances, ict_instances
+                    )
+                    if affiliation:
+                        query_parts.append(f"affil({affiliation})")
+                
+                query = " and ".join(query_parts)
                 
                 data = self._get(
                     f"{self.BASE}/search/author",
