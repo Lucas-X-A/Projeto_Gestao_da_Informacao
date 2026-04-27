@@ -14,12 +14,21 @@ from .config import (
     SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
     SCOPUS_CACHE_PATH,
     SCOPUS_CHECKPOINT_PATH,
+    SCOPUS_AUTHORS_PROCESSED_PATH,  
+    SCOPUS_DOIS_PROCESSED_PATH,
     SCOPUS_DELAY,
     SCOPUS_MAX_RETRIES_DEFAULT,
     SCOPUS_MODE_DEFAULT,
     SCOPUS_TIMEOUT_SECONDS,
 )
-from .models import AutorInstance, CitacaoInstance, ProducaoCientificaInstance
+from .models import (
+    AutorInstance, 
+    CitacaoInstance, 
+    DiscenteInstance, 
+    ICTInstance, 
+    PPGInstance, 
+    ProducaoCientificaInstance
+)
 from .utils import safe_int
 
 logger = logging.getLogger(__name__)
@@ -55,6 +64,38 @@ def _normalize_doi(raw: str) -> str:
             break
     return value.strip().lower()
 
+
+def _parse_author_name(full_name: str) -> Tuple[str, str]:
+    """
+    Extrai first_name e last_name de nome completo.
+    Ex: "Albert Einstein" → ("Albert", "Einstein")
+    Ex: "José Maria da Silva" → ("José", "Silva")
+    """
+    parts = [p.strip() for p in full_name.strip().split()]
+    if not parts:
+        return "", ""
+    if len(parts) == 1:
+        return parts[0], parts[0]
+    return parts[0], parts[-1]
+
+def _get_author_affiliation(
+    autor: AutorInstance,
+    discente_instances: Dict[str, DiscenteInstance],
+    ppg_instances: Dict[str, PPGInstance],
+    ict_instances: Dict[str, ICTInstance],
+) -> str:
+    """Extrai afiliação (nm_entidade_ensino) dado um autor."""
+    # Buscar discente correspondente
+    for disc in discente_instances.values():
+        if disc.id_pessoa == autor.id_pessoa:
+            # Buscar PPG do discente
+            ppg = ppg_instances.get(disc.vinculado_id)
+            if ppg:
+                # Buscar ICT do PPG
+                ict = ict_instances.get(ppg.ict_id)
+                if ict:
+                    return ict.nm_entidade_ensino
+    return ""
 
 class ScopusEnricher:
     BASE = "https://api.elsevier.com/content"
@@ -105,6 +146,8 @@ class ScopusEnricher:
                 "author_pending": [],
                 "author_failures": {},
             }
+            SCOPUS_AUTHORS_PROCESSED_PATH.write_text("")
+            SCOPUS_DOIS_PROCESSED_PATH.write_text("")
             self._save_state()
 
         if not self.enabled:
@@ -121,9 +164,51 @@ class ScopusEnricher:
                 self.backoff_max_seconds,
             )
 
+    def _save_processed_list(self, kind: str, processed_list: List[str]):
+        """Salva lista de processados em arquivo txt legível."""
+        if kind == "author":
+            path = SCOPUS_AUTHORS_PROCESSED_PATH
+        elif kind == "doi":
+            path = SCOPUS_DOIS_PROCESSED_PATH
+        else:
+            return
+        
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(f"# {kind.upper()} - Processados em {len(processed_list)}\n")
+                f.write("# Atualizado automaticamente pelo pipeline\n\n")
+                for item in processed_list:
+                    f.write(f"{item}\n")
+            logger.debug(f"[SCOPUS] Lista de {kind}s salvos em {path}")
+        except Exception as e:
+            logger.warning(f"[SCOPUS] Erro ao salvar lista de {kind}s: {e}")
+    
     def _save_state(self):
         _write_json(SCOPUS_CACHE_PATH, self.cache)
         _write_json(SCOPUS_CHECKPOINT_PATH, self.checkpoint)
+        self._save_processed_list("author", self.checkpoint.get("author_done", []))
+        self._save_processed_list("doi", self.checkpoint.get("doi_done", []))
+        
+    def _load_processed_list(self, kind: str) -> set:
+        """Carrega lista de processados do arquivo txt."""
+        if kind == "author":
+            path = SCOPUS_AUTHORS_PROCESSED_PATH
+        elif kind == "doi":
+            path = SCOPUS_DOIS_PROCESSED_PATH
+        else:
+            return set()
+        
+        if not path.exists():
+            return set()
+        
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                items = {line.strip() for line in f if line.strip() and not line.startswith("#")}
+            return items
+        except Exception as e:
+            logger.warning(f"[SCOPUS] Erro ao carregar lista de {kind}s: {e}")
+            return set()
+
 
     def _get_lists_and_sets(self, kind: str) -> Tuple[List[str], set, List[str], Dict[str, int]]:
         done_list = self.checkpoint.get(f"{kind}_done", [])
@@ -325,6 +410,9 @@ class ScopusEnricher:
         self,
         autor_instances: Dict[str, AutorInstance],
         citacao_instances: List[CitacaoInstance],
+        discente_instances: Optional[Dict[str, DiscenteInstance]] = None,
+        ppg_instances: Optional[Dict[str, PPGInstance]] = None,
+        ict_instances: Optional[Dict[str, ICTInstance]] = None,
         ano_base: int = 2024,
         max_items: int = 100,
     ) -> int:
@@ -367,10 +455,23 @@ class ScopusEnricher:
 
             scopus_id = autor.ds_scopus_id
             if not scopus_id:
+                first_name, last_name = _parse_author_name(autor.nm_pessoa)
+                query_parts = [f"authlast({last_name})", f"authfirst({first_name})"]
+                
+                # Adicionar afiliação se disponível
+                if discente_instances and ppg_instances and ict_instances:
+                    affiliation = _get_author_affiliation(
+                        autor, discente_instances, ppg_instances, ict_instances
+                    )
+                    if affiliation:
+                        query_parts.append(f"affil({affiliation})")
+                
+                query = " and ".join(query_parts)
+                
                 data = self._get(
                     f"{self.BASE}/search/author",
                     {
-                        "query": f"AUTHNAME({autor.nm_pessoa})",
+                        "query": query,
                         "field": "dc:identifier,h-index",
                         "count": "1",
                     },
@@ -380,14 +481,25 @@ class ScopusEnricher:
                     continue
 
                 try:
-                    entries = data["search-results"]["entry"]
-                    if not entries or "error" in entries[0]:
+                    entries = data["search-results"].get("entry", [])
+                    if not entries or (isinstance(entries, dict) and "error" in entries):
                         self._mark_failure("author", author_key)
                         continue
                     raw_id = entries[0].get("dc:identifier", "")
                     scopus_id = raw_id.split(":")[-1] if ":" in raw_id else raw_id
                     autor.ds_scopus_id = scopus_id
+                    logger.debug(
+                        "[SCOPUS] Autor '%s' → Scopus ID %s (query: %s)",
+                        autor.nm_pessoa,
+                        scopus_id,
+                        query,
+                    )
                 except (KeyError, IndexError, TypeError):
+                    logger.debug(
+                        "[SCOPUS] Parse error buscando autor '%s' (query: %s)",
+                        autor.nm_pessoa,
+                        query,
+                    )
                     self._mark_failure("author", author_key)
                     continue
 
@@ -436,7 +548,7 @@ class ScopusEnricher:
 
     def _i10(self, scopus_author_id: str) -> int:
         data = self._get(
-            f"{self.BASE}/search/scopus",
+            f"{self.BASE}/search/author",
             {
                 "query": f"AU-ID({scopus_author_id}) AND REFCOUNT(10)",
                 "field": "dc:identifier",

@@ -121,8 +121,8 @@ class OMLGenerator:
                 lines.append(f"\t\t{ns}:autoria {producao_id}")
             for citacao in citacoes:
                 lines.append(f"\t\t{ns}:mensurado {citacao.id}")
-            for producao_id in producoes:
-                lines.append(f"\t\t{ns}:autoria {producao_id}")
+            #for producao_id in producoes: 
+            #    lines.append(f"\t\t{ns}:autoria {producao_id}")
             lines.append("\t]")
 
         lines += self._section("VEÍCULOS DE PUBLICAÇÃO")

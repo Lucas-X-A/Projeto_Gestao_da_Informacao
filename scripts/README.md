@@ -61,22 +61,22 @@ Resultado esperado:
 
 ### 3. Enriquecer com Scopus
 
-Execução incremental recomendada:
+Execução incremental recomendada (processa 100 autores/DOIs por vez):
 
 ```bash
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-mode incremental --scopus-limit 200
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 100
 ```
 
-Execução full (reprocessa sem usar checkpoint):
+Execução full (reprocessa tudo sem usar checkpoint):
 
 ```bash
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-mode full --scopus-limit 200
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-mode full --scopus-batch-size 100
 ```
 
-Reset de cache/checkpoint antes da rodada:
+Reset de cache/checkpoint (começa do zero):
 
 ```bash
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-reset-progress --scopus-limit 200
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-reset-progress --scopus-batch-size 100
 ```
 
 ### 4. Gerar OML e auditoria
@@ -93,7 +93,7 @@ Resultado esperado:
 ### 5. Rodar tudo em sequência
 
 ```bash
-python scripts/generate_oml_cti_full.py --steps all --scopus-mode incremental --scopus-limit 200
+python scripts/generate_oml_cti_full.py --steps all --scopus-batch-size 100
 ```
 
 ### 6. Verificação rápida de saída
@@ -102,6 +102,8 @@ python scripts/generate_oml_cti_full.py --steps all --scopus-mode incremental --
   - `data/processed/pipeline_state.pkl`
   - `data/processed/scopus_cache.json`
   - `data/processed/scopus_checkpoint.json`
+  - `data/processed/scopus_authors_processed.txt`
+  - `data/processed/scopus_dois_processed.txt`
   - `data/processed/cti_pe_audit.csv`
   - `src/oml/gic.ufrpe.br/cti/description/cti-pe.oml`
 2. Verifique logs para possíveis avisos de API (`401`, `403`, `429`).
@@ -109,78 +111,122 @@ python scripts/generate_oml_cti_full.py --steps all --scopus-mode incremental --
 ## Etapas do pipeline
 
 - `capes`: carrega e extrai CAPES, valida integridade e salva estado.
-- `scopus`: carrega estado salvo e enriquece autores e produções com Scopus.
+- `scopus`: carrega estado salvo e enriquece autores/produções com Scopus em lotes.
 - `oml`: carrega estado salvo e gera OML + auditoria CSV.
-- `all`: executa todo o fluxo.
+- `all`: executa todo o fluxo em sequência.
 
 Exemplos:
 
 ```bash
 python scripts/generate_oml_cti_full.py --steps capes
-python scripts/generate_oml_cti_full.py --steps scopus
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 100
 python scripts/generate_oml_cti_full.py --steps oml
 python scripts/generate_oml_cti_full.py --steps capes,oml
-python scripts/generate_oml_cti_full.py --steps all
+python scripts/generate_oml_cti_full.py --steps all --scopus-batch-size 100
 ```
 
-## Limite de enriquecimento Scopus
+## Tamanho de lote do Scopus (batch size)
 
-O enriquecimento Scopus aplica limite em duas frentes:
+Enriquecimento Scopus processa em lotes para melhor controle e recuperação de falhas.
+Padrão: `100` itens por execução.
 
-- quantidade máxima de produções por DOI processadas
-- quantidade máxima de autores processados
-
-Valor padrão: `100`.
-
-Você pode alterar por argumento de linha de comando:
+Altere por argumento de linha de comando:
 
 ```bash
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-limit 100
-```
-
-## Modo robusto do Scopus (incremental)
-
-O enriquecimento Scopus agora suporta execução incremental com checkpoint,
-cache local e retry com backoff adaptativo.
-
-### Como funciona
-
-- Mantém fila pendente entre execuções.
-- Evita repetir chamadas já resolvidas via cache.
-- Retoma processamento de onde parou.
-- Aplica retries para erros transitórios (`429`, `5xx`, rede).
-
-Arquivos gerados em `data/processed/`:
-
-- `scopus_cache.json`
-- `scopus_checkpoint.json`
-
-### Opções de CLI
-
-- `--scopus-mode incremental|full`
-- `--scopus-limit N`
-- `--scopus-reset-progress`
-- `--scopus-max-retries N`
-- `--scopus-backoff-base SEGUNDOS`
-- `--scopus-backoff-max SEGUNDOS`
-
-Exemplos:
-
-```bash
-# Incremental (recomendado)
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-mode incremental --scopus-limit 200
-
-# Full (reprocessa sem depender do checkpoint)
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-mode full --scopus-limit 200
-
-# Reset de cache/checkpoint + execução incremental
-python scripts/generate_oml_cti_full.py --steps scopus --scopus-reset-progress --scopus-limit 100
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 50
 ```
 
 Ou por variável de ambiente:
 
-```text
-SCOPUS_MAX_ITEMS=100
+```bash
+export SCOPUS_MAX_ITEMS=200
+python scripts/generate_oml_cti_full.py --steps scopus
+```
+
+## Modo incremental com checkpoint e listas de progresso
+
+Scopus agora rastreia progresso em JSON (checkpoint) e texto legível (listas).
+
+### Como funciona
+
+- Processa **lote por lote** (ex: 100 itens, depois próximos 100)
+- Salva fila pendente em `scopus_checkpoint.json`
+- Evita reprocessar via cache em `scopus_cache.json`
+- Gera listas legíveis em `.txt` para inspeção rápida
+- Retoma exatamente de onde parou na última execução
+
+### Arquivos gerados em `data/processed/`
+
+- `scopus_cache.json` — cache de resultados API (JSON)
+- `scopus_checkpoint.json` — fila e status (JSON estruturado)
+- `scopus_authors_processed.txt` — autores enriquecidos (legível)
+- `scopus_dois_processed.txt` — DOIs consultados (legível)
+
+### Opções de CLI
+
+- `--scopus-batch-size N` — itens por execução (padrão: 100)
+- `--scopus-mode incremental|full` — incremental usa checkpoint, full reprocessa tudo
+- `--scopus-reset-progress` — limpa cache e checkpoint (começa do zero)
+- `--scopus-max-retries N` — retries por requisição
+- `--scopus-backoff-base SEGUNDOS` — backoff inicial
+- `--scopus-backoff-max SEGUNDOS` — backoff máximo
+
+### Exemplos práticos
+
+Primeira execução (processa 100):
+
+```bash
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 100
+```
+
+Segunda execução (próximos 100):
+
+```bash
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 100
+```
+
+Pequenos lotes (recomendado se API com limite baixo):
+
+```bash
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 50
+```
+
+Reprocessar tudo sem checkpoint:
+
+```bash
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-mode full --scopus-batch-size 100
+```
+
+Resetar e começar do zero:
+
+```bash
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-reset-progress --scopus-batch-size 50
+```
+
+### Inspecionando progresso
+
+Ver quantos autores já foram processados:
+
+```bash
+wc -l data/processed/scopus_authors_processed.txt
+```
+
+Ver primeiros 10 autores enriquecidos:
+
+```bash
+head -15 data/processed/scopus_authors_processed.txt
+```
+
+Verificar quantos DOIs já foram consultados:
+
+```bash
+grep -c "^prod_" data/processed/scopus_dois_processed.txt
+```
+
+Ver fila pendente (JSON):
+
+```bash
+cat data/processed/scopus_checkpoint.json | grep -A 5 "author_pending"
 ```
 
 ## Variáveis de ambiente relevantes
@@ -200,6 +246,8 @@ SCOPUS_MAX_ITEMS=100
 - Estado intermediário: `data/processed/pipeline_state.pkl`
 - Cache Scopus: `data/processed/scopus_cache.json`
 - Checkpoint Scopus: `data/processed/scopus_checkpoint.json`
+- Lista de autores enriquecidos: `data/processed/scopus_authors_processed.txt`
+- Lista de DOIs consultados: `data/processed/scopus_dois_processed.txt`
 - Auditoria: `data/processed/cti_pe_audit.csv`
 
 ## Arquitetura do pacote
