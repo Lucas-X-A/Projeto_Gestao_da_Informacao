@@ -548,7 +548,7 @@ class ScopusEnricher:
 
     def _i10(self, scopus_author_id: str) -> int:
         data = self._get(
-            f"{self.BASE}/search/scopus",
+            f"{self.BASE}/search/author",
             {
                 "query": f"AU-ID({scopus_author_id}) AND REFCOUNT(10)",
                 "field": "dc:identifier",
