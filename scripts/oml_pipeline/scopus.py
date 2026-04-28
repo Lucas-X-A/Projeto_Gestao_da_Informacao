@@ -100,7 +100,7 @@ def _get_author_affiliation(
 class ScopusEnricher:
     BASE = "https://api.elsevier.com/content"
     HDR = {"Accept": "application/json"}
-    MAX_FAILURES_PER_ITEM = 3
+    MAX_FAILURES_PER_ITEM = 2
 
     def __init__(
         self,
@@ -503,19 +503,28 @@ class ScopusEnricher:
                     self._mark_failure("author", author_key)
                     continue
 
+            # NOVA REQUISIÇÃO PARA MÉTRICAS DO AUTOR
             data2 = self._get(
                 f"{self.BASE}/author/author_id/{scopus_id}",
-                {"field": "h-index,cited-by-count,document-count"},
+                {"view": "metrics"}, # Parâmetro correto exigido pela Elsevier
             )
             if not data2:
                 self._mark_failure("author", author_key)
                 continue
 
             try:
-                core = data2["author-retrieval-response"][0]["coredata"]
-                h_idx = safe_int(core.get("h-index", 0))
-                total = safe_int(core.get("cited-by-count", 0))
-                i10 = self._i10(scopus_id)
+                # O formato do JSON muda ligeiramente com view=metrics
+                response_data = data2.get("author-retrieval-response", [])
+                if isinstance(response_data, list) and len(response_data) > 0:
+                    core = response_data[0].get("coredata", {})
+                    h_idx = safe_int(response_data[0].get("h-index", 0))
+                    total = safe_int(core.get("cited-by-count", 0))
+                else:
+                    self._mark_failure("author", author_key)
+                    continue
+                
+                i10 = self._i10(scopus_id) # A chamada ao i10 vem a seguir
+                
                 self._upsert_citacao(
                     citacao_instances,
                     CitacaoInstance(
@@ -537,7 +546,8 @@ class ScopusEnricher:
                 }
                 self._mark_success("author", author_key)
                 enriched += 1
-            except (KeyError, IndexError, TypeError):
+            except (KeyError, IndexError, TypeError) as e:
+                logger.debug(f"[SCOPUS] Erro parseando métricas do autor {author_key}: {e}")
                 self.cache.setdefault("authors", {})[author_key] = {"status": "parse_error"}
                 self._mark_failure("author", author_key)
                 continue
@@ -547,17 +557,36 @@ class ScopusEnricher:
         return enriched
 
     def _i10(self, scopus_author_id: str) -> int:
+        """
+        Calcula o índice i10 buscando os documentos do autor ordenados 
+        por citações e contando quantos possuem >= 10 citações.
+        """
         data = self._get(
-            f"{self.BASE}/search/author",
+            f"{self.BASE}/search/scopus", # Endpoint correto: busca de documentos
             {
-                "query": f"AU-ID({scopus_author_id}) AND REFCOUNT(10)",
-                "field": "dc:identifier",
-                "count": "1",
+                "query": f"AU-ID({scopus_author_id})",
+                "field": "citedby-count",
+                "sort": "-citedby-count", # Ordena do mais citado para o menos
+                "count": "100", # Traz os 100 mais citados (limite padrão da API)
             },
         )
         if not data:
             return 0
+            
         try:
-            return safe_int(data["search-results"]["opensearch:totalResults"], 0)
-        except (KeyError, TypeError):
+            entries = data.get("search-results", {}).get("entry", [])
+            if not isinstance(entries, list):
+                return 0
+                
+            i10_count = 0
+            for doc in entries:
+                cit_count = safe_int(doc.get("citedby-count", 0))
+                if cit_count >= 10:
+                    i10_count += 1
+                else:
+                    # Como está ordenado de forma decrescente, se achar um < 10, pode parar o loop
+                    break
+            return i10_count
+        except (KeyError, TypeError) as e:
+            logger.debug(f"[SCOPUS] Erro ao calcular i10 para {scopus_author_id}: {e}")
             return 0
