@@ -119,6 +119,7 @@ class ScopusEnricher:
         self.backoff_base_seconds = max(backoff_base_seconds, 0.1)
         self.backoff_max_seconds = max(backoff_max_seconds, self.backoff_base_seconds)
         self.backoff_jitter_seconds = max(backoff_jitter_seconds, 0.0)
+        self.consecutive_429_errors = 0
 
         DATA_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
         self.cache = _read_json(SCOPUS_CACHE_PATH, {"doi": {}, "authors": {}})
@@ -279,6 +280,7 @@ class ScopusEnricher:
                 )
 
                 if response.status_code == 200:
+                    self.consecutive_429_errors = 0  
                     return response.json()
 
                 if response.status_code == 401:
@@ -299,6 +301,17 @@ class ScopusEnricher:
                     return None
 
                 if attempt >= self.max_retries:
+                    if response.status_code == 429:
+                        self.consecutive_429_errors += 1
+                        logger.warning(
+                            "[SCOPUS] HTTP 429 (tentativa %s/%s). Contador 429: %s/3",
+                            attempt + 1,
+                            self.max_retries + 1,
+                            self.consecutive_429_errors,
+                        )
+                    else:
+                        self.consecutive_429_errors = 0
+                    
                     logger.warning(
                         "[SCOPUS] HTTP %s após %s tentativas: %s",
                         response.status_code,
@@ -424,6 +437,11 @@ class ScopusEnricher:
         queue = self._prepare_queue(all_author_keys, kind="author")
         selected = queue[:max_items] if max_items > 0 else []
 
+        done_list, done_set, pending_list, _ = self._get_lists_and_sets("author")
+        pending_set = set(pending_list)
+        success_first = [k for k in selected if k not in pending_set]  # Novos
+        then_retries = [k for k in selected if k in pending_set]       # Retries
+
         logger.info(
             "\n[SCOPUS] Índices de autor: %s candidatos, %s na fila, %s processados (limite=%s)",
             len(all_author_keys),
@@ -431,9 +449,21 @@ class ScopusEnricher:
             len(selected),
             max_items,
         )
+        logger.info(
+            "  Ordem: %s novos → %s retries ",
+            len(success_first),
+            len(then_retries),
+        )
 
         enriched = 0
-        for author_key in selected:
+        
+        for author_key in success_first + then_retries:
+            if self.consecutive_429_errors >= 3:
+                logger.error(
+                    "[SCOPUS] HTTP 429 atingiu 3x consecutivas. Encerrando enriquecimento."
+                )
+                break
+
             autor = by_author_id[author_key]
             cached = self.cache.get("authors", {}).get(author_key)
             if cached and cached.get("status") == "ok":
@@ -506,14 +536,13 @@ class ScopusEnricher:
             # NOVA REQUISIÇÃO PARA MÉTRICAS DO AUTOR
             data2 = self._get(
                 f"{self.BASE}/author/author_id/{scopus_id}",
-                {"view": "metrics"}, # Parâmetro correto exigido pela Elsevier
+                {"view": "metrics"},
             )
             if not data2:
                 self._mark_failure("author", author_key)
                 continue
 
             try:
-                # O formato do JSON muda ligeiramente com view=metrics
                 response_data = data2.get("author-retrieval-response", [])
                 if isinstance(response_data, list) and len(response_data) > 0:
                     core = response_data[0].get("coredata", {})
@@ -523,7 +552,7 @@ class ScopusEnricher:
                     self._mark_failure("author", author_key)
                     continue
                 
-                i10 = self._i10(scopus_id) # A chamada ao i10 vem a seguir
+                i10 = self._i10(scopus_id)
                 
                 self._upsert_citacao(
                     citacao_instances,
