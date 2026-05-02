@@ -1,0 +1,17 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?nomeAutor (COUNT(?artigo) AS ?producaoElite)
+WHERE {
+  ?autor a cti:Autor ;
+         cti:nm_pessoa ?nomeAutor ;
+         cti:autoria ?artigo .
+         
+  ?artigo cti:publicada ?veiculo .
+  
+  ?veiculo cti:nr_quartil_scopus ?quartil .
+  
+  # Filtra apenas Quartis de alta qualidade (1 e 2)
+  FILTER(?quartil <= 2)
+}
+GROUP BY ?nomeAutor
+ORDER BY DESC(?producaoElite)

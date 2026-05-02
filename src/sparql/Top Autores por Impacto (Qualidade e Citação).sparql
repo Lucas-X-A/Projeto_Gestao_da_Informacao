@@ -1,0 +1,13 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?nomeAutor ?totalCitacoes ?indiceH ?indiceI10
+WHERE {
+  ?autor a cti:Autor ;
+         cti:nm_pessoa ?nomeAutor ;
+         cti:mensurado ?citacao .
+  
+  ?citacao cti:nr_citacoes_autor ?totalCitacoes ;
+           cti:nr_indice_h ?indiceH ;
+           cti:nr_indice_i10 ?indiceI10 .
+}
+ORDER BY DESC(?indiceH) DESC(?totalCitacoes)

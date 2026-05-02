@@ -1,0 +1,15 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+SELECT ?nomeAutor 
+       (COUNT(?artigo) AS ?totalArtigos) 
+       (SUM(xsd:integer(?citacoesProd)) AS ?somaCitacoes)
+       (AVG(xsd:integer(?citacoesProd)) AS ?mediaCitacoesPorArtigo)
+WHERE {
+  ?autor a cti:Autor ;
+         cti:nm_pessoa ?nomeAutor ;
+         cti:autoria ?artigo .
+         
+  ?artigo cti:nr_citacoes_publicacao ?citacoesProd .
+}
+GROUP BY ?nomeAutor
+ORDER BY DESC(?mediaCitacoesPorArtigo)
