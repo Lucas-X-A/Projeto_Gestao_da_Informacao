@@ -232,3 +232,4 @@ skills-lock.json
 data/raw/*
 data/processed/cti_pe_audit.csv
 data/processed/pipeline_state.pkl
+data/fuseki
