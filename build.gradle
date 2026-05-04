@@ -21,12 +21,12 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-        classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
-        classpath 'io.opencaesar.owl:owl-query-gradle:+'
-        classpath 'io.opencaesar.owl:owl-load-gradle:+'
-        classpath 'io.opencaesar.owl:owl-reason-gradle:+'
-        classpath 'io.opencaesar.oml:oml-merge-gradle:+'
-        classpath 'io.opencaesar.adapters:oml2owl-gradle:+'
+        classpath 'io.opencaesar.owl:owl-fuseki-gradle:2.9.0'
+        classpath 'io.opencaesar.owl:owl-query-gradle:2.9.0'
+        classpath 'io.opencaesar.owl:owl-load-gradle:2.9.0'
+        classpath 'io.opencaesar.owl:owl-reason-gradle:2.9.0'
+        classpath 'io.opencaesar.oml:oml-merge-gradle:2.9.0'
+        classpath 'io.opencaesar.adapters:oml2owl-gradle:2.9.0'
 	}
 }
 
@@ -52,7 +52,7 @@ repositories {
  * The OML dependencies
  */
 dependencies {
-    oml "io.opencaesar.ontologies:core-vocabularies:5.+"
+    oml "io.opencaesar.ontologies:core-vocabularies:5.1.0"
 }
 
 /*
@@ -116,7 +116,7 @@ task stopFuseki(type: io.opencaesar.owl.fuseki.StopFusekiTask, group:"oml") {
  * A task to load an OWL catalog to a Fuseki dataset endpoint
  * @seeAlso https://github.com/opencaesar/owl-tools/blob/master/owl-load/README.md
  */
-task owlLoad(type:io.opencaesar.owl.load.OwlLoadTask, group:"oml", dependsOn: owlReason) {
+task owlLoad(type:io.opencaesar.owl.load.OwlLoadTask, group:"oml", dependsOn: [owlReason, startFuseki]) {
     inputs.files(startFuseki.outputFolderPath) // rerun when fuseki restarts
     catalogPath = file('build/owl/catalog.xml')
     endpointURL = "http://localhost:3030/$dataset".toString()
