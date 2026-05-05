@@ -1,0 +1,33 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?faixaCitacao (COUNT(DISTINCT ?autor) AS ?quantidade) ?indiceH ?indiceI10
+WHERE {
+  ?autor a cti:Autor ;
+         cti:mensurado ?citacao .
+  
+  ?citacao cti:nr_citacoes_autor ?citacoesStr ;
+           cti:nr_indice_h ?indiceH ;
+           cti:nr_indice_i10 ?indiceI10 .
+  
+  BIND(xsd:integer(?citacoesStr) AS ?numCitacoes)
+  
+  FILTER(BOUND(?numCitacoes))
+  
+  BIND(
+    IF(?numCitacoes = 0, 1,
+    IF(?numCitacoes > 0 && ?numCitacoes <= 10, 2,
+    IF(?numCitacoes > 10 && ?numCitacoes <= 50, 3,
+    4))) AS ?ordemFaixa
+  )
+  
+  BIND(
+    IF(?numCitacoes = 0, "0 - Sem impacto latente",
+    IF(?numCitacoes > 0 && ?numCitacoes <= 10, "1 a 10 - Impacto Inicial",
+    IF(?numCitacoes > 10 && ?numCitacoes <= 50, "11 a 50 - Impacto Consolidado",
+    "50+ - Elite Científica"))) AS ?faixaCitacao
+  )
+}
+GROUP BY ?faixaCitacao ?ordemFaixa ?indiceH ?indiceI10
+ORDER BY ?ordemFaixa
+
