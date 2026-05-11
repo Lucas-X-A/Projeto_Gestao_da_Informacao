@@ -170,6 +170,7 @@ Scopus agora rastreia progresso em JSON (checkpoint) e texto legível (listas).
 - `--scopus-max-retries N` — retries por requisição
 - `--scopus-backoff-base SEGUNDOS` — backoff inicial
 - `--scopus-backoff-max SEGUNDOS` — backoff máximo
+- `--scopus-priority-ict SIGLA_OU_NOME` — Define uma ICT para ter prioridade máxima na coleta do Scopus (ex: UFRPE, UFPE, IFPE).
 
 ### Exemplos práticos
 
@@ -201,6 +202,11 @@ Resetar e começar do zero:
 
 ```bash
 python scripts/generate_oml_cti_full.py --steps scopus --scopus-reset-progress --scopus-batch-size 50
+```
+
+Priorizar a coleta de dados para uma ICT específica:
+```bash
+python scripts/generate_oml_cti_full.py --steps scopus --scopus-priority-ict UFRPE
 ```
 
 ### Inspecionando progresso
