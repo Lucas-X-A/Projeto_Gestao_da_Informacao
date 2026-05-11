@@ -477,6 +477,46 @@ class ScopusEnricher:
         all_authors.sort(key=lambda a: (get_priority(a), a.id))
         all_author_keys = [a.id for a in all_authors]
 
+        def log_ict_status(ict_name: str):
+            """Calcula e exibe o status global da ICT com base no checkpoint mais recente"""
+            done_list, done_set, pending_list, _ = self._get_lists_and_sets("author")
+            pending_set = set(pending_list)
+
+            # Filtra todos os autores que pertencem a essa ICT específica
+            ict_authors = [a for a in all_authors if get_ict_name(a) == ict_name]
+            total = len(ict_authors)
+            if total == 0:
+                return
+
+            # Calcula quantos deram certo e quantos falharam (retries pendentes)
+            done_count = sum(1 for a in ict_authors if a.id in done_set)
+            pending_count = sum(1 for a in ict_authors if a.id in pending_set)
+
+            # Se não está no done e não está no pending, é um autor "virgem" (novo)
+            untouched = total - done_count - pending_count
+
+            if done_count == total:
+                logger.info(
+                    "[SCOPUS] TODOS os %s autores da ICT '%s' foram processados com sucesso!",
+                    total,
+                    ict_name,
+                )
+            elif untouched == 0 and pending_count > 0:
+                logger.info(
+                    "[SCOPUS] Todos os novos autores da ICT '%s' já foram testados. Restam %s autores na fila de retries (falhas).",
+                    ict_name,
+                    pending_count,
+                )
+            else:
+                logger.info(
+                    "[SCOPUS] Progresso da ICT '%s': %s/%s concluídos (Restam: %s novos, %s retries).",
+                    ict_name,
+                    done_count,
+                    total,
+                    untouched,
+                    pending_count,
+                )
+
         queue = self._prepare_queue(all_author_keys, kind="author")
 
         # Separa os pendentes (retries) da fila
@@ -515,12 +555,10 @@ class ScopusEnricher:
             # Pega a ICT do autor atual
             display_ict = get_ict_name(autor) or "DESCONHECIDA"
 
-            # Lógica para logar o início e o fim da coleta de uma ICT
+            # Log de início e fim da coleta de uma ICT
             if last_ict is not None and display_ict != last_ict:
-                print()  # Quebra a linha do print dinâmico para não sobrepor o log
-                logger.info(
-                    "[SCOPUS] Coleta de dados concluída para a ICT: %s", last_ict
-                )
+                print()
+                log_ict_status(last_ict)  # Chama o log inteligente
                 logger.info(
                     "[SCOPUS] Iniciando coleta de dados para autores da ICT: %s",
                     display_ict,
@@ -694,8 +732,8 @@ class ScopusEnricher:
 
         print()
         if last_ict is not None:
-            logger.info("[SCOPUS] Coleta finalizada para a ICT: %s (Fim do lote)", last_ict)
-
+            log_ict_status(last_ict)  
+            
         self._save_state()
         logger.info("  ✓ %s/%s autores enriquecidos", enriched, len(selected))
         return enriched
