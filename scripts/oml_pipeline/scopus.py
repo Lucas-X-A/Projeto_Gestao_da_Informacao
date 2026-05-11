@@ -443,28 +443,36 @@ class ScopusEnricher:
         ict_instances: Optional[Dict[str, ICTInstance]] = None,
         ano_base: int = 2024,
         max_items: int = 200,
+        priority_ict: Optional[str] = None,
     ) -> int:
         if not self.enabled:
             return 0
 
-        def get_priority(autor: AutorInstance) -> int:
-            ict_name = ""
+        def get_ict_name(autor: AutorInstance) -> str:
             if discente_instances and ppg_instances and ict_instances:
-                ict_name = _get_author_affiliation(
+                return _get_author_affiliation(
                     autor, discente_instances, ppg_instances, ict_instances
                 ).upper()
+            return "DESCONHECIDA"
+
+        def get_priority(autor: AutorInstance) -> int:
+            ict_name = get_ict_name(autor)
+
+            # Se a ICT foi passada como parâmetro, ela ganha prioridade 0 (mais importante)
+            if priority_ict and priority_ict.upper() in ict_name:
+                return 0
 
             # Ordem de prioridade: UFRPE -> UFPE -> UPE -> Outros
-            if "RURAL" in ict_name or "UFRPE" in ict_name:
+            if "FEDERAL RURAL" in ict_name or "UFRPE" in ict_name:
                 return 1
-            elif "FEDERAL DE PERNAMBUCO" in ict_name or "UFPE" in ict_name:
+            elif "UNIVERSIDADE FEDERAL DE PERNAMBUCO" in ict_name or "UFPE" in ict_name:
                 return 2
             elif "UNIVERSIDADE DE PERNAMBUCO" in ict_name or "UPE" in ict_name:
                 return 3
             else:
                 return 4
 
-        # Transforma os dicionários em lista e ordena pela prioridade (1 a 4) e depois por ID
+        # Transforma os dicionários em lista e ordena pela prioridade e depois por ID
         all_authors = list(autor_instances.values())
         all_authors.sort(key=lambda a: (get_priority(a), a.id))
         all_author_keys = [a.id for a in all_authors]
@@ -481,9 +489,8 @@ class ScopusEnricher:
         fila_reordenada = novos_na_fila + retries_na_fila
         selected = fila_reordenada[:max_items] if max_items > 0 else []
 
-        # Para manter o seu log funcionando perfeitamente, contabiliza o lote atual
-        success_first = [k for k in selected if k not in pending_set]  # Novos
-        then_retries = [k for k in selected if k in pending_set]  # Retries
+        success_first = [k for k in selected if k not in pending_set]
+        then_retries = [k for k in selected if k in pending_set]
 
         logger.info(
             "\n[SCOPUS] Índices de autor: %s candidatos, %s na fila, %s selecionados (limite=%s)",
@@ -500,22 +507,45 @@ class ScopusEnricher:
 
         enriched = 0
         total_selecionados = len(selected)
+        last_ict = None
 
         for idx, author_key in enumerate(selected, 1):
-            # Imprime o progresso
+            autor = autor_instances[author_key]
+
+            # Pega a ICT do autor atual
+            display_ict = get_ict_name(autor) or "DESCONHECIDA"
+
+            # Lógica para logar o início e o fim da coleta de uma ICT
+            if last_ict is not None and display_ict != last_ict:
+                print()  # Quebra a linha do print dinâmico para não sobrepor o log
+                logger.info(
+                    "[SCOPUS] Coleta de dados concluída para a ICT: %s", last_ict
+                )
+                logger.info(
+                    "[SCOPUS] Iniciando coleta de dados para autores da ICT: %s",
+                    display_ict,
+                )
+            elif last_ict is None:
+                logger.info(
+                    "[SCOPUS] Iniciando coleta de dados para autores da ICT: %s",
+                    display_ict,
+                )
+
+            last_ict = display_ict
+
+            # Imprime o progresso em tempo real já mostrando de qual ICT é o dado
             print(
-                f"\r  -> Processando autor {idx}/{total_selecionados} | Sucessos: {enriched} ...",
+                f"\r  -> Processando autor {idx}/{total_selecionados} [{display_ict[:30]}] | Sucessos: {enriched} ...",
                 end="",
                 flush=True,
             )
 
             if self.consecutive_429_errors >= 3:
                 logger.error(
-                    "[SCOPUS] HTTP 429 atingiu 3x consecutivas. Encerrando enriquecimento."
+                    "\n[SCOPUS] HTTP 429 atingiu 3x consecutivas. Encerrando enriquecimento."
                 )
                 break
 
-            autor = autor_instances[author_key]
             cached = self.cache.get("authors", {}).get(author_key)
             if cached and cached.get("status") == "ok":
                 autor.ds_scopus_id = cached.get("ds_scopus_id", "")
@@ -663,6 +693,9 @@ class ScopusEnricher:
                 continue
 
         print()
+        if last_ict is not None:
+            logger.info("[SCOPUS] Coleta finalizada para a ICT: %s (Fim do lote)", last_ict)
+
         self._save_state()
         logger.info("  ✓ %s/%s autores enriquecidos", enriched, len(selected))
         return enriched

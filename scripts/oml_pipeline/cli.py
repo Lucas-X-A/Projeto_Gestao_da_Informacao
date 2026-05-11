@@ -95,6 +95,12 @@ def build_parser() -> argparse.ArgumentParser:
         default=SCOPUS_MAX_ITEMS_DEFAULT,
         help="Tamanho do lote para enriquecimento Scopus (itens por execução).",
     )
+    parser.add_argument(
+        "--scopus-priority-ict",
+        type=str,
+        default=None,
+        help="Sigla ou nome da ICT para ter prioridade máxima na coleta do Scopus (ex: UNIVASF, UFAPE).",
+    )
     return parser
 
 
@@ -112,6 +118,7 @@ def main(argv=None) -> int:
     logger.info("  Etapas ativas: %s", ", ".join(sorted(steps)))
     logger.info("  Limite Scopus: %s", args.scopus_limit)
     logger.info("  Modo Scopus: %s", args.scopus_mode)
+    logger.info("  Prioridade Manual ICT: %s", args.scopus_priority_ict or "Padrão do sistema")
     logger.info("=" * 58)
 
     try:
@@ -123,6 +130,7 @@ def main(argv=None) -> int:
             scopus_max_retries=max(args.scopus_max_retries, 0),
             scopus_backoff_base_seconds=max(args.scopus_backoff_base, 0.1),
             scopus_backoff_max_seconds=max(args.scopus_backoff_max, 0.1),
+            scopus_priority_ict=args.scopus_priority_ict,
         )
     except Exception as exc:
         logger.error("\n✗ Erro: %s", exc, exc_info=True)

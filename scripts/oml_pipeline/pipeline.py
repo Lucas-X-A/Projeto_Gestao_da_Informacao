@@ -81,6 +81,7 @@ def run_pipeline(
     scopus_max_retries: int = 3,
     scopus_backoff_base_seconds: float = 2.0,
     scopus_backoff_max_seconds: float = 120.0,
+    scopus_priority_ict: Optional[str] = None,
 ) -> int:
     ext: Optional[InstanceExtractor] = None
     loader: Optional[DataLoader] = None
@@ -149,6 +150,7 @@ def run_pipeline(
                 ict_instances=ext.ict_instances,
                 ano_base=2024,
                 max_items=scopus_limit,
+                priority_ict=scopus_priority_ict,
             )
             save_state(ext)
         else:
