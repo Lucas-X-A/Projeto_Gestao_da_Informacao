@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Set
 import pandas as pd
 
 from .capes_io import DataLoader
-from .config import DATA_PROCESSED_DIR, OML_OUTPUT_DIR
+from .config import DATA_PROCESSED_DIR, OML_OUTPUT_DIR, STATE_FILTER
 from .extractor import InstanceExtractor
 from .oml_generator import OMLGenerator
 from .scopus import ScopusEnricher
@@ -82,13 +82,14 @@ def run_pipeline(
     scopus_backoff_base_seconds: float = 2.0,
     scopus_backoff_max_seconds: float = 120.0,
     scopus_priority_ict: Optional[str] = None,
+    capes_institution: Optional[str] = None,
 ) -> int:
     ext: Optional[InstanceExtractor] = None
     loader: Optional[DataLoader] = None
 
     if "load" in steps:
         logger.info("\n[STEP 1] Carregando datasets CAPES...")
-        loader = DataLoader()
+        loader = DataLoader(state=STATE_FILTER, institution=capes_institution)
         loader.load_all()
 
     if "extract" in steps:
@@ -100,6 +101,15 @@ def run_pipeline(
         ext.extract_from_programas()
         ext.extract_from_discentes()
         ext.extract_from_producao()
+        if capes_institution:
+            existing_ext = load_state()
+            if existing_ext is not None:
+                logger.info(
+                    "  Mesclando dados CAPES existentes com o filtro de instituição %s...",
+                    capes_institution,
+                )
+                existing_ext.merge(ext)
+                ext = existing_ext
         print_summary(ext.get_summary())
 
     if "integrity" in steps:

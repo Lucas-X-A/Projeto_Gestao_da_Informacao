@@ -277,6 +277,33 @@ class InstanceExtractor:
         logger.info(f"  Produções: {len(self.producao_instances):,}")
         logger.info(f"  Veículos:  {len(self.veiculo_instances):,}")
 
+    def _upsert_citacao(self, item: CitacaoInstance):
+        for idx, current in enumerate(self.citacao_instances):
+            if current.id == item.id:
+                self.citacao_instances[idx] = item
+                return
+        self.citacao_instances.append(item)
+
+    def merge(self, other: "InstanceExtractor"):
+        self.ict_instances.update(other.ict_instances)
+        self.ppg_instances.update(other.ppg_instances)
+
+        existing_conceitos = {item.id for item in self.conceito_instances}
+        for item in other.conceito_instances:
+            if item.id not in existing_conceitos:
+                self.conceito_instances.append(item)
+                existing_conceitos.add(item.id)
+
+        self.discente_instances.update(other.discente_instances)
+        self.autor_instances.update(other.autor_instances)
+        self.producao_instances.update(other.producao_instances)
+        self.veiculo_instances.update(other.veiculo_instances)
+
+        for citacao in other.citacao_instances:
+            self._upsert_citacao(citacao)
+
+        self.pessoa_to_autor.update(other.pessoa_to_autor)
+
     def get_summary(self):
         return {
             "ICT": len(self.ict_instances),

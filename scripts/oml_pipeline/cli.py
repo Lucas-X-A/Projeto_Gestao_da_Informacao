@@ -4,6 +4,7 @@ import sys
 from typing import Set
 
 from .config import (
+    INSTITUTION_FILTER,
     SCOPUS_BACKOFF_BASE_SECONDS_DEFAULT,
     SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
     SCOPUS_MAX_ITEMS_DEFAULT,
@@ -84,6 +85,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Backoff base em segundos para retries Scopus.",
     )
     parser.add_argument(
+        "--capes-institution",
+        type=str,
+        default=INSTITUTION_FILTER,
+        help="Filtro opcional por instituição (sigla ou nome) para extração CAPES.",
+    )
+    parser.add_argument(
         "--scopus-backoff-max",
         type=float,
         default=SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
@@ -119,6 +126,7 @@ def main(argv=None) -> int:
     logger.info("  Limite Scopus: %s", args.scopus_limit)
     logger.info("  Modo Scopus: %s", args.scopus_mode)
     logger.info("  Prioridade Manual ICT: %s", args.scopus_priority_ict or "Padrão do sistema")
+    logger.info("  Filtro CAPES instituição: %s", args.capes_institution or "Nenhum")
     logger.info("=" * 58)
 
     try:
@@ -131,6 +139,7 @@ def main(argv=None) -> int:
             scopus_backoff_base_seconds=max(args.scopus_backoff_base, 0.1),
             scopus_backoff_max_seconds=max(args.scopus_backoff_max, 0.1),
             scopus_priority_ict=args.scopus_priority_ict,
+            capes_institution=args.capes_institution,
         )
     except Exception as exc:
         logger.error("\n✗ Erro: %s", exc, exc_info=True)

@@ -171,6 +171,22 @@ Scopus agora rastreia progresso em JSON (checkpoint) e texto legível (listas).
 - `--scopus-backoff-base SEGUNDOS` — backoff inicial
 - `--scopus-backoff-max SEGUNDOS` — backoff máximo
 - `--scopus-priority-ict SIGLA_OU_NOME` — Define uma ICT para ter prioridade máxima na coleta do Scopus (ex: UFRPE, UFPE, IFPE).
+- `--capes-institution NOME` — Extrai apenas dados CAPES para a instituição especificada (ex: UFRPE).
+
+### Uso incremental de `--capes-institution`
+
+A opção `--capes-institution` permite acumular dados de diferentes instituições em execuções sucessivas.
+O pipeline mescla os dados de cada instituição nova com o estado intermediário existente em `data/processed/pipeline_state.pkl`.
+
+Exemplo de uso para adicionar UFRPE e depois UPE:
+
+```bash
+python scripts/generate_oml_cti_full.py --steps capes --capes-institution UFRPE
+python scripts/generate_oml_cti_full.py --steps capes --capes-institution UPE
+python scripts/generate_oml_cti_full.py --steps oml
+```
+
+Nesse fluxo, o segundo comando não substitui UFRPE: ele carrega o estado salvo, mescla os dados de UPE e grava o estado combinado.
 
 ### Exemplos práticos
 
