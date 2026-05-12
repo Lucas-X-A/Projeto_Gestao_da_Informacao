@@ -21,6 +21,17 @@ A autenticação com a API da Elsevier exige uma chave pessoal.
    ELSEVIER_API_KEY=SUA_CHAVE_AQUI
    ```
 
+### 2.1 Uso no VS Code com variáveis de ambiente
+Este workspace agora possui configuração para o VS Code carregar o `.env`
+automaticamente em execução e debug Python:
+
+- `.vscode/settings.json` com `python.envFile=${workspaceFolder}/.env`
+- `.vscode/launch.json` com `envFile=${workspaceFolder}/.env`
+
+Assim, ao executar pelo Debug (`F5`) ou pelas configurações de lançamento,
+as variáveis `ELSEVIER_API_KEY` e `SCOPUS_API_KEY` ficam disponíveis sem
+export manual no terminal.
+
 ### 3. Instalação de Dependências
 Certifique-se de ter as bibliotecas necessárias instaladas:
 ```bash

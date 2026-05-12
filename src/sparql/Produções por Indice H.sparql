@@ -1,0 +1,12 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?indiceH (COUNT(DISTINCT ?prod) AS ?totalProducoes)
+WHERE {
+  ?autor a cti:Autor ;
+         cti:autoria ?prod ;
+         cti:mensurado ?citacao .
+  ?citacao cti:nr_indice_h ?indiceH .
+}
+GROUP BY ?indiceH
+ORDER BY DESC(xsd:integer(?indiceH))

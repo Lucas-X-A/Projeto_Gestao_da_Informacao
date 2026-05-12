@@ -1,0 +1,774 @@
+import json
+import logging
+import random
+import time
+from typing import Dict, List, Optional, Tuple
+
+import requests
+
+from .config import (
+    DATA_PROCESSED_DIR,
+    SCOPUS_API_KEY,
+    SCOPUS_AUTHORS_PROCESSED_PATH,
+    SCOPUS_BACKOFF_BASE_SECONDS_DEFAULT,
+    SCOPUS_BACKOFF_JITTER_SECONDS_DEFAULT,
+    SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
+    SCOPUS_CACHE_PATH,
+    SCOPUS_CHECKPOINT_PATH,
+    SCOPUS_DELAY,
+    SCOPUS_DOIS_PROCESSED_PATH,
+    SCOPUS_MAX_RETRIES_DEFAULT,
+    SCOPUS_MODE_DEFAULT,
+    SCOPUS_TIMEOUT_SECONDS,
+)
+from .models import (
+    AutorInstance,
+    CitacaoInstance,
+    DiscenteInstance,
+    ICTInstance,
+    PPGInstance,
+    ProducaoCientificaInstance,
+)
+from .utils import safe_int
+
+logger = logging.getLogger(__name__)
+
+
+def _read_json(path, default_value):
+    if not path.exists():
+        return default_value
+    try:
+        with open(path, "r", encoding="utf-8") as file_obj:
+            return json.load(file_obj)
+    except Exception:
+        return default_value
+
+
+def _write_json(path, payload):
+    with open(path, "w", encoding="utf-8") as file_obj:
+        json.dump(payload, file_obj, indent=2, ensure_ascii=False)
+
+
+def _normalize_doi(raw: str) -> str:
+    value = raw.strip()
+    prefixes = [
+        "https://doi.org/",
+        "http://doi.org/",
+        "doi.org/",
+        "doi:",
+    ]
+    lowered = value.lower()
+    for prefix in prefixes:
+        if lowered.startswith(prefix):
+            value = value[len(prefix) :]
+            break
+    return value.strip().lower()
+
+
+def _parse_author_name(full_name: str) -> Tuple[str, str]:
+    """
+    Extrai first_name e last_name de nome completo.
+    Ex: "Albert Einstein" → ("Albert", "Einstein")
+    Ex: "José Maria da Silva" → ("José", "Silva")
+    """
+    parts = [p.strip() for p in full_name.strip().split()]
+    if not parts:
+        return "", ""
+    if len(parts) == 1:
+        return parts[0], parts[0]
+    return parts[0], parts[-1]
+
+
+def _get_author_affiliation(
+    autor: AutorInstance,
+    discente_instances: Dict[str, DiscenteInstance],
+    ppg_instances: Dict[str, PPGInstance],
+    ict_instances: Dict[str, ICTInstance],
+) -> str:
+    """Extrai afiliação (nm_entidade_ensino) dado um autor."""
+    # Buscar discente correspondente
+    for disc in discente_instances.values():
+        if disc.id_pessoa == autor.id_pessoa:
+            # Buscar PPG do discente
+            ppg = ppg_instances.get(disc.vinculado_id)
+            if ppg:
+                # Buscar ICT do PPG
+                ict = ict_instances.get(ppg.ict_id)
+                if ict:
+                    return ict.nm_entidade_ensino
+    return ""
+
+
+class ScopusEnricher:
+    BASE = "https://api.elsevier.com/content"
+    HDR = {"Accept": "application/json"}
+    MAX_FAILURES_PER_ITEM = 2
+
+    def __init__(
+        self,
+        api_key: str = SCOPUS_API_KEY,
+        mode: str = SCOPUS_MODE_DEFAULT,
+        max_retries: int = SCOPUS_MAX_RETRIES_DEFAULT,
+        backoff_base_seconds: float = SCOPUS_BACKOFF_BASE_SECONDS_DEFAULT,
+        backoff_max_seconds: float = SCOPUS_BACKOFF_MAX_SECONDS_DEFAULT,
+        backoff_jitter_seconds: float = SCOPUS_BACKOFF_JITTER_SECONDS_DEFAULT,
+        reset_progress: bool = False,
+    ):
+        self.api_key = api_key
+        self.enabled = bool(api_key)
+        self.mode = "full" if mode == "full" else "incremental"
+        self.max_retries = max(max_retries, 0)
+        self.backoff_base_seconds = max(backoff_base_seconds, 0.1)
+        self.backoff_max_seconds = max(backoff_max_seconds, self.backoff_base_seconds)
+        self.backoff_jitter_seconds = max(backoff_jitter_seconds, 0.0)
+        self.consecutive_429_errors = 0
+
+        DATA_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+        self.cache = _read_json(SCOPUS_CACHE_PATH, {"doi": {}, "authors": {}})
+        self.checkpoint = _read_json(
+            SCOPUS_CHECKPOINT_PATH,
+            {
+                "version": 1,
+                "doi_done": [],
+                "doi_pending": [],
+                "doi_failures": {},
+                "author_done": [],
+                "author_pending": [],
+                "author_failures": {},
+            },
+        )
+
+        if reset_progress:
+            self.cache = {"doi": {}, "authors": {}}
+            self.checkpoint = {
+                "version": 1,
+                "doi_done": [],
+                "doi_pending": [],
+                "doi_failures": {},
+                "author_done": [],
+                "author_pending": [],
+                "author_failures": {},
+            }
+            SCOPUS_AUTHORS_PROCESSED_PATH.write_text("")
+            SCOPUS_DOIS_PROCESSED_PATH.write_text("")
+            self._save_state()
+
+        if not self.enabled:
+            logger.warning(
+                "[SCOPUS] API Key não configurada. Enriquecimento desabilitado.\n"
+                "  Configure no .env: SCOPUS_API_KEY=sua_chave_aqui"
+            )
+        else:
+            logger.info(
+                "[SCOPUS] modo=%s | retries=%s | backoff_base=%.2fs | backoff_max=%.2fs",
+                self.mode,
+                self.max_retries,
+                self.backoff_base_seconds,
+                self.backoff_max_seconds,
+            )
+
+    def _save_processed_list(self, kind: str, processed_list: List[str]):
+        """Salva lista de processados em arquivo txt legível."""
+        if kind == "author":
+            path = SCOPUS_AUTHORS_PROCESSED_PATH
+        elif kind == "doi":
+            path = SCOPUS_DOIS_PROCESSED_PATH
+        else:
+            return
+
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(f"# {kind.upper()} - Processados em {len(processed_list)}\n")
+                f.write("# Atualizado automaticamente pelo pipeline\n\n")
+                for item in processed_list:
+                    f.write(f"{item}\n")
+            logger.debug(f"[SCOPUS] Lista de {kind}s salvos em {path}")
+        except Exception as e:
+            logger.warning(f"[SCOPUS] Erro ao salvar lista de {kind}s: {e}")
+
+    def _save_state(self):
+        _write_json(SCOPUS_CACHE_PATH, self.cache)
+        _write_json(SCOPUS_CHECKPOINT_PATH, self.checkpoint)
+        self._save_processed_list("author", self.checkpoint.get("author_done", []))
+        self._save_processed_list("doi", self.checkpoint.get("doi_done", []))
+
+    def _load_processed_list(self, kind: str) -> set:
+        """Carrega lista de processados do arquivo txt."""
+        if kind == "author":
+            path = SCOPUS_AUTHORS_PROCESSED_PATH
+        elif kind == "doi":
+            path = SCOPUS_DOIS_PROCESSED_PATH
+        else:
+            return set()
+
+        if not path.exists():
+            return set()
+
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                items = {
+                    line.strip()
+                    for line in f
+                    if line.strip() and not line.startswith("#")
+                }
+            return items
+        except Exception as e:
+            logger.warning(f"[SCOPUS] Erro ao carregar lista de {kind}s: {e}")
+            return set()
+
+    def _get_lists_and_sets(
+        self, kind: str
+    ) -> Tuple[List[str], set, List[str], Dict[str, int]]:
+        done_list = self.checkpoint.get(f"{kind}_done", [])
+        pending_list = self.checkpoint.get(f"{kind}_pending", [])
+        failures = self.checkpoint.get(f"{kind}_failures", {})
+        return done_list, set(done_list), pending_list, failures
+
+    def _prepare_queue(self, keys: List[str], kind: str) -> List[str]:
+        done_list, done_set, pending_list, _ = self._get_lists_and_sets(kind)
+        del done_list
+        keys_set = set(keys)
+        pending_valid = [k for k in pending_list if k in keys_set]
+
+        if self.mode == "full":
+            queue = keys
+        else:
+            new_keys = [k for k in keys if k not in done_set and k not in pending_valid]
+            queue = pending_valid + new_keys
+
+        # Persist pending queue trimmed to known candidates
+        self.checkpoint[f"{kind}_pending"] = queue
+        return queue
+
+    def _mark_success(self, kind: str, key: str):
+        done_list, done_set, pending_list, failures = self._get_lists_and_sets(kind)
+        if key not in done_set:
+            done_list.append(key)
+            self.checkpoint[f"{kind}_done"] = done_list
+        if key in pending_list:
+            pending_list.remove(key)
+            self.checkpoint[f"{kind}_pending"] = pending_list
+        failures.pop(key, None)
+        self.checkpoint[f"{kind}_failures"] = failures
+
+    def _mark_failure(self, kind: str, key: str):
+        _, _, pending_list, failures = self._get_lists_and_sets(kind)
+        current = safe_int(failures.get(key, 0), 0) + 1
+        failures[key] = current
+
+        if current >= self.MAX_FAILURES_PER_ITEM:
+            if key in pending_list:
+                pending_list.remove(key)
+            logger.info(
+                "[SCOPUS] %s '%s' atingiu %s falhas e será retirado da fila pendente.",
+                kind,
+                key,
+                self.MAX_FAILURES_PER_ITEM,
+            )
+
+        self.checkpoint[f"{kind}_pending"] = pending_list
+        self.checkpoint[f"{kind}_failures"] = failures
+
+    def _get(self, url: str, params: dict) -> Optional[dict]:
+        if not self.enabled:
+            return None
+
+        params_with_key = dict(params)
+        params_with_key["apiKey"] = self.api_key
+
+        for attempt in range(self.max_retries + 1):
+            try:
+                time.sleep(SCOPUS_DELAY)
+                response = requests.get(
+                    url,
+                    headers=self.HDR,
+                    params=params_with_key,
+                    timeout=SCOPUS_TIMEOUT_SECONDS,
+                )
+
+                if response.status_code == 200:
+                    self.consecutive_429_errors = 0
+                    return response.json()
+
+                if response.status_code == 401:
+                    logger.error("[SCOPUS] 401 — verifique a API Key.")
+                    self.enabled = False
+                    return None
+
+                if response.status_code == 403:
+                    logger.error(
+                        "[SCOPUS] 403 — acesso negado.\n"
+                        "  Certifique-se de estar na rede da instituição (IP permitido)."
+                    )
+                    return None
+
+                retryable = response.status_code in (429, 500, 502, 503, 504)
+                if not retryable:
+                    logger.debug("[SCOPUS] HTTP %s: %s", response.status_code, url)
+                    return None
+
+                if attempt >= self.max_retries:
+                    if response.status_code == 429:
+                        self.consecutive_429_errors += 1
+                        logger.warning(
+                            "[SCOPUS] HTTP 429 (tentativa %s/%s). Contador 429: %s/3",
+                            attempt + 1,
+                            self.max_retries + 1,
+                            self.consecutive_429_errors,
+                        )
+                    else:
+                        self.consecutive_429_errors = 0
+
+                    logger.warning(
+                        "[SCOPUS] HTTP %s após %s tentativas: %s",
+                        response.status_code,
+                        self.max_retries + 1,
+                        url,
+                    )
+                    return None
+
+                sleep_seconds = min(
+                    self.backoff_base_seconds * (2**attempt),
+                    self.backoff_max_seconds,
+                ) + random.uniform(0.0, self.backoff_jitter_seconds)
+                logger.warning(
+                    "[SCOPUS] HTTP %s (tentativa %s/%s). Aguardando %.2fs para retry...",
+                    response.status_code,
+                    attempt + 1,
+                    self.max_retries + 1,
+                    sleep_seconds,
+                )
+                time.sleep(sleep_seconds)
+            except requests.RequestException as exc:
+                if attempt >= self.max_retries:
+                    logger.error("[SCOPUS] Erro de rede: %s", exc)
+                    return None
+                sleep_seconds = min(
+                    self.backoff_base_seconds * (2**attempt),
+                    self.backoff_max_seconds,
+                ) + random.uniform(0.0, self.backoff_jitter_seconds)
+                logger.warning(
+                    "[SCOPUS] Erro de rede (%s). Retry em %.2fs (%s/%s).",
+                    exc,
+                    sleep_seconds,
+                    attempt + 1,
+                    self.max_retries + 1,
+                )
+                time.sleep(sleep_seconds)
+
+        return None
+
+    def enrich_producao_by_doi(
+        self,
+        producao_instances: Dict[str, ProducaoCientificaInstance],
+        max_items: int = 100,
+    ) -> int:
+        if not self.enabled:
+            return 0
+
+        by_doi: Dict[str, ProducaoCientificaInstance] = {}
+        for prod in producao_instances.values():
+            if not prod.ds_doi:
+                continue
+            doi = _normalize_doi(prod.ds_doi)
+            if doi and doi not in by_doi:
+                by_doi[doi] = prod
+
+        all_dois = sorted(by_doi.keys())
+        queue = self._prepare_queue(all_dois, kind="doi")
+        selected = queue[:max_items] if max_items > 0 else []
+
+        logger.info(
+            "\n[SCOPUS] Citações por DOI: %s candidatas, %s na fila, %s processadas (limite=%s)",
+            len(all_dois),
+            len(queue),
+            len(selected),
+            max_items,
+        )
+
+        enriched = 0
+        for doi in selected:
+            prod = by_doi[doi]
+            cached = self.cache.get("doi", {}).get(doi)
+            if cached and cached.get("status") == "ok":
+                prod.nr_citacoes_publicacao = str(
+                    cached.get("nr_citacoes_publicacao", "0")
+                )
+                self._mark_success("doi", doi)
+                enriched += 1
+                continue
+
+            data = self._get(
+                f"{self.BASE}/abstract/doi/{doi}", {"field": "citedby-count"}
+            )
+            if not data:
+                self._mark_failure("doi", doi)
+                continue
+
+            try:
+                cited_by_count = data["abstracts-retrieval-response"]["coredata"][
+                    "citedby-count"
+                ]
+                prod.nr_citacoes_publicacao = str(cited_by_count)
+                self.cache.setdefault("doi", {})[doi] = {
+                    "status": "ok",
+                    "nr_citacoes_publicacao": str(cited_by_count),
+                }
+                self._mark_success("doi", doi)
+                enriched += 1
+            except (KeyError, TypeError):
+                self.cache.setdefault("doi", {})[doi] = {"status": "parse_error"}
+                self._mark_failure("doi", doi)
+                continue
+
+        self._save_state()
+        logger.info("  ✓ %s/%s produções enriquecidas", enriched, len(selected))
+        return enriched
+
+    def _upsert_citacao(
+        self, citacao_instances: List[CitacaoInstance], item: CitacaoInstance
+    ):
+        for idx, current in enumerate(citacao_instances):
+            if current.id == item.id:
+                citacao_instances[idx] = item
+                return
+        citacao_instances.append(item)
+
+    def enrich_autores(
+        self,
+        autor_instances: Dict[str, AutorInstance],
+        citacao_instances: List[CitacaoInstance],
+        discente_instances: Optional[Dict[str, DiscenteInstance]] = None,
+        ppg_instances: Optional[Dict[str, PPGInstance]] = None,
+        ict_instances: Optional[Dict[str, ICTInstance]] = None,
+        ano_base: int = 2024,
+        max_items: int = 200,
+        priority_ict: Optional[str] = None,
+    ) -> int:
+        if not self.enabled:
+            return 0
+
+        def get_ict_name(autor: AutorInstance) -> str:
+            if discente_instances and ppg_instances and ict_instances:
+                return _get_author_affiliation(
+                    autor, discente_instances, ppg_instances, ict_instances
+                ).upper()
+            return "DESCONHECIDA"
+
+        def get_priority(autor: AutorInstance) -> int:
+            ict_name = get_ict_name(autor)
+
+            # Se a ICT foi passada como parâmetro, ela ganha prioridade 0 (mais importante)
+            if priority_ict and priority_ict.upper() in ict_name:
+                return 0
+
+            # Ordem de prioridade: UFRPE -> UFPE -> UPE -> Outros
+            if "FEDERAL RURAL" in ict_name or "UFRPE" in ict_name:
+                return 1
+            elif "UNIVERSIDADE FEDERAL DE PERNAMBUCO" in ict_name or "UFPE" in ict_name:
+                return 2
+            elif "UNIVERSIDADE DE PERNAMBUCO" in ict_name or "UPE" in ict_name:
+                return 3
+            else:
+                return 4
+
+        # Transforma os dicionários em lista e ordena pela prioridade e depois por ID
+        all_authors = list(autor_instances.values())
+        all_authors.sort(key=lambda a: (get_priority(a), a.id))
+        all_author_keys = [a.id for a in all_authors]
+
+        def log_ict_status(ict_name: str):
+            """Calcula e exibe o status global da ICT com base no checkpoint mais recente"""
+            done_list, done_set, pending_list, _ = self._get_lists_and_sets("author")
+            pending_set = set(pending_list)
+
+            # Filtra todos os autores que pertencem a essa ICT específica
+            ict_authors = [a for a in all_authors if get_ict_name(a) == ict_name]
+            total = len(ict_authors)
+            if total == 0:
+                return
+
+            # Calcula quantos deram certo e quantos falharam (retries pendentes)
+            done_count = sum(1 for a in ict_authors if a.id in done_set)
+            pending_count = sum(1 for a in ict_authors if a.id in pending_set)
+
+            # Se não está no done e não está no pending, é um autor "virgem" (novo)
+            untouched = total - done_count - pending_count
+
+            if done_count == total:
+                logger.info(
+                    "[SCOPUS] TODOS os %s autores da ICT '%s' foram processados com sucesso!",
+                    total,
+                    ict_name,
+                )
+            elif untouched == 0 and pending_count > 0:
+                logger.info(
+                    "[SCOPUS] Todos os novos autores da ICT '%s' já foram testados. Restam %s autores na fila de retries (falhas).",
+                    ict_name,
+                    pending_count,
+                )
+            else:
+                logger.info(
+                    "[SCOPUS] Progresso da ICT '%s': %s/%s concluídos (Restam: %s novos, %s retries).",
+                    ict_name,
+                    done_count,
+                    total,
+                    untouched,
+                    pending_count,
+                )
+
+        queue = self._prepare_queue(all_author_keys, kind="author")
+
+        # Separa os pendentes (retries) da fila
+        done_list, done_set, pending_list, _ = self._get_lists_and_sets("author")
+        pending_set = set(pending_list)
+
+        novos_na_fila = [k for k in queue if k not in pending_set]
+        retries_na_fila = [k for k in queue if k in pending_set]
+
+        fila_reordenada = novos_na_fila + retries_na_fila
+        selected = fila_reordenada[:max_items] if max_items > 0 else []
+
+        success_first = [k for k in selected if k not in pending_set]
+        then_retries = [k for k in selected if k in pending_set]
+
+        logger.info(
+            "\n[SCOPUS] Índices de autor: %s candidatos, %s na fila, %s selecionados (limite=%s)",
+            len(all_author_keys),
+            len(queue),
+            len(selected),
+            max_items,
+        )
+        logger.info(
+            "  Lote atual: %s novos → %s retries ",
+            len(success_first),
+            len(then_retries),
+        )
+
+        enriched = 0
+        total_selecionados = len(selected)
+        last_ict = None
+
+        for idx, author_key in enumerate(selected, 1):
+            autor = autor_instances[author_key]
+
+            # Pega a ICT do autor atual
+            display_ict = get_ict_name(autor) or "DESCONHECIDA"
+
+            # Log de início e fim da coleta de uma ICT
+            if last_ict is not None and display_ict != last_ict:
+                print()
+                log_ict_status(last_ict)  # Chama o log inteligente
+                logger.info(
+                    "[SCOPUS] Iniciando coleta de dados para autores da ICT: %s",
+                    display_ict,
+                )
+            elif last_ict is None:
+                logger.info(
+                    "[SCOPUS] Iniciando coleta de dados para autores da ICT: %s",
+                    display_ict,
+                )
+
+            last_ict = display_ict
+
+            # Imprime o progresso em tempo real já mostrando de qual ICT é o dado
+            print(
+                f"\r  -> Processando autor {idx}/{total_selecionados} [{display_ict[:30]}] | Sucessos: {enriched} ...",
+                end="",
+                flush=True,
+            )
+
+            if self.consecutive_429_errors >= 3:
+                logger.error(
+                    "\n[SCOPUS] HTTP 429 atingiu 3x consecutivas. Encerrando enriquecimento."
+                )
+                break
+
+            cached = self.cache.get("authors", {}).get(author_key)
+            if cached and cached.get("status") == "ok":
+                autor.ds_scopus_id = cached.get("ds_scopus_id", "")
+                self._upsert_citacao(
+                    citacao_instances,
+                    CitacaoInstance(
+                        id=f"citacao_{autor.id_pessoa}_{ano_base}",
+                        autor_id=autor.id,
+                        an_base_citacao=ano_base,
+                        nr_citacoes_autor=safe_int(
+                            cached.get("nr_citacoes_autor", 0), 0
+                        ),
+                        nr_indice_h=safe_int(cached.get("nr_indice_h", 0), 0),
+                        nr_indice_i10=safe_int(cached.get("nr_indice_i10", 0), 0),
+                    ),
+                )
+                self._mark_success("author", author_key)
+                enriched += 1
+                continue
+
+            scopus_id = autor.ds_scopus_id
+
+            if not scopus_id:
+                first_name, last_name = _parse_author_name(autor.nm_pessoa)
+
+                query_parts = [f'authlast("{last_name}")', f'authfirst("{first_name}")']
+
+                if discente_instances and ppg_instances and ict_instances:
+                    affiliation = _get_author_affiliation(
+                        autor, discente_instances, ppg_instances, ict_instances
+                    )
+                    if affiliation:
+                        query_parts.append(f'affil("{affiliation}")')
+
+                query_parts.append(
+                    'affilcountry("Brazil")'
+                )  # Restringe a busca a autores com afiliação no Brasil
+
+                query = " and ".join(query_parts)
+
+                data = self._get(
+                    f"{self.BASE}/search/author",
+                    {
+                        "query": query,
+                        "field": "dc:identifier,document-count,h-index",
+                        "count": "1",
+                        "sort": "+document-count",  # Traz o menor número de documentos primeiro
+                    },
+                )
+                if not data:
+                    self._mark_failure("author", author_key)
+                    continue
+
+                try:
+                    entries = data["search-results"].get("entry", [])
+                    if not entries or (
+                        isinstance(entries, dict) and "error" in entries
+                    ):
+                        self._mark_failure("author", author_key)
+                        continue
+
+                    # SANITY CHECK: Descarte imediato de seniores (mais de 50 doc)
+                    doc_count = safe_int(entries[0].get("document-count", "0"))
+                    if doc_count > 50:
+                        logger.warning(
+                            "[SCOPUS] Falso Positivo evitado: '%s' possui %s documentos. Descartando.",
+                            autor.nm_pessoa,
+                            doc_count,
+                        )
+                        self._mark_failure("author", author_key)
+                        continue
+
+                    raw_id = entries[0].get("dc:identifier", "")
+                    scopus_id = raw_id.split(":")[-1] if ":" in raw_id else raw_id
+                    autor.ds_scopus_id = scopus_id
+                    logger.debug(
+                        "[SCOPUS] Autor '%s' → Scopus ID %s (query: %s)",
+                        autor.nm_pessoa,
+                        scopus_id,
+                        query,
+                    )
+                except (KeyError, IndexError, TypeError):
+                    logger.debug(
+                        "[SCOPUS] Parse error buscando autor '%s' (query: %s)",
+                        autor.nm_pessoa,
+                        query,
+                    )
+                    self._mark_failure("author", author_key)
+                    continue
+
+            data2 = self._get(
+                f"{self.BASE}/author/author_id/{scopus_id}",
+                {"view": "metrics"},
+            )
+            if not data2:
+                self._mark_failure("author", author_key)
+                continue
+
+            try:
+                response_data = data2.get("author-retrieval-response", {})
+
+                if isinstance(response_data, list) and len(response_data) > 0:
+                    author_data = response_data[0]
+                elif isinstance(response_data, dict):
+                    author_data = response_data
+                else:
+                    self._mark_failure("author", author_key)
+                    continue
+
+                core = author_data.get("coredata", {})
+                h_idx = safe_int(author_data.get("h-index", 0))
+                total = safe_int(core.get("cited-by-count", 0))
+
+                i10 = self._i10(scopus_id)
+
+                self._upsert_citacao(
+                    citacao_instances,
+                    CitacaoInstance(
+                        id=f"citacao_{autor.id_pessoa}_{ano_base}",
+                        autor_id=autor.id,
+                        an_base_citacao=ano_base,
+                        nr_citacoes_autor=total,
+                        nr_indice_h=h_idx,
+                        nr_indice_i10=i10,
+                    ),
+                )
+
+                self.cache.setdefault("authors", {})[author_key] = {
+                    "status": "ok",
+                    "ds_scopus_id": scopus_id,
+                    "nr_citacoes_autor": total,
+                    "nr_indice_h": h_idx,
+                    "nr_indice_i10": i10,
+                }
+                self._mark_success("author", author_key)
+                enriched += 1
+            except (KeyError, IndexError, TypeError) as e:
+                logger.debug(
+                    f"[SCOPUS] Erro parseando métricas do autor {author_key}: {e}"
+                )
+                self.cache.setdefault("authors", {})[author_key] = {
+                    "status": "parse_error"
+                }
+                self._mark_failure("author", author_key)
+                continue
+
+        print()
+        if last_ict is not None:
+            log_ict_status(last_ict)  
+            
+        self._save_state()
+        logger.info("  ✓ %s/%s autores enriquecidos", enriched, len(selected))
+        return enriched
+
+    def _i10(self, scopus_author_id: str) -> int:
+        """
+        Calcula o índice i10 buscando os documentos do autor ordenados
+        por citações e contando quantos possuem >= 10 citações.
+        """
+        data = self._get(
+            f"{self.BASE}/search/scopus",  # Endpoint correto: busca de documentos
+            {
+                "query": f"AU-ID({scopus_author_id})",
+                "field": "citedby-count",
+                "sort": "-citedby-count",  # Ordena do mais citado para o menos
+                "count": "100",  # Traz os 100 mais citados (limite padrão da API)
+            },
+        )
+        if not data:
+            return 0
+
+        try:
+            entries = data.get("search-results", {}).get("entry", [])
+            if not isinstance(entries, list):
+                return 0
+
+            i10_count = 0
+            for doc in entries:
+                cit_count = safe_int(doc.get("citedby-count", 0))
+                if cit_count >= 10:
+                    i10_count += 1
+                else:
+                    # Como está ordenado de forma decrescente, se achar um < 10, pode parar o loop
+                    break
+            return i10_count
+        except (KeyError, TypeError) as e:
+            logger.debug(f"[SCOPUS] Erro ao calcular i10 para {scopus_author_id}: {e}")
+            return 0
