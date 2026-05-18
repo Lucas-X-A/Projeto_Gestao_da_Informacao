@@ -225,18 +225,26 @@ class ScopusEnricher:
         return done_list, set(done_list), pending_list, failures
 
     def _prepare_queue(self, keys: List[str], kind: str) -> List[str]:
-        done_list, done_set, pending_list, _ = self._get_lists_and_sets(kind)
+        done_list, done_set, pending_list, failures = self._get_lists_and_sets(kind)
         del done_list
         keys_set = set(keys)
         pending_valid = [k for k in pending_list if k in keys_set]
 
+        # Excluir definitivamente itens que excederam o número máximo de falhas
+        failed_items = {k for k, v in failures.items() if safe_int(v, 0) >= self.MAX_FAILURES_PER_ITEM}
+
         if self.mode == "full":
-            queue = keys
+            # Em modo full, processa todos exceto os que falharam permanentemente
+            queue = [k for k in keys if k not in failed_items]
         else:
-            new_keys = [k for k in keys if k not in done_set and k not in pending_valid]
+            new_keys = [
+                k
+                for k in keys
+                if k not in done_set and k not in pending_valid and k not in failed_items
+            ]
             queue = pending_valid + new_keys
 
-        # Persist pending queue trimmed to known candidates
+        # Persist pending queue trimmed to conhecidos e sem os que falharam permanentemente
         self.checkpoint[f"{kind}_pending"] = queue
         return queue
 
