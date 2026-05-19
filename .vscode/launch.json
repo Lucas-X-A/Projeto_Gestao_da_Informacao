@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Pipeline CTI Full",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/generate_oml_cti_full.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Python: Scopus API Main",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/api-scopus/gic_main.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/scripts/api-scopus",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

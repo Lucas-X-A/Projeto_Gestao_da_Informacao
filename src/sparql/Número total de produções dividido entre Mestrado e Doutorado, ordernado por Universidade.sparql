@@ -1,0 +1,17 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?siglaICT ?nivel (COUNT(DISTINCT ?prod) AS ?totalProducoes)
+WHERE {
+  ?autor a cti:Autor ;
+         cti:id_pessoa ?idPessoa ;
+         cti:autoria ?prod .
+  ?discente a cti:Discente ;
+            cti:id_pessoa ?idPessoa ;
+            cti:ds_grau_academico_discente ?nivel ;
+            cti:vinculado ?ppg .
+  ?ppg cti:sediado ?ict .
+  ?ict cti:sg_entidade_ensino ?siglaICT .
+}
+GROUP BY ?siglaICT ?nivel
+ORDER BY ?siglaICT ?nivel
