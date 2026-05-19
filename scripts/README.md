@@ -258,6 +258,25 @@ cat data/processed/scopus_checkpoint.json | grep -A 5 "author_pending"
 - `SITUACAO_FILTER`: situação do discente (padrão: `TITULADO`).
 - `SCOPUS_MAX_ITEMS`: limite padrão de itens para enriquecimento Scopus.
 - `SCOPUS_MODE`: modo padrão (`incremental` ou `full`).
+
+## Visualização dos resultados SPARQL
+
+Os CSVs em `build/results/csv` podem ser convertidos em gráficos e em um relatório HTML com:
+
+```bash
+python scripts/visualize_sparql_results.py
+```
+
+Saída gerada em `build/results/graficos/`:
+
+- PNGs com os gráficos de cada consulta.
+- `index.html` com uma galeria dos gráficos e uma amostra das tabelas de origem.
+
+Se quiser apontar outra pasta de entrada ou saída:
+
+```bash
+python scripts/visualize_sparql_results.py --input-dir build/results/csv --output-dir build/results/graficos
+```
 - `SCOPUS_MAX_RETRIES`: retries por requisição Scopus.
 - `SCOPUS_BACKOFF_BASE_SECONDS`: backoff base para retries.
 - `SCOPUS_BACKOFF_MAX_SECONDS`: backoff máximo para retries.
