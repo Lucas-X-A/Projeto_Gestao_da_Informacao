@@ -11,7 +11,7 @@ st.set_page_config(page_title="Dashboard CT&I-PE", layout="wide", page_icon="�
 FUSEKI_ENDPOINT = "http://localhost:3030/cti-pe/query"
 
 
-# 
+# Componente para carregar consultas SPARQL de arquivos .sparql
 def load_sparql_file(filename: str) -> str:
     """Lê dinamicamente o conteúdo de um arquivo .sparql do disco."""
     filepath = Path(f"src/sparql/{filename}")
