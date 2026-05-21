@@ -93,8 +93,9 @@ def read_capes_csvs(
 
 
 class DataLoader:
-    def __init__(self, state: str = STATE_FILTER):
+    def __init__(self, state: str = STATE_FILTER, institution: Optional[str] = None):
         self.state = state
+        self.institution = institution.strip() if institution else None
         self.df_programas: Optional[pd.DataFrame] = None
         self.df_discentes: Optional[pd.DataFrame] = None
         self.df_autores: Optional[pd.DataFrame] = None
@@ -113,6 +114,13 @@ class DataLoader:
                 before = len(df)
                 df = df[df[uf_col] == self.state].copy()
                 logger.info(f"    Filtro UF={self.state}: {before:,} → {len(df):,}")
+            if self.institution:
+                df = self._filter_by_institution(
+                    df,
+                    COLS_PROGRAMAS["sg_ent"],
+                    COLS_PROGRAMAS["nm_ent"],
+                    self.institution,
+                )
         self.df_programas = df
 
         logger.info(
@@ -144,6 +152,13 @@ class DataLoader:
                         f"    Filtro situação {SITUACAO_FILTER}: "
                         f"{before:,} → {len(df):,}"
                     )
+            if self.institution:
+                df = self._filter_by_institution(
+                    df,
+                    COLS_DISCENTES["sg_ent"],
+                    COLS_DISCENTES["nm_ent"],
+                    self.institution,
+                )
         self.df_discentes = df
 
         logger.info("\n  → Autores da Produção Intelectual")
@@ -162,3 +177,33 @@ class DataLoader:
             df = strip_str_cols(df)
             df = to_int64(df, [COLS_PRODUCAO["ano"], COLS_PRODUCAO["base_ano"]])
         self.df_producao = df
+
+    def _filter_by_institution(
+        self,
+        df,
+        sigla_col: str,
+        nome_col: str,
+        institution: str,
+    ):
+        institution_norm = institution.strip().upper()
+        mask = None
+        if sigla_col in df.columns:
+            mask = df[sigla_col].astype(str).str.strip().str.upper().str.contains(institution_norm, na=False)
+        if nome_col in df.columns:
+            name_mask = df[nome_col].astype(str).str.upper().str.contains(institution_norm, na=False)
+            mask = name_mask if mask is None else mask | name_mask
+        # Também filtra por código da entidade se for numérico ou contém
+        if 'CD_ENTIDADE_CAPES' in df.columns:
+            cd_mask = df['CD_ENTIDADE_CAPES'].astype(str).str.strip().str.upper().str.contains(institution_norm, na=False)
+            mask = cd_mask if mask is None else mask | cd_mask
+        if mask is None:
+            logger.warning(
+                f"    Filtro instituição {institution!r} ignorado: colunas '{sigla_col}' e '{nome_col}' não encontradas."
+            )
+            return df
+        before = len(df)
+        df_filtered = df[mask].copy()
+        logger.info(
+            f"    Filtro instituição {institution!r}: {before:,} → {len(df_filtered):,}"
+        )
+        return df_filtered

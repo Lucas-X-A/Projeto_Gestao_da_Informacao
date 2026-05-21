@@ -36,6 +36,7 @@ DC_NAMESPACE = "dc"
 
 SCOPUS_API_KEY = os.getenv("SCOPUS_API_KEY", os.getenv("ELSEVIER_API_KEY", ""))
 STATE_FILTER = os.getenv("STATE_FILTER", "PE")
+INSTITUTION_FILTER = os.getenv("INSTITUTION_FILTER", "").strip() or None
 SCOPUS_DELAY = float(os.getenv("SCOPUS_DELAY", "0.15"))
 SCOPUS_TIMEOUT_SECONDS = int(os.getenv("SCOPUS_TIMEOUT_SECONDS", "15"))
 SCOPUS_MAX_ITEMS_DEFAULT = int(os.getenv("SCOPUS_MAX_ITEMS", "100"))
