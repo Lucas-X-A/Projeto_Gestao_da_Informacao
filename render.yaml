@@ -1,0 +1,6 @@
+services:
+  - runtime: docker
+    type: web
+    name: fuseki-km
+    plan: free
+    healthCheckPath: /$/ping
