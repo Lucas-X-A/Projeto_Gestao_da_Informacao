@@ -8,7 +8,7 @@ from SPARQLWrapper import JSON, SPARQLWrapper
 st.set_page_config(page_title="Dashboard CT&I-PE", layout="wide", page_icon="📊")
 
 # URL do Endpoint do Jena Fuseki 
-FUSEKI_ENDPOINT = "http://localhost:3030/cti-pe/query"
+FUSEKI_ENDPOINT = "https://fuseki-km.onrender.com/cti/sparql"
 
 
 # Componente para carregar consultas SPARQL de arquivos .sparql
