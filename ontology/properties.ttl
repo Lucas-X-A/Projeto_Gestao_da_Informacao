@@ -1,0 +1,254 @@
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#an_nascimento>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#an_nascimento> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ICT>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_titulo>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_titulo> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#an_base_producao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#an_base_producao> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_grau_titulacao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_grau_titulacao> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_categoria_docente>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_categoria_docente> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#avaliado>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#avaliado> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_grau_academico_discente>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_grau_academico_discente> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_programa_ies>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_programa_ies> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_i10>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_i10> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#an_base_citacao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#an_base_citacao> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#sg_uf>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#sg_uf> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#PPG>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#cd_programa_ies>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#cd_programa_ies> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#publicada>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#publicada> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_quartil_scopus>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_quartil_scopus> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#mensurado>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#mensurado> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_google_scholar>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_google_scholar> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_veiculo_publicacao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_veiculo_publicacao> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#cd_entidade_capes>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#cd_entidade_capes> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_area_conhecimento>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_area_conhecimento> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_regime_trabalho>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_regime_trabalho> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_palavras_chave>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_palavras_chave> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#sg_entidade_ensino>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#sg_entidade_ensino> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#an_base_conceito>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#an_base_conceito> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_documento>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_documento> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#qt_mes_titulacao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#qt_mes_titulacao> .
+
+owl:Nothing  rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#vinculado>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#vinculado> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_citescore_scopus>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_citescore_scopus> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#an_titulacao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#an_titulacao> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_publicacao>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_publicacao> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#orientador>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#orientador> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_acesso>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_acesso> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_h>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_h> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#membro>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#membro> .
+
+<http://gic.ufrpe.br/cti/description/bundle/properties>
+        rdf:type         owl:Ontology ;
+        rdfs:comment     "Generated by Owl Reason 2.9.0" ;
+        owl:imports      <http://gic.ufrpe.br/cti/description/bundle> ;
+        owl:versionInfo  "1779148381" .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Autor>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_situacao_discente>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_situacao_discente> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_modalidade_programa>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_modalidade_programa> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#id_pessoa>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#id_pessoa> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_isbn_issn>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_isbn_issn> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_tipo_vinculo_docente_ies>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_tipo_vinculo_docente_ies> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG>
+        rdf:type  owl:Class .
+
+owl:Thing  rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_doi>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_doi> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_orc_id>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_orc_id> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_entidade_ensino>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_entidade_ensino> .
+
+owl:topObjectProperty
+        rdf:type       owl:SymmetricProperty , owl:TransitiveProperty , owl:ObjectProperty ;
+        owl:inverseOf  owl:topObjectProperty .
+
+owl:topDataProperty  rdf:type  owl:DatatypeProperty .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_natureza>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_natureza> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#autoria>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#autoria> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#cd_cat_bolsa_produtividade>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#cd_cat_bolsa_produtividade> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_cv_lattes>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_cv_lattes> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#cd_conceito_programa>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#cd_conceito_programa> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_pais_nacionalidade>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_pais_nacionalidade> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_autor>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_autor> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Citacao>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Docente>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#nm_pessoa>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#nm_pessoa> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#sediado>
+        rdf:type            owl:ObjectProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#sediado> .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#Discente>
+        rdf:type  owl:Class .
+
+<http://gic.ufrpe.br/cti/vocabulary/cti#ds_scopus_id>
+        rdf:type            owl:DatatypeProperty ;
+        rdfs:subPropertyOf  <http://gic.ufrpe.br/cti/vocabulary/cti#ds_scopus_id> .

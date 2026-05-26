@@ -1,0 +1,702 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://gic.ufrpe.br/cti/vocabulary/cti#"
+     xml:base="http://gic.ufrpe.br/cti/vocabulary/cti"
+     xmlns:cti="http://gic.ufrpe.br/cti/vocabulary/cti#"
+     xmlns:oml="http://opencaesar.io/oml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti">
+        <oml:namespace rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#"/>
+        <oml:prefix>cti</oml:prefix>
+        <oml:type rdf:resource="http://opencaesar.io/oml#Vocabulary"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://opencaesar.io/oml#namespace -->
+
+
+    <owl:AnnotationProperty rdf:about="http://opencaesar.io/oml#namespace"/>
+    
+
+
+    <!-- http://opencaesar.io/oml#prefix -->
+
+
+    <owl:AnnotationProperty rdf:about="http://opencaesar.io/oml#prefix"/>
+    
+
+
+    <!-- http://opencaesar.io/oml#type -->
+
+
+    <owl:AnnotationProperty rdf:about="http://opencaesar.io/oml#type"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#autoria -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#autoria">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Autor"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#avaliado -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#avaliado">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#membro -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#membro">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#mensurado -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#mensurado">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Autor"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#orientador -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#orientador">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Discente"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#publicada -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#publicada">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#sediado -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#sediado">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#ICT"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#vinculado -->
+
+
+    <owl:ObjectProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#vinculado">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Discente"/>
+        <rdfs:range rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#UnreifiedRelation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#an_base_citacao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#an_base_citacao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#an_base_conceito -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#an_base_conceito">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#an_base_producao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#an_base_producao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#an_nascimento -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#an_nascimento">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#an_titulacao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#an_titulacao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#cd_cat_bolsa_produtividade -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#cd_cat_bolsa_produtividade">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#cd_conceito_programa -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#cd_conceito_programa">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#cd_entidade_capes -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#cd_entidade_capes">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#ICT"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#cd_programa_ies -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#cd_programa_ies">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_categoria_docente -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_categoria_docente">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_doi -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_doi">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_grau_academico_discente -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_grau_academico_discente">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Discente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_isbn_issn -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_isbn_issn">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_natureza -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_natureza">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_orc_id -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_orc_id">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Autor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_palavras_chave -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_palavras_chave">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_regime_trabalho -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_regime_trabalho">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_scopus_id -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_scopus_id">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Autor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_tipo_vinculo_docente_ies -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_tipo_vinculo_docente_ies">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_acesso -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_acesso">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_cv_lattes -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_cv_lattes">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_google_scholar -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ds_url_google_scholar">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Autor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#id_pessoa -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#id_pessoa">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_area_conhecimento -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_area_conhecimento">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_entidade_ensino -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_entidade_ensino">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#ICT"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_grau_titulacao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_grau_titulacao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_modalidade_programa -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_modalidade_programa">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_pais_nacionalidade -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_pais_nacionalidade">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_pessoa -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_pessoa">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_programa_ies -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_programa_ies">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_situacao_discente -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_situacao_discente">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Discente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_titulo -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_titulo">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nm_veiculo_publicacao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nm_veiculo_publicacao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_autor -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_autor">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_publicacao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_citacoes_publicacao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_citescore_scopus -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_citescore_scopus">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_documento -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_documento">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_h -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_h">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_i10 -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_indice_i10">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#nr_quartil_scopus -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#nr_quartil_scopus">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#qt_mes_titulacao -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#qt_mes_titulacao">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Discente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#sg_entidade_ensino -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#sg_entidade_ensino">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#ICT"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#sg_uf -->
+
+
+    <owl:DatatypeProperty rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#sg_uf">
+        <rdfs:domain rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#ICT"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Autor -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Autor">
+        <rdfs:subClassOf rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Citacao -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Discente -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Discente">
+        <rdfs:subClassOf rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Docente -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Docente">
+        <rdfs:subClassOf rdf:resource="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa"/>
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ICT -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ICT">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#PPG -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#PPG">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Pessoa">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Aspect"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+    
+
+
+    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao -->
+
+
+    <owl:Class rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Veiculo_Publicacao">
+        <oml:type rdf:resource="http://opencaesar.io/oml#Concept"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.5.0.2023-01-14T12:41:38Z) https://github.com/owlcs/owlapi/ -->
+
+
