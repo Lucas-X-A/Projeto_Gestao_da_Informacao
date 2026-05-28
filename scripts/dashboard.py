@@ -2,13 +2,13 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import os 
 from SPARQLWrapper import JSON, SPARQLWrapper
 
 # Configuração da página do Streamlit
 st.set_page_config(page_title="Dashboard CT&I-PE", layout="wide", page_icon="📊")
 
 # URL do Endpoint do Jena Fuseki
-import os
 FUSEKI_ENDPOINT = os.getenv(
     "FUSEKI_ENDPOINT",
     "https://fuseki-km.onrender.com/cti/sparql"
