@@ -1,0 +1,37 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?nivel ?faixaCitacao ?ordemFaixa (COUNT(DISTINCT ?autor) AS ?quantidade)
+WHERE {
+  ?discente a cti:Discente ;
+            cti:id_pessoa ?idPessoa ;
+            cti:ds_grau_academico_discente ?nivel ;
+            cti:vinculado ?ppg .
+  ?ppg cti:sediado ?ict .
+  ?ict cti:sg_entidade_ensino "UFRPE" .
+
+  ?autor a cti:Autor ;
+         cti:id_pessoa ?idPessoa ;
+         cti:mensurado ?citacao .
+
+  ?citacao cti:nr_citacoes_autor ?citacoesStr .
+
+  BIND(xsd:integer(?citacoesStr) AS ?numCitacoes)
+  FILTER(BOUND(?numCitacoes))
+
+  BIND(
+    IF(?numCitacoes = 0, 1,
+    IF(?numCitacoes <= 10, 2,
+    IF(?numCitacoes <= 50, 3,
+    4))) AS ?ordemFaixa
+  )
+
+  BIND(
+    IF(?numCitacoes = 0, "0 - Sem impacto",
+    IF(?numCitacoes <= 10, "1 a 10 - Impacto Inicial",
+    IF(?numCitacoes <= 50, "11 a 50 - Impacto Consolidado",
+    "50+ - Elite Científica"))) AS ?faixaCitacao
+  )
+}
+GROUP BY ?nivel ?faixaCitacao ?ordemFaixa
+ORDER BY ?nivel ?ordemFaixa
