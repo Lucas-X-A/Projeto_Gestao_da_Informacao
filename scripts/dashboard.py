@@ -7,8 +7,12 @@ from SPARQLWrapper import JSON, SPARQLWrapper
 # Configuração da página do Streamlit
 st.set_page_config(page_title="Dashboard CT&I-PE", layout="wide", page_icon="📊")
 
-# URL do Endpoint do Jena Fuseki 
-FUSEKI_ENDPOINT = "https://fuseki-km.onrender.com/cti/sparql"
+# URL do Endpoint do Jena Fuseki
+import os
+FUSEKI_ENDPOINT = os.getenv(
+    "FUSEKI_ENDPOINT",
+    "https://fuseki-km.onrender.com/cti/sparql"
+)
 
 
 # Componente para carregar consultas SPARQL de arquivos .sparql
@@ -31,91 +35,113 @@ def query_fuseki(sparql_query: str) -> pd.DataFrame:
     """Executa uma consulta SPARQL no Jena Fuseki e retorna um DataFrame do Pandas."""
     if not sparql_query:
         return pd.DataFrame()
-        
+
     try:
         sparql = SPARQLWrapper(FUSEKI_ENDPOINT)
         sparql.setQuery(sparql_query)
         sparql.setReturnFormat(JSON)
-        
-        # Executa e converte para dicionário Python
+
         resultados_json = sparql.query().convert()
-        
-        # Extrai os resultados do JSON retornado pelo Fuseki
-        bindings = resultados_json.get("results", {}).get("bindings", []) # type: ignore
-        
+        bindings = resultados_json.get("results", {}).get("bindings", [])  # type: ignore
+
         dados_limpos = []
         for row in bindings:
             if isinstance(row, dict):
                 linha = {chave: valor["value"] for chave, valor in row.items() if isinstance(valor, dict)}
                 dados_limpos.append(linha)
-            
+
         df = pd.DataFrame(dados_limpos)
-        
+
         if not df.empty:
             df = df.apply(pd.to_numeric, errors='ignore')
-            
-        return df
+
+        return df   # pyright: ignore[reportReturnType]
 
     except Exception as e:
         st.error(f"Erro ao conectar ou consultar o Jena Fuseki: {e}")
         return pd.DataFrame()
 
 
-# Menu lateral para navegação entre as análises
+# ---------------------------------------------------------------------------
+# Menu lateral
+# ---------------------------------------------------------------------------
 st.sidebar.title("📊 Navegação CT&I-PE")
 st.sidebar.markdown("Selecione o indicador que deseja analisar:")
 
 analises = {
     "Visão Geral": "home",
-    "Produção por ICT e Nível": "Número total de produções dividido entre Mestrado e Doutorado, ordernado por Universidade.sparql",
+    "Produção Científica por Nível Acadêmico na UFRPE": "Número total de produções dividido entre Mestrado e Doutorado, ordernado por Universidade.sparql",
     "Evolução de Notas dos PPGs": "Evolução Temporal das Notas dos Programas.sparql",
-    "Matriz de Produtividade": "Matriz de Produtividade do Autor (Volume vs. Impacto).sparql",
-    "Consistência do Autor": "Consistência do Autor.sparql",
-    "Média de Citações por Conceito": "Media de Citacoes por Conceito CAPES.sparql",
     "Produções por Índice H": "Produções por Indice H.sparql",
-    "Distribuição por Faixa de Citação": "Distribuição de Produção por Faixas de Citação.sparql" 
+    "Distribuição por Faixa de Citação": "Distribuição_de_Produção_por_Faixas_de_Citação.sparql",
+    "Citações e Índice H por Nível Acadêmico": "Citações_Médias_por_Nível_Acadêmico.sparql",
+    "Faixas de Impacto por Nível Acadêmico": "Faixas_de_Citação_por_Nível_Acadêmico.sparql",
+    "Produtividade Média por Nível Acadêmico": "Média_de_Produções_por_Nível_Acadêmico.sparql",
 }
 
 selecao = st.sidebar.radio("Ir para:", list(analises.keys()))
 
 st.sidebar.markdown("---")
 st.sidebar.info(
-    "💡 **Dica:** Passe o mouse sobre os gráficos para ver os dados exatos. Você pode dar zoom arrastando o mouse."
+    "💡 **Dica:** Passe o mouse sobre os gráficos para ver os dados exatos. "
+    "Você pode dar zoom arrastando o mouse."
 )
 
-# Renderização condicional 
+# ---------------------------------------------------------------------------
+# Renderização condicional
+# ---------------------------------------------------------------------------
+
 if selecao == "Visão Geral":
     st.title("Bem-vindo ao Painel Integrado CT&I-PE 🎓")
     st.markdown("""
     Esta é a área de visualização interativa da nossa Solução de Gestão do Conhecimento (KM).
-    
-    Diferente de relatórios estáticos, este painel executa consultas **SPARQL em tempo real** diretamente 
+
+    Diferente de relatórios estáticos, este painel executa consultas **SPARQL em tempo real** diretamente
     no nosso servidor triplestore **Jena Fuseki**, garantindo dados sempre atualizados com a base OML.
 
-    👈 **Utilize o menu lateral para navegar entre os diferentes indicadores extraídos.**
+    ### 🎯 Pergunta central do KM
+    > *O maior grau de instrução de um discente promove aumento na qualidade e quantidade
+    > de suas publicações científicas?*
+
+    Os indicadores abaixo foram construídos para responder essa pergunta comparando mestrandos e
+    doutorandos da UFRPE em volume de produção, citações acumuladas e índice H.
+
+    👈 **Utilize o menu lateral para navegar entre os indicadores.**
     """)
 
-elif selecao == "Produção por ICT e Nível":
-    st.title("🏛️ Produção Científica por ICT e Nível Acadêmico")
+elif selecao == "Produção Científica por Nível Acadêmico na UFRPE":
+    st.title("🏛️ Produção Científica por Nível Acadêmico na UFRPE")
+    st.caption("Compara o volume total de produções entre discentes de Mestrado e Doutorado.")
     query = load_sparql_file(analises[selecao])
     df = query_fuseki(query)
-    
+
     if not df.empty:
+        # Filtra apenas UFRPE se houver mais de uma ICT nos dados
+        if "siglaICT" in df.columns and df["siglaICT"].nunique() > 1:
+            df = df[df["siglaICT"].str.upper() == "UFRPE"]
+
         fig = px.bar(
-            df, x="siglaICT", y="totalProducoes", color="nivel",
-            title="Total de Produções por Instituição e Nível (Mestrado vs Doutorado)",
-            labels={"siglaICT": "Instituição", "totalProducoes": "Total de Produções", "nivel": "Nível"},
-            barmode="group", text_auto=True
+            df, x="nivel", y="totalProducoes", color="nivel",
+            title="Total de Produções por Nível Acadêmico (Mestrado vs Doutorado) — UFRPE",
+            labels={"nivel": "Nível Acadêmico", "totalProducoes": "Total de Produções"},
+            text_auto=True,
+            color_discrete_map={"MESTRADO": "#636EFA", "DOUTORADO": "#EF553B"}
         )
+        fig.update_layout(showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
-        with st.expander("Ver resposta bruta do Fuseki (Dados Tabulares)"):
+        with st.expander("Ver dados tabulares"):
             st.dataframe(df)
 
 elif selecao == "Evolução de Notas dos PPGs":
     st.title("📈 Evolução Temporal dos Conceitos CAPES")
+    st.caption(
+        "Acompanhe a evolução da nota CAPES de cada PPG ao longo do tempo. "
+        "PPGs com notas mais altas tendem a exigir e produzir maior volume de publicações qualificadas — "
+        "o que se reflete no impacto científico dos seus discentes."
+    )
     query = load_sparql_file(analises[selecao])
     df = query_fuseki(query)
-    
+
     if not df.empty:
         programas = df["nomePPG"].unique().tolist()
         selecionados = st.multiselect(
@@ -125,7 +151,7 @@ elif selecao == "Evolução de Notas dos PPGs":
         if selecionados:
             df_filtrado = df[df["nomePPG"].isin(selecionados)].copy()
             df_filtrado = df_filtrado.sort_values("ano")  # type: ignore
-            
+
             fig = px.line(
                 df_filtrado, x="ano", y="conceito", color="nomePPG", markers=True,
                 title="Evolução de Notas CAPES por Programa",
@@ -137,63 +163,12 @@ elif selecao == "Evolução de Notas dos PPGs":
         else:
             st.warning("Selecione pelo menos um programa para visualizar o gráfico.")
 
-elif selecao == "Matriz de Produtividade":
-    st.title("🧑‍🔬 Matriz de Produtividade do Autor (Volume vs Impacto)")
-    query = load_sparql_file(analises[selecao])
-    df = query_fuseki(query)
-    
-    if not df.empty:
-        df = df.dropna(subset=["totalProducoes", "totalCitacoes"])
-        fig = px.scatter(
-            df, x="totalProducoes", y="totalCitacoes", size="indiceH", color="indiceI10",
-            hover_name="nomeAutor",
-            title="Produtividade Científica (Tamanho da bolha = Índice H)",
-            labels={"totalProducoes": "Volume (Total de Produções)", "totalCitacoes": "Impacto (Total de Citações)"},
-            log_y=True, log_x=True  # Escala logarítmica para lidar com os outliers de grandes pesquisadores
-        )
-        st.plotly_chart(fig, use_container_width=True)
-        with st.expander("Ver resposta bruta do Fuseki (Dados Tabulares)"):
-            st.dataframe(df)
-
-elif selecao == "Consistência do Autor":
-    st.title("🎯 Consistência do Autor")
-    query = load_sparql_file(analises[selecao])
-    df = query_fuseki(query)
-    
-    if not df.empty:
-        fig = px.scatter(
-            df, x="indiceH", y="totalPublicacoes", size="nrCitacoesAutor", hover_name="nomeAutor",
-            color="indiceH",
-            title="Índice H vs Total de Publicações (Tamanho da bolha = Citações Totais)",
-            labels={"indiceH": "Índice H", "totalPublicacoes": "Total de Publicações"}
-        )
-        st.plotly_chart(fig, use_container_width=True)
-        with st.expander("Ver resposta bruta do Fuseki (Dados Tabulares)"):
-            st.dataframe(df)
-
-elif selecao == "Média de Citações por Conceito":
-    st.title("⭐ Média de Citações por Conceito CAPES")
-    query = load_sparql_file(analises[selecao])
-    df = query_fuseki(query)
-    
-    if not df.empty:
-        df["conceito"] = df["conceito"].astype(str)
-        df = df.sort_values("conceito")  # type: ignore
-        
-        fig = px.bar(
-            df, x="conceito", y="mediaCitacoes", color="conceito",
-            title="Média de Citações de Acordo com a Nota do Programa (CAPES)",
-            labels={"conceito": "Conceito CAPES", "mediaCitacoes": "Média de Citações"},
-            text_auto=True
-        )
-        fig.update_traces(texttemplate='%{y:.1f}')
-        st.plotly_chart(fig, use_container_width=True)
-
 elif selecao == "Produções por Índice H":
     st.title("📊 Produções por Índice H do Autor")
+    st.caption("Distribui o volume total de produções pelo índice H dos autores, mostrando se autores mais impactantes produzem mais.")
     query = load_sparql_file(analises[selecao])
     df = query_fuseki(query)
-    
+
     if not df.empty:
         df = df.sort_values("indiceH")  # type: ignore
         fig = px.bar(
@@ -205,16 +180,115 @@ elif selecao == "Produções por Índice H":
         st.plotly_chart(fig, use_container_width=True)
 
 elif selecao == "Distribuição por Faixa de Citação":
-    st.title("🥧 Distribuição de Produção por Faixas de Citação")
+    st.title("🥧 Distribuição de Autores por Faixa de Citação")
+    st.caption("Agrupa todos os autores (discentes) em faixas de impacto pelo total de citações acumuladas.")
     query = load_sparql_file(analises[selecao])
     df = query_fuseki(query)
-    
+
     if not df.empty:
-        # Agrupa os dados vindo do SPARQL para garantir coerência no gráfico de pizza
-        df_agrupado = df.groupby("faixaCitacao")["quantidade"].sum().reset_index()
         fig = px.pie(
-            df_agrupado, names="faixaCitacao", values="quantidade", hole=0.4,
-            title="Representatividade das Faixas de Citação nas Produções dos Discentes"
+            df, names="faixaCitacao", values="quantidade",
+            title="Representatividade das Faixas de Citação nas Produções dos Discentes",
+            category_orders={"faixaCitacao": [
+                "0 - Sem impacto latente",
+                "1 a 10 - Impacto Inicial",
+                "11 a 50 - Impacto Consolidado",
+                "50+ - Elite Científica"
+            ]}
         )
-        fig.update_traces(textposition="inside", textinfo="percent+label")
+        fig.update_traces(textposition="inside", textinfo="percent")
+        fig.update_layout(
+            legend=dict(font=dict(size=16)),
+            legend_title=dict(font=dict(size=16))
+        )
         st.plotly_chart(fig, use_container_width=True)
+        with st.expander("Ver dados tabulares"):
+            st.dataframe(df[["faixaCitacao", "quantidade"]])
+
+elif selecao == "Citações e Índice H por Nível Acadêmico":
+    st.title("🎓 Citações Médias e Índice H por Nível Acadêmico")
+    st.caption(
+        "Responde diretamente à pergunta do KM: discentes de Doutorado apresentam maior "
+        "média de citações e índice H do que os de Mestrado?"
+    )
+    query = load_sparql_file(analises[selecao])
+    df = query_fuseki(query)
+
+    if not df.empty:
+        col1, col2 = st.columns(2)
+
+        with col1:
+            fig1 = px.bar(
+                df, x="nivel", y="mediaCitacoes", color="nivel",
+                title="Média de Citações por Nível Acadêmico",
+                labels={"nivel": "Nível", "mediaCitacoes": "Média de Citações"},
+                text_auto=".1f",    # pyright: ignore[reportArgumentType]
+                color_discrete_map={"MESTRADO": "#636EFA", "DOUTORADO": "#EF553B"}
+            )
+            fig1.update_layout(showlegend=False)
+            st.plotly_chart(fig1, use_container_width=True)
+
+        with col2:
+            fig2 = px.bar(
+                df, x="nivel", y="mediaIndiceH", color="nivel",
+                title="Índice H Médio por Nível Acadêmico",
+                labels={"nivel": "Nível", "mediaIndiceH": "Índice H Médio"},
+                text_auto=".2f",    # pyright: ignore[reportArgumentType]
+                color_discrete_map={"MESTRADO": "#636EFA", "DOUTORADO": "#EF553B"}
+            )
+            fig2.update_layout(showlegend=False)
+            st.plotly_chart(fig2, use_container_width=True)
+
+        with st.expander("Ver dados tabulares"):
+            st.dataframe(df)
+
+elif selecao == "Faixas de Impacto por Nível Acadêmico":
+    st.title("📊 Faixas de Impacto por Nível Acadêmico")
+    st.caption(
+        "Compara como mestrandos e doutorandos se distribuem nas faixas de citação, "
+        "revelando se o doutorado concentra mais autores na faixa de alto impacto."
+    )
+    query = load_sparql_file(analises[selecao])
+    df = query_fuseki(query)
+
+    if not df.empty:
+        ordem_faixas = [
+            "0 - Sem impacto",
+            "1 a 10 - Impacto Inicial",
+            "11 a 50 - Impacto Consolidado",
+            "50+ - Elite Científica"
+        ]
+        fig = px.bar(
+            df, x="faixaCitacao", y="quantidade", color="nivel",
+            barmode="group",
+            title="Distribuição de Autores por Faixa de Citação e Nível Acadêmico",
+            labels={"faixaCitacao": "Faixa de Citação", "quantidade": "Nº de Autores", "nivel": "Nível"},
+            category_orders={"faixaCitacao": ordem_faixas},
+            color_discrete_map={"MESTRADO": "#636EFA", "DOUTORADO": "#EF553B"},
+            text_auto=True
+        )
+        st.plotly_chart(fig, use_container_width=True)
+        with st.expander("Ver dados tabulares"):
+            st.dataframe(df)
+
+elif selecao == "Produtividade Média por Nível Acadêmico":
+    st.title("📝 Produtividade Média por Nível Acadêmico")
+    st.caption(
+        "Calcula a média de produções por autor em cada nível, normalizando pelo número de discentes "
+        "para uma comparação justa entre mestrado e doutorado."
+    )
+    query = load_sparql_file(analises[selecao])
+    df = query_fuseki(query)
+
+    if not df.empty:
+        fig = px.bar(
+            df, x="nivel", y="mediaProducoesPorAutor", color="nivel",
+            title="Média de Produções por Autor por Nível Acadêmico",
+            labels={"nivel": "Nível Acadêmico", "mediaProducoesPorAutor": "Média de Produções/Autor"},
+            text_auto=".2f",    # pyright: ignore[reportArgumentType]
+            color_discrete_map={"MESTRADO": "#636EFA", "DOUTORADO": "#EF553B"}
+        )
+        fig.update_layout(showlegend=False)
+        st.plotly_chart(fig, use_container_width=True)
+        with st.expander("Ver dados tabulares"):
+            st.dataframe(df)
