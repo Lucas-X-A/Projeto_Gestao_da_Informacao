@@ -361,33 +361,52 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
     st.title("🎓 Citações Médias e Índice H por Nível Acadêmico")
     st.caption(
         "Responde diretamente à pergunta do KM: discentes de Doutorado apresentam maior "
-        "média de citações e índice H do que os de Mestrado?"
+        "média de citações e índice H do que os de Mestrado? "
+        "Os dados de Mestrado incluem Mestrado Regular e Profissional. "
+        "Os dados de Doutorado incluem Doutorado Regular e Profissional."
     )
  
-    ORDEM_NIVEIS = [
-        "MESTRADO",
-        "MESTRADO PROFISSIONAL",
-        "DOUTORADO",
-        "DOUTORADO PROFISSIONAL",
+    ANOS_DISPONIVEIS_CTI = list(range(2018, 2025))
+    CORES_GRUPO_CTI = {
+        "Mestrado (Regular + Profissional)":  "#636EFA",
+        "Doutorado (Regular + Profissional)": "#EF553B",
+    }
+    ORDEM_GRUPOS_CTI = [
+        "Mestrado (Regular + Profissional)",
+        "Doutorado (Regular + Profissional)",
     ]
-    CORES_NIVEIS = {
-        "MESTRADO": "#636EFA",  # azul
-        "MESTRADO PROFISSIONAL": "#6495ED",  # azul claro
-        "DOUTORADO": "#EF553B",  # vermelho
-        "DOUTORADO PROFISSIONAL": "#FF8C69",  # vermelho claro
+    MAPA_GRUPO_CTI = {
+        "MESTRADO":               "Mestrado (Regular + Profissional)",
+        "MESTRADO PROFISSIONAL":  "Mestrado (Regular + Profissional)",
+        "DOUTORADO":              "Doutorado (Regular + Profissional)",
+        "DOUTORADO PROFISSIONAL": "Doutorado (Regular + Profissional)",
     }
  
-    # Slider de intervalo de anos
-    ano_inicio, ano_fim = st.slider(
-        "Selecione o intervalo de anos de avaliação:",
-        min_value=2018,
-        max_value=2024,
-        value=(2018, 2024),
-        step=1,
-        format="%d",
+    # Dropdowns lado a lado para início e fim do período
+    col_ini, col_fim = st.columns(2)
+    with col_ini:
+        ano_inicio = st.selectbox(
+            "Ano de início:",
+            options=ANOS_DISPONIVEIS_CTI,
+            index=0,
+            key="cti_ini",
+        )
+    with col_fim:
+        ano_fim = st.selectbox(
+            "Ano de fim:",
+            options=ANOS_DISPONIVEIS_CTI,
+            index=len(ANOS_DISPONIVEIS_CTI) - 1,
+            key="cti_fim",
+        )
+ 
+    if ano_inicio > ano_fim:
+        st.warning("O ano de início não pode ser maior que o ano de fim.")
+        st.stop()
+ 
+    titulo_periodo_cti = (
+        f"{ano_inicio}" if ano_inicio == ano_fim else f"{ano_inicio}–{ano_fim}"
     )
  
-    # Carrega o template e injeta os anos antes de enviar ao Fuseki
     query_template = load_sparql_file(analises[selecao])
     query = (query_template
              .replace("{ano_inicio}", str(ano_inicio))
@@ -395,43 +414,58 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
     df = query_fuseki(query)
  
     if not df.empty:
-        df["nivel"] = pd.Categorical(df["nivel"], categories=ORDEM_NIVEIS, ordered=True)
-        df = df.sort_values("nivel")
+        # Mescla subníveis em grupos (Regular + Profissional)
+        df["grupo"] = df["nivel"].replace(MAPA_GRUPO_CTI)
+        df["ano"] = df["ano"].astype(str)
  
-        col1, col2 = st.columns(2)
+        df_agrupado = df.groupby(["ano", "grupo"], as_index=False).agg(
+            mediaCitacoes=("mediaCitacoes", "mean"),
+            mediaIndiceH=("mediaIndiceH", "mean"),
+        )
+        df_agrupado = df_agrupado.sort_values("ano")  # type: ignore
  
-        with col1:
-            fig1 = px.bar(
-                df,
-                x="nivel",
-                y="mediaCitacoes",
-                color="nivel",
-                title=f"Média de Citações por Nível Acadêmico ({ano_inicio}–{ano_fim})",
-                labels={"nivel": "Nível", "mediaCitacoes": "Média de Citações"},
-                text_auto=".1f",  # pyright: ignore[reportArgumentType]
-                color_discrete_map=CORES_NIVEIS,
-                category_orders={"nivel": ORDEM_NIVEIS},
-            )
-            fig1.update_layout(showlegend=False)
-            st.plotly_chart(fig1, use_container_width=True)
+        # Gráfico 1 — Média de Citações (largura total)
+        fig1 = px.bar(
+            df_agrupado,
+            x="ano",
+            y="mediaCitacoes",
+            color="grupo",
+            barmode="group",
+            title=f"Média de Citações por Nível Acadêmico — {titulo_periodo_cti}",
+            labels={
+                "ano": "Ano de Avaliação",
+                "mediaCitacoes": "Média de Citações",
+                "grupo": "Nível",
+            },
+            text_auto=".1f",  # pyright: ignore[reportArgumentType]
+            color_discrete_map=CORES_GRUPO_CTI,
+            category_orders={"grupo": ORDEM_GRUPOS_CTI},
+        )
+        fig1.update_layout(legend_title_text="Nível Acadêmico")
+        st.plotly_chart(fig1, use_container_width=True)
  
-        with col2:
-            fig2 = px.bar(
-                df,
-                x="nivel",
-                y="mediaIndiceH",
-                color="nivel",
-                title=f"Índice H Médio por Nível Acadêmico ({ano_inicio}–{ano_fim})",
-                labels={"nivel": "Nível", "mediaIndiceH": "Índice H Médio"},
-                text_auto=".2f",  # pyright: ignore[reportArgumentType]
-                color_discrete_map=CORES_NIVEIS,
-                category_orders={"nivel": ORDEM_NIVEIS},
-            )
-            fig2.update_layout(showlegend=False)
-            st.plotly_chart(fig2, use_container_width=True)
+        # Gráfico 2 — Índice H Médio
+        fig2 = px.bar(
+            df_agrupado,
+            x="ano",
+            y="mediaIndiceH",
+            color="grupo",
+            barmode="group",
+            title=f"Índice H Médio por Nível Acadêmico — {titulo_periodo_cti}",
+            labels={
+                "ano": "Ano de Avaliação",
+                "mediaIndiceH": "Índice H Médio",
+                "grupo": "Nível",
+            },
+            text_auto=".2f",  # pyright: ignore[reportArgumentType]
+            color_discrete_map=CORES_GRUPO_CTI,
+            category_orders={"grupo": ORDEM_GRUPOS_CTI},
+        )
+        fig2.update_layout(legend_title_text="Nível Acadêmico")
+        st.plotly_chart(fig2, use_container_width=True)
  
         with st.expander("Ver dados tabulares"):
-            st.dataframe(df)
+            st.dataframe(df_agrupado)
     else:
         st.warning("Nenhum dado encontrado para o intervalo selecionado.")
 
