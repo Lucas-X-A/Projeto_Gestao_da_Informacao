@@ -10,13 +10,14 @@ WHERE {
        cti:avaliado ?c_obj .
   ?ict cti:sg_entidade_ensino "UFRPE" .
   ?c_obj cti:cd_conceito_programa ?conceito ;
-         cti:an_base_conceito ?ano .
-  FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
+         cti:an_base_conceito ?anoConceito .
 
   ?discente a cti:Discente ;
             cti:id_pessoa ?idPessoa ;
             cti:ds_grau_academico_discente ?nivel ;
+            cti:an_titulacao ?ano ;
             cti:vinculado ?ppg .
+  FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
 
   ?autor a cti:Autor ;
          cti:id_pessoa ?idPessoa ;

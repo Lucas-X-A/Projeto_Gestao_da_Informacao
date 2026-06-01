@@ -88,6 +88,7 @@ COLS_DISCENTES = {
     "grau": "DS_GRAU_ACADEMICO_DISCENTE",
     "situacao": "NM_SITUACAO_DISCENTE",
     "mes_tit": "QT_MES_TITULACAO",
+    "dt_situacao": "DT_SITUACAO_DISCENTE",
     "ano": "AN_BASE",
 }
 

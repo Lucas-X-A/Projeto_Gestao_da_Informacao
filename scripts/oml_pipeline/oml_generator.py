@@ -97,6 +97,8 @@ class OMLGenerator:
                 lines.append(f'\t\t{ns}:nm_pais_nacionalidade "{escape_oml(discente.nm_pais_nacionalidade)}"')
             if discente.qt_mes_titulacao > 0:
                 lines.append(f"\t\t{ns}:qt_mes_titulacao {discente.qt_mes_titulacao}")
+            if discente.an_titulacao > 0:
+                lines.append(f"\t\t{ns}:an_titulacao {discente.an_titulacao}")
             lines.append(f"\t\t{ns}:vinculado {discente.vinculado_id}")
             lines.append("\t]")
 

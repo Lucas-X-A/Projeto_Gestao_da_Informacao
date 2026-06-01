@@ -11,11 +11,10 @@ WHERE {
             cti:ds_grau_academico_discente ?nivel ;
             cti:vinculado ?ppg .
 
-  ?ppg cti:sediado ?ict ;
-       cti:avaliado ?c_obj .
+  ?ppg cti:sediado ?ict .
   ?ict cti:sg_entidade_ensino "UFRPE" .
 
-  ?c_obj cti:an_base_conceito ?ano .
+  ?discente cti:an_titulacao ?ano .
   FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
 
   ?autor a cti:Autor ;

@@ -129,6 +129,11 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:int
 	]
 
+	scalar property an_titulacao [
+		domain Discente
+		range xsd:int
+	]
+
 	scalar property ds_categoria_docente [
 		domain Docente
 		range xsd:int
