@@ -1,4 +1,5 @@
 import logging
+import re
 from collections import defaultdict
 from typing import Dict, List, Set
 
@@ -124,11 +125,10 @@ class InstanceExtractor:
             dt_situacao_col = c.get("dt_situacao")
             dt_situacao = safe_str(row.get(dt_situacao_col, "")) if dt_situacao_col else ""
             an_titulacao = 0
-            if dt_situacao and len(dt_situacao) >= 4:
-                try:
-                    an_titulacao = int(dt_situacao.split("-")[0])
-                except (ValueError, IndexError):
-                    pass
+            if dt_situacao:
+                year_match = re.search(r"(19|20)\d{2}", dt_situacao)
+                if year_match:
+                    an_titulacao = safe_int(year_match.group(0), 0)
             
             self.discente_instances[disc_id] = DiscenteInstance(
                 id=disc_id,
