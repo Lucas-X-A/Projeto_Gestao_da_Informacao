@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as pgo
 import streamlit as st
 from SPARQLWrapper import JSON, SPARQLWrapper
 
@@ -76,7 +77,7 @@ analises = {
     "Visão Geral": "home",
     "Evolução de Notas dos PPGs": "Evolução Temporal das Notas dos Programas.sparql",
     "Citações e Índice H por Nível Acadêmico": "Citações_Médias_por_Nível_Acadêmico.sparql",
-    "Faixas de Impacto por Nível Acadêmico": "Faixas_de_Citação_por_Nível_Acadêmico.sparql",
+    "Distribuição de Autores por Faixa de Índice H": "Faixas_de_Citação_por_Nível_Acadêmico.sparql",
     "Impacto por Conceito CAPES e Nível": "Impacto_por_Conceito_CAPES_e_Nível.sparql",
 }
 
@@ -138,7 +139,7 @@ if selecao == "Visão Geral":
     # Constantes compartilhadas pelos 3 gráficos
     ANOS_DISPONIVEIS = list(range(2018, 2025))
     CORES_GRUPO = {
-        "Mestrado (Regular + Profissional)":  "#636EFA",
+        "Mestrado (Regular + Profissional)": "#636EFA",
         "Doutorado (Regular + Profissional)": "#EF553B",
     }
     ORDEM_GRUPOS = [
@@ -146,9 +147,9 @@ if selecao == "Visão Geral":
         "Doutorado (Regular + Profissional)",
     ]
     MAPA_GRUPO = {
-        "MESTRADO":               "Mestrado (Regular + Profissional)",
-        "MESTRADO PROFISSIONAL":  "Mestrado (Regular + Profissional)",
-        "DOUTORADO":              "Doutorado (Regular + Profissional)",
+        "MESTRADO": "Mestrado (Regular + Profissional)",
+        "MESTRADO PROFISSIONAL": "Mestrado (Regular + Profissional)",
+        "DOUTORADO": "Doutorado (Regular + Profissional)",
         "DOUTORADO PROFISSIONAL": "Doutorado (Regular + Profissional)",
     }
 
@@ -160,7 +161,10 @@ if selecao == "Visão Geral":
         )
     with col_fim:
         ano_fim_vg = st.selectbox(
-            "Ano de fim:", ANOS_DISPONIVEIS, index=len(ANOS_DISPONIVEIS) - 1, key="vg_fim"
+            "Ano de fim:",
+            ANOS_DISPONIVEIS,
+            index=len(ANOS_DISPONIVEIS) - 1,
+            key="vg_fim",
         )
 
     if ano_inicio_vg > ano_fim_vg:
@@ -175,18 +179,30 @@ if selecao == "Visão Geral":
 
     # Gráfico 1 da Visão Geral: Discentes titulados por ano e nível
     qt1 = load_sparql_file("Discentes_Titulados_por_Nível_e_Ano.sparql")
-    qt1 = qt1.replace("{ano_inicio}", str(ano_inicio_vg)).replace("{ano_fim}", str(ano_fim_vg))
+    qt1 = qt1.replace("{ano_inicio}", str(ano_inicio_vg)).replace(
+        "{ano_fim}", str(ano_fim_vg)
+    )
     df1 = query_fuseki(qt1)
 
     if not df1.empty:
         df1["grupo"] = df1["nivel"].replace(MAPA_GRUPO)
         df1["ano"] = df1["ano"].astype(str)
-        df1_agr = df1.groupby(["ano", "grupo"], as_index=False).agg(totalDiscentes=("totalDiscentes", "sum"))
+        df1_agr = df1.groupby(["ano", "grupo"], as_index=False).agg(
+            totalDiscentes=("totalDiscentes", "sum")
+        )
         df1_agr = df1_agr.sort_values("ano")  # type: ignore
         fig1 = px.bar(
-            df1_agr, x="ano", y="totalDiscentes", color="grupo", barmode="group",
+            df1_agr,
+            x="ano",
+            y="totalDiscentes",
+            color="grupo",
+            barmode="group",
             title=f"Discentes Titulados por Nível Acadêmico — {titulo_periodo}",
-            labels={"ano": "Ano", "totalDiscentes": "Nº de Discentes Titulados", "grupo": "Nível"},
+            labels={
+                "ano": "Ano",
+                "totalDiscentes": "Nº de Discentes Titulados",
+                "grupo": "Nível",
+            },
             text_auto=True,
             color_discrete_map=CORES_GRUPO,
             category_orders={"grupo": ORDEM_GRUPOS},
@@ -198,18 +214,30 @@ if selecao == "Visão Geral":
 
     # Gráfico 2 da Visão Geral: Total de publicações por ano e nível
     qt2 = load_sparql_file("Produções_por_Nível_e_Ano.sparql")
-    qt2 = qt2.replace("{ano_inicio}", str(ano_inicio_vg)).replace("{ano_fim}", str(ano_fim_vg))
+    qt2 = qt2.replace("{ano_inicio}", str(ano_inicio_vg)).replace(
+        "{ano_fim}", str(ano_fim_vg)
+    )
     df2 = query_fuseki(qt2)
 
     if not df2.empty:
         df2["grupo"] = df2["nivel"].replace(MAPA_GRUPO)
         df2["ano"] = df2["ano"].astype(str)
-        df2_agr = df2.groupby(["ano", "grupo"], as_index=False).agg(totalProducoes=("totalProducoes", "sum"))
+        df2_agr = df2.groupby(["ano", "grupo"], as_index=False).agg(
+            totalProducoes=("totalProducoes", "sum")
+        )
         df2_agr = df2_agr.sort_values("ano")  # type: ignore
         fig2 = px.bar(
-            df2_agr, x="ano", y="totalProducoes", color="grupo", barmode="group",
+            df2_agr,
+            x="ano",
+            y="totalProducoes",
+            color="grupo",
+            barmode="group",
             title=f"Total de Publicações por Nível Acadêmico — {titulo_periodo}",
-            labels={"ano": "Ano", "totalProducoes": "Total de Publicações", "grupo": "Nível"},
+            labels={
+                "ano": "Ano",
+                "totalProducoes": "Total de Publicações",
+                "grupo": "Nível",
+            },
             text_auto=True,
             color_discrete_map=CORES_GRUPO,
             category_orders={"grupo": ORDEM_GRUPOS},
@@ -221,7 +249,9 @@ if selecao == "Visão Geral":
 
     # Gráfico 3 da Visão Geral: Publicações por discente titulado (produtividade)
     qt3 = load_sparql_file("Produtividade_por_Discente_Titulado.sparql")
-    qt3 = qt3.replace("{ano_inicio}", str(ano_inicio_vg)).replace("{ano_fim}", str(ano_fim_vg))
+    qt3 = qt3.replace("{ano_inicio}", str(ano_inicio_vg)).replace(
+        "{ano_fim}", str(ano_fim_vg)
+    )
     df3 = query_fuseki(qt3)
 
     if not df3.empty:
@@ -232,13 +262,16 @@ if selecao == "Visão Geral":
             totalProducoes=("totalProducoes", "sum"),
         )
         df3_agr = df3_agr.sort_values("ano")  # type: ignore
-        # Produtividade = publicações / discente titulado 
-        df3_agr["producoesPorDiscente"] = (
-            df3_agr["totalProducoes"]
-            / df3_agr["totalDiscentes"].replace(0, float("nan"))
-        )
+        # Produtividade = publicações / discente titulado
+        df3_agr["producoesPorDiscente"] = df3_agr["totalProducoes"] / df3_agr[
+            "totalDiscentes"
+        ].replace(0, float("nan"))
         fig3 = px.bar(
-            df3_agr, x="ano", y="producoesPorDiscente", color="grupo", barmode="group",
+            df3_agr,
+            x="ano",
+            y="producoesPorDiscente",
+            color="grupo",
+            barmode="group",
             title=f"Publicações por Discente Titulado — {titulo_periodo}",
             labels={
                 "ano": "Ano",
@@ -259,7 +292,9 @@ if selecao == "Visão Geral":
     else:
         st.info("Sem dados de produtividade para o período selecionado.")
 
-    st.markdown("👈 **Utilize o menu lateral para explorar indicadores mais detalhados.**")
+    st.markdown(
+        "👈 **Utilize o menu lateral para explorar indicadores mais detalhados.**"
+    )
 
 elif selecao == "Evolução de Notas dos PPGs":
     st.title("📈 Evolução Temporal dos Conceitos CAPES")
@@ -310,10 +345,10 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
         "Os dados de Mestrado incluem Mestrado Regular e Profissional. "
         "Os dados de Doutorado incluem Doutorado Regular e Profissional."
     )
- 
+
     ANOS_DISPONIVEIS_CTI = list(range(2018, 2025))
     CORES_GRUPO_CTI = {
-        "Mestrado (Regular + Profissional)":  "#636EFA",
+        "Mestrado (Regular + Profissional)": "#636EFA",
         "Doutorado (Regular + Profissional)": "#EF553B",
     }
     ORDEM_GRUPOS_CTI = [
@@ -321,12 +356,12 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
         "Doutorado (Regular + Profissional)",
     ]
     MAPA_GRUPO_CTI = {
-        "MESTRADO":               "Mestrado (Regular + Profissional)",
-        "MESTRADO PROFISSIONAL":  "Mestrado (Regular + Profissional)",
-        "DOUTORADO":              "Doutorado (Regular + Profissional)",
+        "MESTRADO": "Mestrado (Regular + Profissional)",
+        "MESTRADO PROFISSIONAL": "Mestrado (Regular + Profissional)",
+        "DOUTORADO": "Doutorado (Regular + Profissional)",
         "DOUTORADO PROFISSIONAL": "Doutorado (Regular + Profissional)",
     }
- 
+
     # Dropdowns lado a lado para início e fim do período
     col_ini, col_fim = st.columns(2)
     with col_ini:
@@ -343,32 +378,32 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
             index=len(ANOS_DISPONIVEIS_CTI) - 1,
             key="cti_fim",
         )
- 
+
     if ano_inicio > ano_fim:
         st.warning("O ano de início não pode ser maior que o ano de fim.")
         st.stop()
- 
+
     titulo_periodo_cti = (
         f"{ano_inicio}" if ano_inicio == ano_fim else f"{ano_inicio}–{ano_fim}"
     )
- 
+
     query_template = load_sparql_file(analises[selecao])
-    query = (query_template
-             .replace("{ano_inicio}", str(ano_inicio))
-             .replace("{ano_fim}", str(ano_fim)))
+    query = query_template.replace("{ano_inicio}", str(ano_inicio)).replace(
+        "{ano_fim}", str(ano_fim)
+    )
     df = query_fuseki(query)
- 
+
     if not df.empty:
         # Mescla subníveis em grupos (Regular + Profissional)
         df["grupo"] = df["nivel"].replace(MAPA_GRUPO_CTI)
         df["ano"] = df["ano"].astype(str)
- 
+
         df_agrupado = df.groupby(["ano", "grupo"], as_index=False).agg(
             mediaCitacoes=("mediaCitacoes", "mean"),
             mediaIndiceH=("mediaIndiceH", "mean"),
         )
         df_agrupado = df_agrupado.sort_values("ano")  # type: ignore
- 
+
         # Gráfico 1 — Média de Citações (largura total)
         fig1 = px.bar(
             df_agrupado,
@@ -388,7 +423,7 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
         )
         fig1.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig1, use_container_width=True)
- 
+
         # Gráfico 2 — Índice H Médio
         fig2 = px.bar(
             df_agrupado,
@@ -408,47 +443,149 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
         )
         fig2.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig2, use_container_width=True)
- 
+
         with st.expander("Ver dados tabulares"):
             st.dataframe(df_agrupado)
     else:
         st.warning("Nenhum dado encontrado para o intervalo selecionado.")
 
-elif selecao == "Faixas de Impacto por Nível Acadêmico":
-    st.title("📊 Faixas de Impacto por Nível Acadêmico")
+elif selecao == "Distribuição de Autores por Faixa de Índice H":
+    st.title("📊 Distribuição de Autores por Faixa de Índice H ao Longo dos Anos")
     st.caption(
-        "Compara como mestrandos e doutorandos se distribuem nas faixas de citação, "
-        "revelando se o doutorado concentra mais autores na faixa de alto impacto."
+        "Acompanhe a evolução da distribuição de autores nas diferentes faixas de Índice H (Hirsch) "
+        "ao longo dos anos, comparando mestrandos e doutorandos. "
+        "Os dados de Mestrado agrupam Mestrado Regular e Profissional. "
+        "Os dados de Doutorado agrupam Doutorado Regular e Profissional."
     )
-    query = load_sparql_file(analises[selecao])
+
+    ANOS_DISPONIVEIS_H = list(range(2018, 2025))
+    MAPA_GRUPO_H = {
+        "MESTRADO": "Mestrado (Regular + Profissional)",
+        "MESTRADO PROFISSIONAL": "Mestrado (Regular + Profissional)",
+        "DOUTORADO": "Doutorado (Regular + Profissional)",
+        "DOUTORADO PROFISSIONAL": "Doutorado (Regular + Profissional)",
+    }
+
+    # Filtro temporal
+    col_ini, col_fim = st.columns(2)
+    with col_ini:
+        ano_inicio_h = st.selectbox(
+            "Ano de início:", ANOS_DISPONIVEIS_H, index=0, key="h_ini"
+        )
+    with col_fim:
+        ano_fim_h = st.selectbox(
+            "Ano de fim:",
+            ANOS_DISPONIVEIS_H,
+            index=len(ANOS_DISPONIVEIS_H) - 1,
+            key="h_fim",
+        )
+
+    if ano_inicio_h > ano_fim_h:
+        st.warning("O ano de início não pode ser maior que o ano de fim.")
+        st.stop()
+
+    titulo_periodo_h = (
+        f"{ano_inicio_h}"
+        if ano_inicio_h == ano_fim_h
+        else f"{ano_inicio_h}–{ano_fim_h}"
+    )
+
+    # Carregar e executar consulta
+    query_template = load_sparql_file("Faixas_de_Citação_por_Nível_Acadêmico.sparql")
+    query = query_template.replace("{ano_inicio}", str(ano_inicio_h)).replace(
+        "{ano_fim}", str(ano_fim_h)
+    )
+
     df = query_fuseki(query)
 
     if not df.empty:
+        # Mapear níveis para grupos
+        df["nivel"] = df["nivel"].replace(MAPA_GRUPO_H)
+
+        # Converter ano para inteiro para ordenação correta
+        df["ano"] = df["ano"].astype(int)
+
+        # Agrupar por ano, faixa de Índice H e nível
+        df_agr = df.groupby(
+            ["ano", "faixaIndiceH", "nivel", "ordemFaixa"], as_index=False
+        ).agg(quantidade=("quantidade", "sum"))
+        df_agr = df_agr.sort_values(["ano", "ordemFaixa"])  # type: ignore
+
+        # Definir ordem das faixas
         ordem_faixas = [
-            "0 - Sem impacto",
-            "1 a 10 - Impacto Inicial",
-            "11 a 50 - Impacto Consolidado",
-            "50+ - Elite Científica",
+            "0-5 - Iniciante",
+            "6-15 - Consolidado",
+            "16-30 - Líder",
+            "30+ - Elite",
         ]
-        fig = px.bar(
-            df,
-            x="faixaCitacao",
+
+        # Cores para cada faixa
+        cores_faixas = {
+            "0-5 - Iniciante": "#00E5FF",  # Azul Ciano
+            "6-15 - Consolidado": "#FFEA00",  # Amarelo Limão
+            "16-30 - Líder": "#FF00FF",  # Magenta Neon
+            "30+ - Elite": "#FF6D00",  # Laranja Vibrante
+        }
+
+        # Gráfico de linhas
+        fig = px.line(
+            df_agr,
+            x="ano",
             y="quantidade",
-            color="nivel",
-            barmode="group",
-            title="Distribuição de Autores por Faixa de Citação e Nível Acadêmico",
+            color="faixaIndiceH",
+            line_dash="nivel",
+            markers=True,
+            title=f"Evolução da Distribuição de Autores por Faixa de Índice H — {titulo_periodo_h}",
             labels={
-                "faixaCitacao": "Faixa de Citação",
+                "ano": "Ano",
                 "quantidade": "Nº de Autores",
-                "nivel": "Nível",
+                "faixaIndiceH": "Faixa de Índice H",
+                "nivel": "Nível Acadêmico",
             },
-            category_orders={"faixaCitacao": ordem_faixas},
-            color_discrete_map={"MESTRADO": "#636EFA", "DOUTORADO": "#EF553B"},
-            text_auto=True,
+            color_discrete_map=cores_faixas,
         )
+
+        # Customizar estilos de linha
+        for trace in fig.data:
+            if isinstance(trace, (pgo.Scatter, pgo.Scattergl)):
+                name = getattr(trace, "name", "")
+
+                if name and "Mestrado" in name:
+                    trace.line = dict(dash="solid")
+                    trace.marker = dict(symbol="circle")
+                elif name and "Doutorado" in name:
+                    trace.line = dict(dash="dash")
+                    trace.marker = dict(symbol="square")
+
+        fig.update_layout(
+            legend=dict(
+                title=dict(
+                    text="<b>Faixa de Índice H</b>", font=dict(size=12, color="white")
+                ),
+                font=dict(family="Arial, sans-serif", size=12, color="white"),
+            ),
+            hovermode="x unified",
+            height=500,
+            margin=dict(t=80, b=80, l=80, r=250),
+        )
+
+        fig.update_xaxes(type="category")
+
         st.plotly_chart(fig, use_container_width=True)
+
+        # Tabela de dados
         with st.expander("Ver dados tabulares"):
-            st.dataframe(df)
+            st.dataframe(df_agr)
+
+        # Legenda explicativa
+        st.caption(
+            "💡 **Índice H (Hirsch):** Métrica que mede o impacto acadêmico de um autor. "
+            "Um autor com índice H = 10 tem pelo menos 10 publicações com 10 ou mais citações cada. "
+            "**Faixas:** 0-5 (Iniciante), 6-15 (Consolidado), 16-30 (Líder), 30+ (Elite). "
+            "**Linhas sólidas:** Mestrado | **Linhas tracejadas:** Doutorado"
+        )
+    else:
+        st.info("Sem dados disponíveis para o período selecionado.")
 
 elif selecao == "Impacto por Conceito CAPES e Nível":
     st.title("🏅 Impacto Científico por Nota CAPES e Nível Acadêmico")
@@ -457,9 +594,9 @@ elif selecao == "Impacto por Conceito CAPES e Nível":
         "discentes de programas mais bem avaliados publicam com mais qualidade? "
         "Os dados de Mestrado agrupam Regular e Profissional; idem para Doutorado."
     )
- 
+
     CORES_GRUPO_CAPES = {
-        "Mestrado (Regular + Profissional)":  "#636EFA",
+        "Mestrado (Regular + Profissional)": "#636EFA",
         "Doutorado (Regular + Profissional)": "#EF553B",
     }
     ORDEM_GRUPOS_CAPES = [
@@ -467,12 +604,12 @@ elif selecao == "Impacto por Conceito CAPES e Nível":
         "Doutorado (Regular + Profissional)",
     ]
     MAPA_GRUPO_CAPES = {
-        "MESTRADO":               "Mestrado (Regular + Profissional)",
-        "MESTRADO PROFISSIONAL":  "Mestrado (Regular + Profissional)",
-        "DOUTORADO":              "Doutorado (Regular + Profissional)",
+        "MESTRADO": "Mestrado (Regular + Profissional)",
+        "MESTRADO PROFISSIONAL": "Mestrado (Regular + Profissional)",
+        "DOUTORADO": "Doutorado (Regular + Profissional)",
         "DOUTORADO PROFISSIONAL": "Doutorado (Regular + Profissional)",
     }
- 
+
     ANOS_DISPONIVEIS_CAPES = list(range(2018, 2025))
     col_ini, col_fim = st.columns(2)
     with col_ini:
@@ -481,59 +618,77 @@ elif selecao == "Impacto por Conceito CAPES e Nível":
         )
     with col_fim:
         ano_fim_capes = st.selectbox(
-            "Ano de fim:", ANOS_DISPONIVEIS_CAPES, index=len(ANOS_DISPONIVEIS_CAPES) - 1, key="capes_fim"
+            "Ano de fim:",
+            ANOS_DISPONIVEIS_CAPES,
+            index=len(ANOS_DISPONIVEIS_CAPES) - 1,
+            key="capes_fim",
         )
- 
+
     if ano_inicio_capes > ano_fim_capes:
         st.warning("O ano de início não pode ser maior que o ano de fim.")
         st.stop()
- 
+
     titulo_periodo_capes = (
-        f"{ano_inicio_capes}" if ano_inicio_capes == ano_fim_capes
+        f"{ano_inicio_capes}"
+        if ano_inicio_capes == ano_fim_capes
         else f"{ano_inicio_capes}–{ano_fim_capes}"
     )
- 
+
     query_template = load_sparql_file(analises[selecao])
-    query = (query_template
-             .replace("{ano_inicio}", str(ano_inicio_capes))
-             .replace("{ano_fim}", str(ano_fim_capes)))
+    query = query_template.replace("{ano_inicio}", str(ano_inicio_capes)).replace(
+        "{ano_fim}", str(ano_fim_capes)
+    )
     df = query_fuseki(query)
- 
+
     if not df.empty:
         df["grupo"] = df["nivel"].replace(MAPA_GRUPO_CAPES)
         df["conceito"] = df["conceito"].astype(str)
- 
+
         df_agr = df.groupby(["conceito", "grupo"], as_index=False).agg(
             mediaCitacoes=("mediaCitacoes", "mean"),
             mediaIndiceH=("mediaIndiceH", "mean"),
             totalAutores=("totalAutores", "sum"),
         )
         df_agr = df_agr.sort_values("conceito")  # type: ignore
- 
+
         fig1 = px.bar(
             df_agr,
-            x="conceito", y="mediaCitacoes", color="grupo", barmode="group",
+            x="conceito",
+            y="mediaCitacoes",
+            color="grupo",
+            barmode="group",
             title=f"Média de Citações por Nota CAPES do PPG e Nível Acadêmico — {titulo_periodo_capes}",
-            labels={"conceito": "Nota CAPES do PPG", "mediaCitacoes": "Média de Citações", "grupo": "Nível"},
+            labels={
+                "conceito": "Nota CAPES do PPG",
+                "mediaCitacoes": "Média de Citações",
+                "grupo": "Nível",
+            },
             text_auto=".1f",  # pyright: ignore[reportArgumentType]
             color_discrete_map=CORES_GRUPO_CAPES,
             category_orders={"grupo": ORDEM_GRUPOS_CAPES},
         )
         fig1.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig1, use_container_width=True)
- 
+
         fig2 = px.bar(
             df_agr,
-            x="conceito", y="mediaIndiceH", color="grupo", barmode="group",
+            x="conceito",
+            y="mediaIndiceH",
+            color="grupo",
+            barmode="group",
             title=f"Índice H Médio por Nota CAPES do PPG e Nível Acadêmico — {titulo_periodo_capes}",
-            labels={"conceito": "Nota CAPES do PPG", "mediaIndiceH": "Índice H Médio", "grupo": "Nível"},
+            labels={
+                "conceito": "Nota CAPES do PPG",
+                "mediaIndiceH": "Índice H Médio",
+                "grupo": "Nível",
+            },
             text_auto=".2f",  # pyright: ignore[reportArgumentType]
             color_discrete_map=CORES_GRUPO_CAPES,
             category_orders={"grupo": ORDEM_GRUPOS_CAPES},
         )
         fig2.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig2, use_container_width=True)
- 
+
         with st.expander("Ver dados tabulares"):
             st.dataframe(df_agr)
     else:

@@ -1,12 +1,14 @@
 PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?nivel ?faixaCitacao ?ordemFaixa (COUNT(DISTINCT ?autor) AS ?quantidade)
+SELECT ?ano ?nivel ?faixaIndiceH ?ordemFaixa (COUNT(DISTINCT ?autor) AS ?quantidade)
 WHERE {
   ?discente a cti:Discente ;
             cti:id_pessoa ?idPessoa ;
             cti:ds_grau_academico_discente ?nivel ;
+            cti:an_titulacao ?ano ;
             cti:vinculado ?ppg .
+
   ?ppg cti:sediado ?ict .
   ?ict cti:sg_entidade_ensino "UFRPE" .
 
@@ -14,23 +16,24 @@ WHERE {
          cti:id_pessoa ?idPessoa ;
          cti:mensurado ?citacao .
 
-  ?citacao cti:nr_citacoes_autor ?numCitacoes .
+  ?citacao cti:nr_indice_h ?indiceH .
 
-  FILTER(BOUND(?numCitacoes))
+  FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
+  FILTER(BOUND(?indiceH))
 
   BIND(
-    IF(?numCitacoes = 0, 1,
-    IF(?numCitacoes <= 10, 2,
-    IF(?numCitacoes <= 50, 3,
+    IF(xsd:integer(?indiceH) <= 5, 1,
+    IF(xsd:integer(?indiceH) <= 15, 2,
+    IF(xsd:integer(?indiceH) <= 30, 3,
     4))) AS ?ordemFaixa
   )
 
   BIND(
-    IF(?numCitacoes = 0, "0 - Sem impacto",
-    IF(?numCitacoes <= 10, "1 a 10 - Impacto Inicial",
-    IF(?numCitacoes <= 50, "11 a 50 - Impacto Consolidado",
-    "50+ - Elite Científica"))) AS ?faixaCitacao
+    IF(xsd:integer(?indiceH) <= 5, "0-5 - Iniciante",
+    IF(xsd:integer(?indiceH) <= 15, "6-15 - Consolidado",
+    IF(xsd:integer(?indiceH) <= 30, "16-30 - Líder",
+    "30+ - Elite"))) AS ?faixaIndiceH
   )
 }
-GROUP BY ?nivel ?faixaCitacao ?ordemFaixa
-ORDER BY ?nivel ?ordemFaixa
+GROUP BY ?ano ?nivel ?faixaIndiceH ?ordemFaixa
+ORDER BY ?ano ?nivel ?ordemFaixa
