@@ -88,6 +88,7 @@ COLS_DISCENTES = {
     "grau": "DS_GRAU_ACADEMICO_DISCENTE",
     "situacao": "NM_SITUACAO_DISCENTE",
     "mes_tit": "QT_MES_TITULACAO",
+    "dt_situacao": "DT_SITUACAO_DISCENTE",
     "ano": "AN_BASE",
 }
 
@@ -104,7 +105,7 @@ COLS_PRODUCAO = {
     "id_add": "ID_ADD_PRODUCAO_INTELECTUAL",
     "titulo": "NM_PRODUCAO",
     "natureza": "DS_NATUREZA",
-    "ano": "AN_BASE_PRODUCAO",
+    "ano": "AN_BASE",
     "url": "DS_URL_ACESSO_PRODUCAO",
     "palavras": "DS_PALAVRA_CHAVE",
     "doi": "DS_DOI",

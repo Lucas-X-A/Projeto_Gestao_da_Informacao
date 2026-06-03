@@ -65,15 +65,6 @@
     
 
 
-    <!-- http://gic.ufrpe.br/cti/vocabulary/cti#Docente -->
-
-
-    <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Docente">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    </rdf:Description>
-    
-
-
     <!-- http://gic.ufrpe.br/cti/vocabulary/cti#ICT -->
 
 
@@ -126,7 +117,6 @@
             <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Citacao"/>
             <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Conceito_PPG"/>
             <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Discente"/>
-            <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Docente"/>
             <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#ICT"/>
             <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#PPG"/>
             <rdf:Description rdf:about="http://gic.ufrpe.br/cti/vocabulary/cti#Producao_Cientifica"/>

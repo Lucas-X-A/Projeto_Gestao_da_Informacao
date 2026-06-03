@@ -1,4 +1,5 @@
 import logging
+import re
 from collections import defaultdict
 from typing import Dict, List, Set
 
@@ -121,6 +122,14 @@ class InstanceExtractor:
             disc_id = f"discente_{id_str}"
             ppg_id = f"ppg_{oml_safe_id(safe_str(row[c['cd_prog']]))}"
 
+            dt_situacao_col = c.get("dt_situacao")
+            dt_situacao = safe_str(row.get(dt_situacao_col, "")) if dt_situacao_col else ""
+            an_titulacao = 0
+            if dt_situacao:
+                year_match = re.search(r"(19|20)\d{2}", dt_situacao)
+                if year_match:
+                    an_titulacao = safe_int(year_match.group(0), 0)
+            
             self.discente_instances[disc_id] = DiscenteInstance(
                 id=disc_id,
                 id_pessoa=safe_int(id_str),
@@ -130,6 +139,7 @@ class InstanceExtractor:
                 ds_grau_academico_discente=safe_str(row[c["grau"]]),
                 nm_situacao_discente=safe_str(row[c["situacao"]]),
                 qt_mes_titulacao=safe_int(row.get(c["mes_tit"]), 0),
+                an_titulacao=an_titulacao,
                 vinculado_id=ppg_id,
             )
 

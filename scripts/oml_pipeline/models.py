@@ -39,6 +39,7 @@ class DiscenteInstance:
     ds_grau_academico_discente: str
     nm_situacao_discente: str
     qt_mes_titulacao: int
+    an_titulacao: int
     vinculado_id: str
 
 
