@@ -3,7 +3,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?ano ?nivel
   (COUNT(DISTINCT ?autor) AS ?totalAutores)
-  (AVG(xsd:integer(?nrCitacoes)) AS ?mediaCitacoes)
+  (AVG(?nrCitacoes) AS ?mediaCitacoes)
   (AVG(xsd:integer(?indiceH)) AS ?mediaIndiceH)
 WHERE {
   ?discente a cti:Discente ;

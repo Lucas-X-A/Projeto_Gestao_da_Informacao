@@ -3,15 +3,17 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?ano ?nivel (COUNT(DISTINCT ?prod) AS ?totalProducoes)
 WHERE {
-  ?autor a cti:Autor ;
-         cti:id_pessoa ?idPessoa ;
-         cti:autoria ?prod .
   ?discente a cti:Discente ;
             cti:id_pessoa ?idPessoa ;
             cti:ds_grau_academico_discente ?nivel ;
             cti:vinculado ?ppg .
   ?ppg cti:sediado ?ict .
   ?ict cti:sg_entidade_ensino "UFRPE" .
+  
+  ?autor a cti:Autor ;
+         cti:id_pessoa ?idPessoa ;
+         cti:autoria ?prod .
+  
   ?prod cti:an_base_producao ?ano .
   FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
 }

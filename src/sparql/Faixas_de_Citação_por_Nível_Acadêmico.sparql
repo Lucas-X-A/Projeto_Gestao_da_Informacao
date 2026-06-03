@@ -14,9 +14,8 @@ WHERE {
          cti:id_pessoa ?idPessoa ;
          cti:mensurado ?citacao .
 
-  ?citacao cti:nr_citacoes_autor ?citacoesStr .
+  ?citacao cti:nr_citacoes_autor ?numCitacoes .
 
-  BIND(xsd:integer(?citacoesStr) AS ?numCitacoes)
   FILTER(BOUND(?numCitacoes))
 
   BIND(
