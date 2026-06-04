@@ -6,6 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as pgo
 import streamlit as st
 from SPARQLWrapper import JSON, SPARQLWrapper
+from streamlit_option_menu import option_menu
 
 # Configuração da página do Streamlit
 st.set_page_config(page_title="Dashboard CT&I-PE", layout="wide", page_icon="📊")
@@ -70,24 +71,66 @@ def query_fuseki(sparql_query: str) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 # Menu lateral
 # ---------------------------------------------------------------------------
-st.sidebar.title("📊 Navegação CT&I-PE")
-st.sidebar.markdown("Selecione o indicador que deseja analisar:")
+with st.sidebar:
+    st.markdown(
+        """
+        <div style="text-align: center; padding-bottom: 20px;">
+            <h2 style="color: #4da6ff; margin-bottom: 0;">📊 CT&I-PE</h2>
+            <p style="color: #888; font-size: 0.9rem; margin-top: 0;">Painel de Gestão do Conhecimento</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-analises = {
-    "Visão Geral": "home",
-    "Evolução de Notas dos PPGs": "Evolução Temporal das Notas dos Programas.sparql",
-    "Citações e Índice H por Nível Acadêmico": "Citações_Médias_por_Nível_Acadêmico.sparql",
-    "Distribuição de Autores por Faixa de Índice H": "Faixas_de_Citação_por_Nível_Acadêmico.sparql",
-    "Impacto por Conceito CAPES e Nível": "Impacto_por_Conceito_CAPES_e_Nível.sparql",
-}
+    # Dicionário de mapeamento (Nome no menu -> Arquivo SPARQL)
+    analises = {
+        "Visão Geral": "home",
+        "Evolução de Notas dos PPGs": "Evolução_Temporal_Notas_dos_Programas.sparql",
+        "Citações e Índice H": "Citações_Médias_por_Nível_Acadêmico.sparql",
+        "Faixas de Impacto": "Faixas_de_Citação_por_Nível_Acadêmico.sparql",
+        "Impacto por Conceito CAPES": "Impacto_por_Conceito_CAPES_e_Nível.sparql",
+    }
 
-selecao = st.sidebar.radio("Ir para:", list(analises.keys()))
+    # Menu customizado
+    selecao_menu = option_menu(
+        menu_title=None,  # Esconde o título padrão
+        options=list(analises.keys()),
+        # Ícones do Bootstrap
+        icons=["house", "graph-up", "bar-chart", "pie-chart", "award"],
+        default_index=0,
+        styles={
+            "container": {
+                "padding": "0!important",
+                "background-color": "transparent",
+                "border": "none",
+            },
+            "icon": {"color": "#4da6ff", "font-size": "18px"},
+            "nav-link": {
+                "font-size": "14px",
+                "text-align": "left",
+                "margin": "4px 0px",
+                "padding": "12px 15px",
+                "border-radius": "8px",
+                "transition": "all 0.3s ease",
+                "--hover-color": "rgba(77, 166, 255, 0.1)",
+            },
+            "nav-link-selected": {
+                "background-color": "#1a3a5c",
+                "color": "#ffffff",
+                "border-left": "4px solid #4da6ff",
+                "border-radius": "4px 8px 8px 4px",
+                "font-weight": "600",
+            },
+        },
+    )
 
-st.sidebar.markdown("---")
-st.sidebar.info(
-    "💡 **Dica:** Passe o mouse sobre os gráficos para ver os dados exatos. "
-    "Você pode dar zoom arrastando o mouse."
-)
+    st.markdown("---")
+    st.info(
+        "💡 **Dica:** Passe o mouse sobre os gráficos para ver os dados exatos. "
+        "Você pode dar zoom arrastando o mouse."
+    )
+
+selecao = selecao_menu
 
 # Tela inicial
 if selecao == "Visão Geral":
@@ -209,6 +252,11 @@ if selecao == "Visão Geral":
         )
         fig1.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig1, use_container_width=True)
+        st.info(
+            "📊 **O que exibe:** O volume absoluto de alunos que concluíram o mestrado ou doutorado em cada ano.\n\n"
+            "🔍 **Análises possíveis:** Identificar tendências de crescimento ou queda na formação de pesquisadores, "
+            "avaliar o tamanho relativo de cada nível e observar possíveis impactos de eventos externos nas titulações."
+        )
     else:
         st.info("Sem dados de discentes titulados para o período selecionado.")
 
@@ -244,6 +292,11 @@ if selecao == "Visão Geral":
         )
         fig2.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig2, use_container_width=True)
+        st.info(
+            "📊 **O que exibe:** A soma de todas as produções científicas geradas pelos discentes titulados naquele ano.\n\n"
+            "🔍 **Análises possíveis:** Avaliar qual nível acadêmico contribui com o maior volume bruto de publicações "
+            "para os programas e observar se a produção científica total está crescendo ao longo do tempo."
+        )
     else:
         st.info("Sem dados de publicações para o período selecionado.")
 
@@ -284,26 +337,71 @@ if selecao == "Visão Geral":
         )
         fig3.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig3, use_container_width=True)
-        st.caption(
-            "💡 Este indicador normaliza o volume de publicações pelo número de discentes titulados "
-            "no mesmo período, permitindo comparar a produtividade científica entre os níveis de forma justa — "
-            "independentemente de quantos alunos cada nível tem."
+        st.info(
+            "📊 **O que exibe:** A taxa média de publicações por aluno (Total de Publicações ÷ Total de Discentes).\n\n"
+            "🔍 **Análises possíveis:** Comparar a eficiência produtiva entre mestrado e doutorado de forma justa, "
+            "isolando o efeito do tamanho das turmas. Permite responder se um doutorando produz, em média, mais artigos que um mestrando."
         )
     else:
         st.info("Sem dados de produtividade para o período selecionado.")
 
     st.markdown(
-        "👈 **Utilize o menu lateral para explorar indicadores mais detalhados.**"
+        """
+        <div style="
+            background-color: #1a3a5c;
+            color: #ffffff;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-top: 30px;
+            border: 1px solid #4da6ff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        ">
+            👈 Utilize o menu lateral para explorar indicadores mais detalhados
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
 elif selecao == "Evolução de Notas dos PPGs":
-    st.title("📈 Evolução Temporal dos Conceitos CAPES")
+    st.title("📈 Evolução Temporal das Notas dos PPGs")
     st.caption(
         "Acompanhe a evolução da nota CAPES de cada PPG ao longo do tempo. "
         "PPGs com notas mais altas tendem a exigir e produzir maior volume de publicações qualificadas — "
         "o que se reflete no impacto científico dos seus discentes."
     )
-    query = load_sparql_file(analises[selecao])
+    
+    ANOS_DISPONIVEIS = list(range(2018, 2025))
+
+    # Filtro temporal
+    col_ini, col_fim = st.columns(2)
+    with col_ini:
+        ano_inicio = st.selectbox(
+            "Ano de início:", ANOS_DISPONIVEIS, index=0, key="ini"
+        )
+    with col_fim:
+        ano_fim = st.selectbox(
+            "Ano de fim:",
+            ANOS_DISPONIVEIS,
+            index=len(ANOS_DISPONIVEIS) - 1,
+            key="fim",
+        )
+
+    if ano_inicio > ano_fim:
+        st.warning("O ano de início não pode ser maior que o ano de fim.")
+        st.stop()
+
+    titulo_periodo = (
+        f"{ano_inicio}"
+        if ano_inicio == ano_fim
+        else f"{ano_inicio}–{ano_fim}"
+    )
+
+    query = (load_sparql_file(analises[selecao])
+             .replace("{ano_inicio}", str(ano_inicio))
+             .replace("{ano_fim}", str(ano_fim)))
     df = query_fuseki(query)
 
     if not df.empty:
@@ -313,7 +411,7 @@ elif selecao == "Evolução de Notas dos PPGs":
             programas,
             default=programas[:5],
         )
-
+    
         if selecionados:
             df_filtrado = df[df["nomePPG"].isin(selecionados)].copy()
             df_filtrado = df_filtrado.sort_values("ano")  # type: ignore
@@ -324,7 +422,7 @@ elif selecao == "Evolução de Notas dos PPGs":
                 y="conceito",
                 color="nomePPG",
                 markers=True,
-                title="Evolução de Notas CAPES por Programa",
+                title=f"Evolução de Notas CAPES por Programa — {ano_inicio}–{ano_fim}",
                 labels={
                     "ano": "Ano",
                     "conceito": "Conceito CAPES",
@@ -334,10 +432,18 @@ elif selecao == "Evolução de Notas dos PPGs":
             fig.update_xaxes(type="category")
             fig.update_yaxes(categoryorder="category ascending")
             st.plotly_chart(fig, use_container_width=True)
+
+            st.info(
+                "📊 **O que exibe:** O histórico da nota de avaliação da CAPES para os programas selecionados ao longo dos anos.\n\n"
+                "🔍 **Análises possíveis:** Identificar quais programas estão em ascensão, estagnados ou em queda de qualidade. "
+                "Serve como base de contexto para cruzar com a qualidade da produção dos discentes desses mesmos programas."
+            )
         else:
             st.warning("Selecione pelo menos um programa para visualizar o gráfico.")
+    else:
+        st.info("Sem dados disponíveis para o período selecionado.")
 
-elif selecao == "Citações e Índice H por Nível Acadêmico":
+elif selecao == "Citações e Índice H":
     st.title("🎓 Citações Médias e Índice H por Nível Acadêmico")
     st.caption(
         "Responde diretamente à pergunta do KM: discentes de Doutorado apresentam maior "
@@ -388,9 +494,9 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
     )
 
     query_template = load_sparql_file(analises[selecao])
-    query = query_template.replace("{ano_inicio}", str(ano_inicio)).replace(
-        "{ano_fim}", str(ano_fim)
-    )
+    query = (query_template
+             .replace("{ano_inicio}", str(ano_inicio))
+             .replace("{ano_fim}", str(ano_fim)))
     df = query_fuseki(query)
 
     if not df.empty:
@@ -423,6 +529,11 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
         )
         fig1.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig1, use_container_width=True)
+        st.info(
+            "📊 **O que exibe:** O número médio de citações recebidas pelas publicações dos discentes de cada nível.\n\n"
+            "🔍 **Análises possíveis:** Avaliar o alcance e a relevância das pesquisas. Permite verificar se trabalhos "
+            "de doutorado são significativamente mais citados que os de mestrado, indicando maior impacto na comunidade científica."
+        )
 
         # Gráfico 2 — Índice H Médio
         fig2 = px.bar(
@@ -443,13 +554,18 @@ elif selecao == "Citações e Índice H por Nível Acadêmico":
         )
         fig2.update_layout(legend_title_text="Nível Acadêmico")
         st.plotly_chart(fig2, use_container_width=True)
+        st.info(
+            "📊 **O que exibe:** A média do Índice H dos discentes de cada nível (métrica que equilibra produtividade e impacto).\n\n"
+            "🔍 **Análises possíveis:** Identificar a consistência da qualidade das publicações. Um Índice H maior no doutorado "
+            "sugere que esses alunos não apenas publicam mais, mas publicam trabalhos que são consistentemente mais citados."
+        )
 
         with st.expander("Ver dados tabulares"):
             st.dataframe(df_agrupado)
     else:
         st.warning("Nenhum dado encontrado para o intervalo selecionado.")
 
-elif selecao == "Distribuição de Autores por Faixa de Índice H":
+elif selecao == "Faixas de Impacto":
     st.title("📊 Distribuição de Autores por Faixa de Índice H ao Longo dos Anos")
     st.caption(
         "Acompanhe a evolução da distribuição de autores nas diferentes faixas de Índice H (Hirsch) "
@@ -572,11 +688,6 @@ elif selecao == "Distribuição de Autores por Faixa de Índice H":
         fig.update_xaxes(type="category")
 
         st.plotly_chart(fig, use_container_width=True)
-
-        # Tabela de dados
-        with st.expander("Ver dados tabulares"):
-            st.dataframe(df_agr)
-
         # Legenda explicativa
         st.caption(
             "💡 **Índice H (Hirsch):** Métrica que mede o impacto acadêmico de um autor. "
@@ -584,17 +695,27 @@ elif selecao == "Distribuição de Autores por Faixa de Índice H":
             "**Faixas:** 0-5 (Iniciante), 6-15 (Consolidado), 16-30 (Líder), 30+ (Elite). "
             "**Linhas sólidas:** Mestrado | **Linhas tracejadas:** Doutorado"
         )
+        st.info(
+            "📊 **O que exibe:** A quantidade de autores classificados em diferentes faixas de impacto (Iniciante, Consolidado, Líder, Elite) ao longo do tempo.\n\n"
+            "🔍 **Análises possíveis:** Observar a transição e o amadurecimento dos pesquisadores. Permite analisar se o doutorado "
+            "consegue formar mais pesquisadores nas faixas 'Líder' e 'Elite' em comparação ao mestrado, validando o papel do doutorado na formação de cientistas de alto impacto."
+        )
+
+        # Tabela de dados
+        with st.expander("Ver dados tabulares"):
+            st.dataframe(df_agr)
+
     else:
         st.info("Sem dados disponíveis para o período selecionado.")
 
-elif selecao == "Impacto por Conceito CAPES e Nível":
+elif selecao == "Impacto por Conceito CAPES":
     st.title("🏅 Impacto Científico por Nota CAPES e Nível Acadêmico")
     st.caption(
         "Cruza a nota CAPES do PPG com o impacto dos seus discentes, respondendo: "
         "discentes de programas mais bem avaliados publicam com mais qualidade? "
         "Os dados de Mestrado agrupam Regular e Profissional; idem para Doutorado."
     )
-
+    
     CORES_GRUPO_CAPES = {
         "Mestrado (Regular + Profissional)": "#636EFA",
         "Doutorado (Regular + Profissional)": "#EF553B",
@@ -609,7 +730,7 @@ elif selecao == "Impacto por Conceito CAPES e Nível":
         "DOUTORADO": "Doutorado (Regular + Profissional)",
         "DOUTORADO PROFISSIONAL": "Doutorado (Regular + Profissional)",
     }
-
+    
     ANOS_DISPONIVEIS_CAPES = list(range(2018, 2025))
     col_ini, col_fim = st.columns(2)
     with col_ini:
@@ -623,73 +744,99 @@ elif selecao == "Impacto por Conceito CAPES e Nível":
             index=len(ANOS_DISPONIVEIS_CAPES) - 1,
             key="capes_fim",
         )
-
+    
     if ano_inicio_capes > ano_fim_capes:
         st.warning("O ano de início não pode ser maior que o ano de fim.")
         st.stop()
-
-    titulo_periodo_capes = (
-        f"{ano_inicio_capes}"
-        if ano_inicio_capes == ano_fim_capes
-        else f"{ano_inicio_capes}–{ano_fim_capes}"
-    )
-
+    
     query_template = load_sparql_file(analises[selecao])
     query = query_template.replace("{ano_inicio}", str(ano_inicio_capes)).replace(
         "{ano_fim}", str(ano_fim_capes)
     )
     df = query_fuseki(query)
-
+    
     if not df.empty:
+        # Mapear níveis para grupos
         df["grupo"] = df["nivel"].replace(MAPA_GRUPO_CAPES)
         df["conceito"] = df["conceito"].astype(str)
-
-        df_agr = df.groupby(["conceito", "grupo"], as_index=False).agg(
-            mediaCitacoes=("mediaCitacoes", "mean"),
-            mediaIndiceH=("mediaIndiceH", "mean"),
-            totalAutores=("totalAutores", "sum"),
+        df["ano"] = df["ano"].astype(int)  
+        
+        for ano in range(ano_inicio_capes, ano_fim_capes + 1):
+            # Filtrar dados apenas do ano atual
+            df_ano = df[df["ano"] == ano].copy()
+            
+            if not df_ano.empty:
+                # Agregar dados por conceito e grupo
+                df_agr_ano = df_ano.groupby(["conceito", "grupo"], as_index=False).agg(
+                    mediaCitacoes=("mediaCitacoes", "mean"),
+                    mediaIndiceH=("mediaIndiceH", "mean"),
+                    totalAutores=("totalAutores", "sum"),
+                )
+                df_agr_ano = df_agr_ano.sort_values("conceito")  # type: ignore
+                
+                st.subheader(f"📅 Ano: {ano}")
+                
+                col1, col2 = st.columns(2)
+                
+                # Gráfico 1: Média de Citações
+                with col1:
+                    fig1 = px.bar(
+                        df_agr_ano,
+                        x="conceito",
+                        y="mediaCitacoes",
+                        color="grupo",
+                        barmode="group",
+                        title=f"Média de Citações — {ano}",
+                        labels={
+                            "conceito": "Nota CAPES do PPG",
+                            "mediaCitacoes": "Média de Citações",
+                            "grupo": "Nível",
+                        },
+                        text_auto=".1f",  # pyright: ignore[reportArgumentType]
+                        color_discrete_map=CORES_GRUPO_CAPES,
+                        category_orders={"grupo": ORDEM_GRUPOS_CAPES},
+                    )
+                    fig1.update_layout(
+                        legend_title_text="Nível Acadêmico",
+                        height=500,
+                        showlegend=False  
+                    )
+                    st.plotly_chart(fig1, use_container_width=True)
+                
+                # Gráfico 2: Índice H Médio
+                with col2:
+                    fig2 = px.bar(
+                        df_agr_ano,
+                        x="conceito",
+                        y="mediaIndiceH",
+                        color="grupo",
+                        barmode="group",
+                        title=f"Índice H Médio — {ano}",
+                        labels={
+                            "conceito": "Nota CAPES do PPG",
+                            "mediaIndiceH": "Índice H Médio",
+                            "grupo": "Nível",
+                        },
+                        text_auto=".2f",  # pyright: ignore[reportArgumentType]
+                        color_discrete_map=CORES_GRUPO_CAPES,
+                        category_orders={"grupo": ORDEM_GRUPOS_CAPES},
+                    )
+                    fig2.update_layout(
+                        legend_title_text="Nível Acadêmico",
+                        height=500,
+                        showlegend=True  
+                    )
+                    st.plotly_chart(fig2, use_container_width=True)
+        
+        # Legenda explicativa
+        st.info(
+            "📊 **O que exibe:** A relação entre a nota CAPES do PPG e o impacto dos seus discentes em cada ano.\n\n"
+            "🔍 **Análises possíveis:** Validar se programas de excelência (notas 6 e 7) formam discentes com maior impacto científico. "
+            "Observe as tendências ao longo dos anos para identificar se a qualidade dos programas se reflete consistentemente no impacto dos seus egressos."
         )
-        df_agr = df_agr.sort_values("conceito")  # type: ignore
-
-        fig1 = px.bar(
-            df_agr,
-            x="conceito",
-            y="mediaCitacoes",
-            color="grupo",
-            barmode="group",
-            title=f"Média de Citações por Nota CAPES do PPG e Nível Acadêmico — {titulo_periodo_capes}",
-            labels={
-                "conceito": "Nota CAPES do PPG",
-                "mediaCitacoes": "Média de Citações",
-                "grupo": "Nível",
-            },
-            text_auto=".1f",  # pyright: ignore[reportArgumentType]
-            color_discrete_map=CORES_GRUPO_CAPES,
-            category_orders={"grupo": ORDEM_GRUPOS_CAPES},
-        )
-        fig1.update_layout(legend_title_text="Nível Acadêmico")
-        st.plotly_chart(fig1, use_container_width=True)
-
-        fig2 = px.bar(
-            df_agr,
-            x="conceito",
-            y="mediaIndiceH",
-            color="grupo",
-            barmode="group",
-            title=f"Índice H Médio por Nota CAPES do PPG e Nível Acadêmico — {titulo_periodo_capes}",
-            labels={
-                "conceito": "Nota CAPES do PPG",
-                "mediaIndiceH": "Índice H Médio",
-                "grupo": "Nível",
-            },
-            text_auto=".2f",  # pyright: ignore[reportArgumentType]
-            color_discrete_map=CORES_GRUPO_CAPES,
-            category_orders={"grupo": ORDEM_GRUPOS_CAPES},
-        )
-        fig2.update_layout(legend_title_text="Nível Acadêmico")
-        st.plotly_chart(fig2, use_container_width=True)
-
-        with st.expander("Ver dados tabulares"):
-            st.dataframe(df_agr)
+        
+        # Tabela de dados tabulares 
+        with st.expander("Ver dados tabulares (todos os anos)"):
+            st.dataframe(df)
     else:
         st.info("Sem dados disponíveis para este indicador.")
