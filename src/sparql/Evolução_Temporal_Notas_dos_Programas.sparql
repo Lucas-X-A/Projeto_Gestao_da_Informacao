@@ -1,4 +1,5 @@
 PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?nomePPG ?ano ?conceito
 WHERE {
@@ -7,5 +8,7 @@ WHERE {
        cti:avaliado ?c_obj .
   ?c_obj cti:an_base_conceito ?ano ;
          cti:cd_conceito_programa ?conceito .
+
+  FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
 }
 ORDER BY ?nomePPG ?ano

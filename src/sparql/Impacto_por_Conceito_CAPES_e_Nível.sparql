@@ -1,7 +1,7 @@
 PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?conceito ?nivel
+SELECT ?conceito ?nivel ?ano
   (COUNT(DISTINCT ?autor)        AS ?totalAutores)
   (AVG(?nrCitacoes)              AS ?mediaCitacoes)
   (AVG(xsd:integer(?indiceH))    AS ?mediaIndiceH)
@@ -12,21 +12,16 @@ WHERE {
               cti:ds_grau_academico_discente ?nivel ;
               cti:an_titulacao ?ano ;
               cti:vinculado ?ppg .
-    
     ?ppg cti:sediado ?ict ;
          cti:avaliado ?c_obj .
     ?ict cti:sg_entidade_ensino "UFRPE" .
-    
     ?c_obj cti:cd_conceito_programa ?conceito ;
            cti:an_base_conceito ?anoConceito .
-    
     FILTER(xsd:integer(?anoConceito) = xsd:integer(?ano))
     FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
-    
     ?autor a cti:Autor ;
            cti:id_pessoa ?idPessoa ;
            cti:mensurado ?citacao .
-    
     ?citacao cti:nr_citacoes_autor ?nrCitacoes ;
              cti:nr_indice_h ?indiceH .
   }
@@ -37,24 +32,19 @@ WHERE {
               cti:ds_grau_academico_discente ?nivel ;
               cti:an_titulacao ?ano ;
               cti:vinculado ?ppg .
-    
     ?ppg cti:sediado ?ict ;
          cti:avaliado ?c_obj .
     ?ict cti:sg_entidade_ensino "UFRPE" .
-    
     ?c_obj cti:cd_conceito_programa ?conceito ;
            cti:an_base_conceito ?anoConceito .
-    
     FILTER(xsd:integer(?anoConceito) = xsd:integer(?ano) - 1)
     FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
-    
     ?autor a cti:Autor ;
            cti:id_pessoa ?idPessoa ;
            cti:mensurado ?citacao .
-    
     ?citacao cti:nr_citacoes_autor ?nrCitacoes ;
              cti:nr_indice_h ?indiceH .
   }
 }
-GROUP BY ?conceito ?nivel
-ORDER BY ?conceito ?nivel
+GROUP BY ?conceito ?nivel ?ano
+ORDER BY ?ano ?conceito ?nivel
