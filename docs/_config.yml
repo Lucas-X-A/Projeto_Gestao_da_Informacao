@@ -1,9 +1,8 @@
 # Configuração do Jekyll para GitHub Pages
 title: "🔬 CT&I-PE"
 description: "Portal de Gestão do Conhecimento - Ciência, Tecnologia e Inovação de Pernambuco"
-author: "Luilson Almeida"
-email: "luilson.almeida@gmail.com"
-url: "https://lucas-x-a.github.io/Projeto_Gestao_da_Informacao"
+author: "Lucas Xavier, Caio Nogueira, Vinícius Souza"
+url: "https://github.com/Lucas-X-A/Projeto_Gestao_da_Informacao"
 baseurl: "/Projeto_Gestao_da_Informacao"
 
 # Tema
