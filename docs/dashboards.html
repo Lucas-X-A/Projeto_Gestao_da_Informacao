@@ -1,80 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboards - CT&I-PE</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboards - CT&I-PE</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>🔬 CT&I-PE</h1>
-        <p>Portal de Gestão do Conhecimento</p>
-    </header>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>🔬 CT&I-PE</h1>
+    <p>Portal de Gestão do Conhecimento</p>
+  </header>
 
-    <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="sobre.html">ℹ️ Sobre</a>
-        <a href="dashboards.html" class="active">📊 Dashboards</a>
-        <a href="redes-sociais.html">🌐 Redes Sociais</a>
-    </nav>
+  <!-- Navegação -->
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="sobre.html">ℹ️ Sobre</a>
+    <a href="dashboards.html" class="active">📊 Dashboards</a>
+    <a href="redes-sociais.html">🌐 Redes Sociais</a>
+  </nav>
 
-    <div class="container">
-        <section>
-            <h2>📊 Dashboards Interativos</h2>
-            <p>
-                Acesse os dashboards interativos desenvolvidos em Streamlit. Eles oferecem visualizações
-                detalhadas e análises em tempo real dos indicadores de CT&I-PE.
-            </p>
-        </section>
+  <!-- Conteúdo Principal -->
+  <div class="container">
+    
+    <!-- Destaque e Link para o Streamlit -->
+    <section style="text-align: center; margin-bottom: 60px; padding: 40px; background-color: var(--primary-blue); border-radius: 8px; border: 1px solid var(--accent-cyan);">
+      <h2 style="border: none; margin-bottom: 15px;">📊 Painel Interativo de Dados</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        Explore nossos indicadores de produção científica, impacto acadêmico e evolução dos programas de pós-graduação de Pernambuco em um ambiente totalmente interativo.
+      </p>
+      <a href="https://l-x-a-dashboard.streamlit.app/" class="btn" target="_blank" style="font-size: 1.2rem; padding: 15px 35px; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);">
+        🚀 Acessar Dashboard no Streamlit
+      </a>
+    </section>
 
-        <section>
-            <h3>🎯 Acessar Dashboard Principal</h3>
-            <div class="card">
-                <h4>Dashboard CT&I-PE (Streamlit)</h4>
-                <p>
-                    Explore indicadores de produção científica, citações, índice H, evolução de notas CAPES
-                    e muito mais através de uma interface interativa.
-                </p>
-                <p><strong>Status:</strong> ✅ Ativo</p>
-                <a href="https://seu-streamlit-app.streamlit.app" class="btn" target="_blank">
-                    Acessar Dashboard
-                </a>
-            </div>
-        </section>
+    <!-- Descrição dos Gráficos -->
+    <section>
+      <h3 style="text-align: center; margin-bottom: 30px;">O que você vai encontrar no painel:</h3>
+      
+      <div class="cards-grid">
+        
+        <!-- Card 1 -->
+        <div class="card">
+          <h4>📈 Visão Geral</h4>
+          <p>
+            Apresenta o volume absoluto de discentes titulados (Mestrado e Doutorado), o total de publicações geradas por eles e a taxa de produtividade média ao longo dos anos.
+          </p>
+        </div>
 
-        <section>
-            <h3>📈 Gráficos em Destaque</h3>
-            <div class="cards-grid">
-                <div class="card">
-                    <h4>Distribuição de Autores por Faixa de Índice H</h4>
-                    <p>Visualize a distribuição de pesquisadores em diferentes faixas de produtividade.</p>
-                    <img src="assets/images/dashboards/faixas-indice-h.png" alt="Gráfico de Faixas de Índice H">
-                </div>
+        <!-- Card 2 -->
+        <div class="card">
+          <h4>🏛️ Evolução de Notas dos PPGs</h4>
+          <p>
+            Mostra o histórico e a evolução temporal das notas de avaliação da CAPES para os programas de pós-graduação selecionados.
+          </p>
+        </div>
 
-                <div class="card">
-                    <h4>Evolução Temporal das Notas CAPES</h4>
-                    <p>Acompanhe a evolução das notas de avaliação dos programas de pós-graduação.</p>
-                    <img src="assets/images/dashboards/evolucao-notas-capes.png" alt="Gráfico de Evolução CAPES">
-                </div>
+        <!-- Card 3 -->
+        <div class="card">
+          <h4>📑 Citações e Índice H</h4>
+          <p>
+            Compara o impacto científico entre mestres e doutores, exibindo a média de citações recebidas e o Índice H médio de cada nível acadêmico.
+          </p>
+        </div>
 
-                <div class="card">
-                    <h4>Impacto Científico por Nota CAPES</h4>
-                    <p>Correlação entre notas CAPES e impacto científico dos discentes.</p>
-                    <img src="assets/images/dashboards/impacto-capes.png" alt="Gráfico de Impacto CAPES">
-                </div>
-            </div>
-        </section>
+        <!-- Card 4 -->
+        <div class="card">
+          <h4>🎯 Faixas de Impacto</h4>
+          <p>
+            Exibe a distribuição dos pesquisadores em diferentes níveis de impacto (Iniciante, Consolidado, Líder, Elite) com base no volume de citações de seus trabalhos.
+          </p>
+        </div>
 
-        <section>
-            <h3>📚 Documentação</h3>
-            <p>Para mais informações sobre como usar os dashboards, consulte a <a href="sobre.html">página sobre o projeto</a>.</p>
-        </section>
-    </div>
+        <!-- Card 5 -->
+        <div class="card">
+          <h4>🏅 Impacto por Conceito CAPES</h4>
+          <p>
+            Relaciona a nota do programa (3 a 7) com o impacto real de seus discentes, cruzando a avaliação oficial da CAPES com as métricas de citações e Índice H.
+          </p>
+        </div>
 
-    <footer>
-        <p>&copy; 2026 CT&I-PE. Todos os direitos reservados.</p>
-        <p><a href="https://github.com/Lucas-X-A/Projeto_Gestao_da_Informacao">Ver no GitHub</a></p>
-    </footer>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <p><a href="https://github.com/Lucas-X-A/Projeto_Gestao_da_Informacao" target="_blank">Ver no GitHub</a></p>
+  </footer>
 </body>
 </html>
