@@ -26,7 +26,7 @@ Este repositório implementa a modelagem de dados de pesquisa (Ciência, Tecnolo
 ### 1. Clonar e preparar o ambiente
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Lucas-X-A/Projeto_Gestao_da_Informacao.git
 cd Projeto_Gestao_da_Informacao
 python -m venv venv
 # Windows
