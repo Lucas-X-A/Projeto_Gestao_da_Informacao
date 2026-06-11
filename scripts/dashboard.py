@@ -135,6 +135,12 @@ selecao = selecao_menu
 # Tela inicial
 if selecao == "Visão Geral":
     st.title("Bem-vindo ao Painel Integrado CT&I-PE 🎓")
+
+    st.warning(
+        "🏛️ **ESCOPO DOS DADOS:** Todos os indicadores, gráficos e análises apresentados neste painel "
+        "referem-se **exclusivamente aos Programas e aos Discentes de Pós-Graduação da Universidade Federal Rural de Pernambuco (UFRPE)**."
+    )
+        
     st.markdown("""
     Esta é a área de visualização interativa da nossa Solução de Gestão do Conhecimento (KM).
 
