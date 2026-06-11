@@ -1,110 +1,84 @@
-<!doctype html>
+---
+---
+<!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Portal de Gestão do Conhecimento - CT&I-PE"
-        />
-        <title>CT&I-PE - Portal de Gestão do Conhecimento</title>
-        <link rel="stylesheet" href="assets/css/style.css" />
-    </head>
-    <body>
-        <!-- Cabeçalho -->
-        <header>
-            <h1>🔬 CT&I-PE</h1>
-            <p>
-                Portal de Gestão do Conhecimento - Ciência, Tecnologia e
-                Inovação de Pernambuco
-            </p>
-        </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portal de Gestão do Conhecimento - CT&I-PE">
+  <title>CT&I-PE - Portal de Gestão do Conhecimento</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <h1>🔬 CT&I-PE</h1>
+    <p>Portal de Gestão do Conhecimento - Ciência, Tecnologia e Inovação de Pernambuco</p>
+  </header>
 
-        <!-- Navegação -->
-        <nav>
-            <a href="index.html" class="active">🏠 Home</a>
-            <a href="sobre.html">ℹ️ Sobre</a>
-            <a href="dashboards.html">📊 Dashboards</a>
-            <a href="redes-sociais.html">🌐 Redes Sociais</a>
-        </nav>
+  <!-- Navegação -->
+  <nav>
+    <a href="index.html" class="active">🏠 Home</a>
+    <a href="sobre.html">ℹ️ Sobre</a>
+    <a href="dashboards.html">📊 Dashboards</a>
+    <a href="redes-sociais.html">🌐 Redes Sociais</a>
+  </nav>
 
-        <!-- Conteúdo Principal -->
-        <div class="container">
-            <section>
-                <h2>Bem-vindo ao CT&I-PE</h2>
-                <p>
-                    Este portal centraliza os indicadores e análises de Ciência,
-                    Tecnologia e Inovação de Pernambuco, oferecendo uma visão
-                    integrada do desempenho acadêmico e científico da região.
-                </p>
-            </section>
+  <!-- Conteúdo Principal -->
+  <div class="container">
+    <div style="background-color: rgba(255, 234, 0, 0.1); border-left: 5px solid var(--accent-yellow); padding: 20px; margin-bottom: 40px; border-radius: 0 8px 8px 0;">
+      <h3 style="color: var(--accent-yellow); margin-top: 0; margin-bottom: 10px; font-size: 1.3rem;">
+        <i class="fa-solid fa-building-columns"></i> Escopo dos Dados
+      </h3>
+      <p style="margin-bottom: 0; font-size: 1.1rem; color: var(--text-white);">
+        Todos os indicadores, gráficos e análises apresentados neste portal e nos dashboards interativos referem-se <strong>exclusivamente à Universidade Federal Rural de Pernambuco (UFRPE)</strong>.
+      </p>
+    </div>
 
-            <section>
-                <h2>📈 Destaques</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <h4>📊 Dashboards Interativos</h4>
-                        <p>
-                            Explore gráficos e análises detalhadas sobre
-                            produção científica, citações e impacto acadêmico.
-                        </p>
-                        <a href="dashboards.html" class="btn"
-                            >Acessar Dashboards</a
-                        >
-                    </div>
+    <section>
+      <h2>Bem-vindo ao CT&I-PE</h2>
+      <p>
+        Este portal centraliza os indicadores e análises de Ciência, Tecnologia e Inovação,
+        oferecendo uma visão integrada do desempenho acadêmico e científico da instituição.
+      </p>
+    </section>
 
-                    <div class="card">
-                        <h4>🎓 Indicadores Acadêmicos</h4>
-                        <p>
-                            Acompanhe a evolução de notas CAPES, distribuição de
-                            pesquisadores e métricas de impacto.
-                        </p>
-                        <a href="dashboards.html" class="btn"
-                            >Ver Indicadores</a
-                        >
-                    </div>
-
-                    <div class="card">
-                        <h4>🌐 Comunidade Online</h4>
-                        <p>
-                            Conecte-se com a comunidade através de nossas redes
-                            sociais e fique atualizado.
-                        </p>
-                        <a href="redes-sociais.html" class="btn btn-secondary"
-                            >Seguir</a
-                        >
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>🚀 Sobre Este Projeto</h2>
-                <p>
-                    O CT&I-PE é uma solução de Gestão do Conhecimento
-                    desenvolvida para centralizar e visualizar indicadores de
-                    ciência, tecnologia e inovação. O projeto utiliza
-                    tecnologias modernas como Streamlit, SPARQL e GitHub Pages
-                    para oferecer uma experiência integrada e acessível.
-                </p>
-                <a href="sobre.html" class="btn">Saiba Mais</a>
-            </section>
+    <section>
+      <h2>📈 Destaques</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h4>📊 Dashboards Interativos</h4>
+          <p>Explore gráficos e análises detalhadas sobre produção científica, citações e impacto acadêmico.</p>
+          <a href="dashboards.html" class="btn">Acessar Dashboards</a>
         </div>
 
-        <!-- Rodapé -->
-        <footer>
-            <p>&copy; 2026 CT&I-PE.</p>
-            <h3>👨‍💻 Desenvolvedores</h3>
-            <p>
-                <strong>Lucas Xavier,</strong>
-                <strong>Caio Nogueira,</strong>
-                <strong>Vinícius Souza</strong>
-            </p>
-            <p>
-                <a
-                    href="https://github.com/Lucas-X-A/Projeto_Gestao_da_Informacao"
-                    >Ver no GitHub</a
-                >
-            </p>
-        </footer>
-    </body>
+        <div class="card">
+          <h4>🎓 Indicadores Acadêmicos</h4>
+          <p>Acompanhe a evolução de notas CAPES, distribuição de pesquisadores e métricas de impacto.</p>
+          <a href="dashboards.html" class="btn">Ver Indicadores</a>
+        </div>
+
+        <div class="card">
+          <h4>🌐 Comunidade Online</h4>
+          <p>Conecte-se com a comunidade através de nossas redes sociais e fique atualizado.</p>
+          <a href="redes-sociais.html" class="btn btn-secondary">Seguir</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🚀 Sobre Este Projeto</h2>
+      <p>
+        O CT&I-PE é uma solução de Gestão do Conhecimento desenvolvida para centralizar e visualizar
+        indicadores de ciência, tecnologia e inovação. O projeto utiliza tecnologias modernas como
+        Streamlit, SPARQL e GitHub Pages para oferecer uma experiência integrada e acessível.
+      </p>
+      <a href="sobre.html" class="btn">Saiba Mais</a>
+    </section>
+  </div>
+
+  {% include footer.html %}
+  
+</body>
 </html>
