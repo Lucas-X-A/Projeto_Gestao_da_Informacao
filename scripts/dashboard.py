@@ -372,15 +372,12 @@ if selecao == "Visão Geral":
     )
 
 elif selecao == "Evolução de Notas dos PPGs":
-    st.title("📈 Evolução Temporal das Notas dos PPGs")
+    st.title("📈 Evolução Temporal das Notas e Impacto dos PPGs")
     st.caption(
-        "Acompanhe a evolução da nota CAPES de cada PPG ao longo do tempo. "
-        "PPGs com notas mais altas tendem a exigir e produzir maior volume de publicações qualificadas — "
-        "o que se reflete no impacto científico dos seus discentes."
+        "Acompanhe a evolução da nota CAPES de cada PPG ao longo do tempo e compare "
+        "com a evolução do Índice H médio dos discentes titulados no mesmo período."
     )
-    
     ANOS_DISPONIVEIS = list(range(2018, 2025))
-
     # Filtro temporal
     col_ini, col_fim = st.columns(2)
     with col_ini:
@@ -394,22 +391,18 @@ elif selecao == "Evolução de Notas dos PPGs":
             index=len(ANOS_DISPONIVEIS) - 1,
             key="fim",
         )
-
     if ano_inicio > ano_fim:
         st.warning("O ano de início não pode ser maior que o ano de fim.")
         st.stop()
-
     titulo_periodo = (
         f"{ano_inicio}"
         if ano_inicio == ano_fim
         else f"{ano_inicio}–{ano_fim}"
     )
-
     query = (load_sparql_file(analises[selecao])
              .replace("{ano_inicio}", str(ano_inicio))
              .replace("{ano_fim}", str(ano_fim)))
     df = query_fuseki(query)
-
     if not df.empty:
         programas = df["nomePPG"].unique().tolist()
         selecionados = st.multiselect(
@@ -417,33 +410,72 @@ elif selecao == "Evolução de Notas dos PPGs":
             programas,
             default=programas[:5],
         )
-    
         if selecionados:
             df_filtrado = df[df["nomePPG"].isin(selecionados)].copy()
             df_filtrado = df_filtrado.sort_values("ano")  # type: ignore
-
-            fig = px.line(
+            
+            st.subheader(f"Evolução no período: {titulo_periodo}")
+            
+            df_filtrado["conceito_plot"] = df_filtrado["conceito"].astype(float)
+            
+            # Para cada programa selecionado, aplica-se um pequeno offset 
+            for i, ppg in enumerate(selecionados):
+                offset = (i - (len(selecionados) - 1) / 2) * 0.06
+                df_filtrado.loc[df_filtrado["nomePPG"] == ppg, "conceito_plot"] += offset
+            
+            # Gráfico 1: Evolução da Nota CAPES
+            fig1 = px.line(
                 df_filtrado,
                 x="ano",
-                y="conceito",
+                y="conceito_plot", # Coluna com o deslocamento aplicado
                 color="nomePPG",
                 markers=True,
-                title=f"Evolução de Notas CAPES por Programa — {ano_inicio}–{ano_fim}",
+                title="Evolução da Nota CAPES",
                 labels={
                     "ano": "Ano",
-                    "conceito": "Conceito CAPES",
+                    "conceito_plot": "Conceito CAPES",
+                    "nomePPG": "Programa",
+                },
+                hover_data={"conceito_plot": False, "conceito": True} # Mostra a nota real no hover
+            )
+            fig1.update_xaxes(type="category")
+            
+            fig1.update_yaxes(
+                tickvals=[3, 4, 5, 6, 7],
+                ticktext=["3", "4", "5", "6", "7"],
+                range=[2.5, 7.5], 
+                title="Conceito CAPES"
+            )
+            
+            fig1.update_traces(line=dict(width=2), marker=dict(size=6))
+            
+            st.plotly_chart(fig1, use_container_width=True)
+            
+            # Gráfico 2: Evolução do Índice H Médio 
+            fig2 = px.line(
+                df_filtrado,
+                x="ano",
+                y="mediaIndiceH",
+                color="nomePPG",
+                markers=True,
+                title="Evolução do Índice H Médio dos Discentes",
+                labels={
+                    "ano": "Ano",
+                    "mediaIndiceH": "Índice H Médio",
                     "nomePPG": "Programa",
                 },
             )
-            fig.update_xaxes(type="category")
-            fig.update_yaxes(categoryorder="category ascending")
-            st.plotly_chart(fig, use_container_width=True)
-
+            fig2.update_xaxes(type="category")
+            st.plotly_chart(fig2, use_container_width=True)
+            
             st.info(
-                "📊 **O que exibe:** O histórico da nota de avaliação da CAPES para os programas selecionados ao longo dos anos.\n\n"
-                "🔍 **Análises possíveis:** Identificar quais programas estão em ascensão, estagnados ou em queda de qualidade. "
-                "Serve como base de contexto para cruzar com a qualidade da produção dos discentes desses mesmos programas."
+                "📊 **O que exibe:** O histórico da nota de avaliação da CAPES e, logo abaixo, o Índice H médio dos alunos titulados naquele ano.\n\n"
+                "🔍 **Análises possíveis:** Verificar se a melhoria (ou queda) na nota do programa reflete diretamente no impacto científico "
+                "(Índice H) dos discentes formados no mesmo período, respondendo se maior grau de instrução e qualidade do PPG promovem aumento na qualidade das publicações."
             )
+            
+            with st.expander("Ver dados tabulares"):
+                st.dataframe(df_filtrado.drop(columns=["conceito_plot"], errors="ignore"))
         else:
             st.warning("Selecione pelo menos um programa para visualizar o gráfico.")
     else:

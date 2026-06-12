@@ -1,14 +1,27 @@
 PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?nomePPG ?ano ?conceito
+SELECT ?nomePPG ?ano ?conceito (AVG(xsd:integer(?indiceH)) AS ?mediaIndiceH)
 WHERE {
   ?ppg a cti:PPG ;
        cti:nm_programa_ies ?nomePPG ;
        cti:avaliado ?c_obj .
   ?c_obj cti:an_base_conceito ?ano ;
          cti:cd_conceito_programa ?conceito .
-
   FILTER(xsd:integer(?ano) >= {ano_inicio} && xsd:integer(?ano) <= {ano_fim})
+  
+  OPTIONAL {
+    ?discente a cti:Discente ;
+              cti:vinculado ?ppg ;
+              cti:id_pessoa ?idPessoa ;
+              cti:an_titulacao ?anoTitulacao .
+    FILTER(xsd:integer(?anoTitulacao) = xsd:integer(?ano))
+    
+    ?autor a cti:Autor ;
+           cti:id_pessoa ?idPessoa ;
+           cti:mensurado ?citacao .
+    ?citacao cti:nr_indice_h ?indiceH .
+  }
 }
+GROUP BY ?nomePPG ?ano ?conceito
 ORDER BY ?nomePPG ?ano
