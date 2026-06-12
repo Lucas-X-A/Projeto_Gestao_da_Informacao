@@ -1,5 +1,11 @@
 # CT&I-PE: Pipeline CAPES + Scopus para OML
 
+****
+
+🌐 **Acesse o Portal e os Dashboards Interativos:** [https://lucas-x-a.github.io/Projeto_Gestao_da_Informacao/](https://lucas-x-a.github.io/Projeto_Gestao_da_Informacao/)
+
+****
+
 Um pipeline modular em Python que processa dados da **CAPES (Coordenação de Aperfeiçoamento de Pessoal de Nível Superior)** do estado de **Pernambuco**, enriquece-os com métricas do **Scopus** e gera instâncias em formato **OML (OWL Modeling Language)** para a Comunidade de Prática de CT&I.
 
 ## 📋 Sobre o Projeto
@@ -11,6 +17,12 @@ Este repositório implementa a modelagem de dados de pesquisa (Ciência, Tecnolo
 3. **Enriquece** com métricas acadêmicas do Scopus (h-index, i10-index, citações)
 4. **Gera** instâncias OML que representam entidades (ICT, PPG, Discentes, Autores, Produções)
 5. **Exporta** para formato OML + arquivo de auditoria CSV
+
+## 📊 Portal e Dashboards
+
+Os dados processados por este pipeline alimentam um portal de Gestão do Conhecimento com dashboards interativos (desenvolvidos em Streamlit). 
+
+👉 **[Acesse o Portal CT&I-PE aqui](https://lucas-x-a.github.io/Projeto_Gestao_da_Informacao/)** para visualizar métricas de impacto, evolução de notas CAPES e distribuição de produtividade dos discentes da UFRPE.
 
 ### Casos de Uso
 
@@ -46,11 +58,9 @@ python -m pip install -r requirements.txt
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-SCOPUS_API_KEY=sua_chave_aqui
+ELSEVIER_API_KEY=sua_chave_aqui
 STATE_FILTER=PE
-SITUATION_FILTER=TITULADO
-SCOPUS_MODE=incremental
-SCOPUS_MAX_ITEMS=100
+SITUACAO_FILTER=TITULADO
 ```
 
 ### 4. Organizar dados CAPES
@@ -242,37 +252,6 @@ python scripts/generate_oml_cti_full.py --steps scopus --scopus-batch-size 100
 
 ---
 
-## 🔐 Configuração de Variáveis de Ambiente
-
-Arquivo `.env` (criar na raiz):
-
-```env
-# Obrigatório para Scopus
-SCOPUS_API_KEY=<sua-chave-api-elsevier>
-
-# Filtro de estado (padrão: PE)
-STATE_FILTER=PE
-
-# Situação do discente (padrão: TITULADO)
-SITUACAO_FILTER=TITULADO
-
-# Modo Scopus
-SCOPUS_MODE=incremental
-
-# Limite padrão de itens Scopus
-SCOPUS_MAX_ITEMS=100
-
-# Retries e backoff Scopus
-SCOPUS_MAX_RETRIES=3
-SCOPUS_BACKOFF_BASE_SECONDS=2.0
-SCOPUS_BACKOFF_MAX_SECONDS=120.0
-
-# Delay entre requisições Scopus (segundos)
-SCOPUS_DELAY=0.15
-```
-
----
-
 ## 📊 Arquitetura
 
 ### Componentes Principais
@@ -363,14 +342,14 @@ data/processed/scopus_checkpoint.json
 
 ## 📌 Troubleshooting
 
-### Erro: "SCOPUS_API_KEY não configurada"
+### Erro: "ELSEVIER_API_KEY não configurada"
 
 ```bash
 # Criar/verificar .env
-cat .env | grep SCOPUS_API_KEY
+cat .env | grep ELSEVIER_API_KEY
 
 # Ou setar inline
-$env:SCOPUS_API_KEY="sua-chave"
+$env:ELSEVIER_API_KEY="sua-chave"
 ```
 
 ### Erro: "HTTP 429 — Too Many Requests"
@@ -432,7 +411,4 @@ Get-Content output.log -Wait
 - [Sirius - Viewpoint Language](http://www.obeodesign.com/sirius)
 
 ---
-
-**Última atualização**: Maio de 2026  
-**Versão**: 1.0.0
 
