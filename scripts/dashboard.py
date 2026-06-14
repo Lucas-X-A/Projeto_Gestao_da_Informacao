@@ -89,6 +89,7 @@ with st.sidebar:
         "Citações e Índice H": "Citações_Médias_por_Nível_Acadêmico.sparql",
         "Faixas de Impacto": "Faixas_de_Citação_por_Nível_Acadêmico.sparql",
         "Impacto por Conceito CAPES": "Impacto_por_Conceito_CAPES_e_Nível.sparql",
+        "Insights e Conclusão": "insights",
     }
 
     # Menu customizado
@@ -96,7 +97,7 @@ with st.sidebar:
         menu_title=None,  # Esconde o título padrão
         options=list(analises.keys()),
         # Ícones do Bootstrap
-        icons=["house", "graph-up", "bar-chart", "pie-chart", "award"],
+        icons=["house", "graph-up", "bar-chart", "pie-chart", "award", "lightbulb"],
         default_index=0,
         styles={
             "container": {
@@ -878,3 +879,41 @@ elif selecao == "Impacto por Conceito CAPES":
             st.dataframe(df)
     else:
         st.info("Sem dados disponíveis para este indicador.")
+
+elif selecao == "Insights e Conclusão":
+    st.title("💡 Insights e Conclusão")
+    st.caption("Síntese interpretativa dos principais padrões observados no painel.")
+
+    st.markdown("---")
+    st.subheader("Resumo dos achados")
+
+    st.info(
+        "Ao analisarmos os gráficos de média de citações, publicações, índice H e impacto, percebemos que os doutorandos da UFRPE produzem, em média, mais artigos e com maior impacto do que os mestrandos. Também observamos que, com o passar do tempo, essa diferença entre os dois grupos aumenta."
+    )
+
+    st.markdown(
+        """
+        <div style="
+            background-color: #1a3a5c;
+            border-left: 6px solid #4da6ff;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin: 16px 0;
+        ">
+            <p style="
+                color: #e8f4ff;
+                font-size: 1.05rem;
+                line-height: 1.7;
+                margin: 0 0 12px 0;
+            ">Essa tendência reforça o que já se conhece sobre a pós-graduação: o mestrado é uma fase de formação e aprendizado do pesquisador, enquanto o doutorado é o momento em que se espera uma contribuição científica original e de maior relevância.</p>
+            <p style="
+                color: #a8d4ff;
+                font-size: 1.05rem;
+                line-height: 1.7;
+                margin: 0;
+                font-weight: 600;
+            ">Dessa forma, fica clara a importância do doutorado para o fortalecimento da produção científica brasileira. Incentivar a continuidade dos mestrandos no doutorado, através de mais recursos e programas de fomento, é um caminho essencial para alcançarmos um impacto científico mais expressivo.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
