@@ -735,9 +735,9 @@ elif selecao == "Faixas de Impacto":
             "**Linhas sólidas:** Mestrado | **Linhas tracejadas:** Doutorado"
         )
         st.info(
-            "📊 **O que exibe:** A quantidade de autores classificados em diferentes faixas de impacto (Iniciante, Consolidado, Líder, Elite) ao longo do tempo.\n\n"
+            "📊 **O que exibe:** A quantidade de autores classificados em diferentes faixas de impacto (Iniciante, Consolidado, Líder) ao longo do tempo.\n\n"
             "🔍 **Análises possíveis:** Observar a transição e o amadurecimento dos pesquisadores. Permite analisar se o doutorado "
-            "consegue formar mais pesquisadores nas faixas 'Líder' e 'Elite' em comparação ao mestrado, validando o papel do doutorado na formação de cientistas de alto impacto."
+            "consegue formar mais pesquisadores nas faixas 'Consolidado' e 'Líder' em comparação ao mestrado, validando o papel do doutorado na formação de cientistas de alto impacto."
         )
 
         # Tabela de dados
@@ -884,35 +884,265 @@ elif selecao == "Insights e Conclusão":
     st.title("💡 Insights e Conclusão")
     st.caption("Síntese interpretativa dos principais padrões observados no painel.")
 
-    st.markdown("---")
-    st.subheader("Resumo dos achados")
+    # CSS customizado para os cards de insight
+    st.markdown(
+        """
+        <style>
+            .card-insight {
+                background-color: #1a3a5c;
+                padding: 22px 24px;
+                border-radius: 10px;
+                margin: 16px 0;
+                color: #e8f4ff;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+                line-height: 1.7;
+            }
+            .card-insight h4 {
+                color: #ffffff;
+                margin: 0 0 10px 0;
+                font-size: 1.25rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .card-insight p {
+                margin: 0;
+                color: #d0e4f7;
+                font-size: 1.15rem;  
+                line-height: 1.25;    
+            }
+            .borda-azul { border-left: 6px solid #4da6ff; }
+            .borda-ciano { border-left: 6px solid #00E5FF; }
+            .borda-amarelo { border-left: 6px solid #FFEA00; }
+            .borda-magenta { border-left: 6px solid #FF00FF; }
+            .borda-laranja { border-left: 6px solid #FF6D00; }
+            .card-conclusao {
+                background: linear-gradient(135deg, #1a3a5c 0%, #0f2440 100%);
+                border: 2px solid #4da6ff;
+                padding: 28px;
+                border-radius: 12px;
+                margin: 24px 0;
+                color: #e8f4ff;
+                text-align: center;
+                box-shadow: 0 6px 20px rgba(77, 166, 255, 0.15);
+            }
+            .card-conclusao h3 {
+                color: #FFEA00;
+                margin: 0 0 12px 0;
+                font-size: 1.3rem;
+            }
+            .card-conclusao p {
+                margin: 0;
+                font-size: 1.15rem;
+                line-height: 1.3;
+            }
+            .secao-titulo {
+                color: #4da6ff;
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin: 30px 0 12px 0;
+                padding-bottom: 6px;
+                border-bottom: 2px solid rgba(77, 166, 255, 0.3);
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    st.info(
-        "Ao analisarmos os gráficos de média de citações, publicações, índice H e impacto, percebemos que os doutorandos da UFRPE produzem, em média, mais artigos e com maior impacto do que os mestrandos. Também observamos que, com o passar do tempo, essa diferença entre os dois grupos aumenta."
+    # =====================================================================
+    # PERGUNTA CENTRAL DO KM
+    # =====================================================================
+    st.markdown(
+        """
+        <div class="card-insight borda-laranja">
+            <h4>🎯 Resposta à Pergunta Central do KM</h4>
+            <p>
+                <strong>💡 Achado Principal:</strong> Os dados analisados confirmam que o maior grau de instrução 
+                (Doutorado) promove, sim, um aumento na qualidade e quantidade das publicações científicas dos 
+                discentes da UFRPE, quando comparado ao Mestrado. Também é possível observar que, com o passar do tempo, 
+                essa diferença entre os dois grupos aumenta.<br>
+                Essas conclusões são sustentadas por múltiplos 
+                indicadores ao longo de todo o período analisado.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # =====================================================================
+    # VISÃO GERAL
+    # =====================================================================
+    st.markdown('<div class="secao-titulo">📈 Visão Geral</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>👥 Gráfico 1 — Discentes Titulados por Nível Acadêmico</h4>
+            <p>
+                <em>Seu insight sobre este gráfico será inserido aqui.</em>
+            </p>
+        </div>
+        <div class="card-insight borda-ciano">
+            <h4>📝 Gráfico 2 — Total de Publicações por Nível Acadêmico</h4>
+            <p>
+                <em>Seu insight sobre este gráfico será inserido aqui.</em>
+            </p>
+        </div>
+        <div class="card-insight borda-ciano">
+            <h4>🚀 Gráfico 3 — Publicações por Discente Titulado (Produtividade)</h4>
+            <p>
+                <em>Seu insight sobre este gráfico será inserido aqui.</em>
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # =====================================================================
+    # EVOLUÇÃO DE NOTAS DOS PPGs
+    # =====================================================================
+    st.markdown('<div class="secao-titulo">📈 Evolução de Notas dos PPGs</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>📊 Gráfico 1 — Evolução da Nota CAPES</h4>
+            <p>
+                Insira seu insight sobre este gráfico aqui.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     st.markdown(
         """
-        <div style="
-            background-color: #1a3a5c;
-            border-left: 6px solid #4da6ff;
-            border-radius: 8px;
-            padding: 18px 22px;
-            margin: 16px 0;
-        ">
-            <p style="
-                color: #e8f4ff;
-                font-size: 1.05rem;
-                line-height: 1.7;
-                margin: 0 0 12px 0;
-            ">Essa tendência reforça o que já se conhece sobre a pós-graduação: o mestrado é uma fase de formação e aprendizado do pesquisador, enquanto o doutorado é o momento em que se espera uma contribuição científica original e de maior relevância.</p>
-            <p style="
-                color: #a8d4ff;
-                font-size: 1.05rem;
-                line-height: 1.7;
-                margin: 0;
-                font-weight: 600;
-            ">Dessa forma, fica clara a importância do doutorado para o fortalecimento da produção científica brasileira. Incentivar a continuidade dos mestrandos no doutorado, através de mais recursos e programas de fomento, é um caminho essencial para alcançarmos um impacto científico mais expressivo.</p>
+        <div class="card-insight borda-ciano">
+            <h4>📈 Gráfico 2 — Evolução do Índice H Médio dos Discentes</h4>
+            <p>
+            Insira seu insight sobre este gráfico aqui.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # =====================================================================
+    # CITAÇÕES E ÍNDICE H
+    # =====================================================================
+    st.markdown('<div class="secao-titulo">📑 Citações e Índice H</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>📊 Gráfico 1 — Média de Citações por Nível Acadêmico (2018–2024)</h4>
+            <p>
+                Os discentes de <strong>Doutorado</strong> apresentaram média de citações <strong>superior</strong> 
+                à dos discentes de Mestrado em <strong>todos os anos analisados</strong>, com diferenças mais 
+                expressivas entre 2018 e 2021. O pico ocorreu em 2020, quando o Doutorado atingiu média de 
+                <strong>93,2 citações</strong>, frente a <strong>30,1</strong> no Mestrado. A partir de 2022 
+                observa-se uma redução geral das médias de citações e um estreitamento da diferença entre os 
+                níveis, mas o Doutorado mantém desempenho superior ao longo de todo o período, indicando 
+                <strong>maior impacto científico de suas publicações</strong>.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>📈 Gráfico 2 — Índice H Médio por Nível Acadêmico (2018–2024)</h4>
+            <p>
+                O Índice H médio dos discentes de <strong>Doutorado</strong> foi superior ao do Mestrado na 
+                <strong>maior parte do período analisado</strong>, evidenciando maior consistência entre 
+                produtividade e impacto das publicações. As maiores diferenças ocorreram entre 2018 e 2021, 
+                enquanto nos anos mais recentes houve aproximação dos resultados. Em 2022, o Mestrado apresentou 
+                valor ligeiramente superior ao Doutorado (<strong>1,33 contra 1,12</strong>), caracterizando uma 
+                inversão pontual da tendência observada. Apesar dessa exceção, o comportamento geral dos dados 
+                indica <strong>vantagem do Doutorado</strong> quanto ao impacto acumulado das pesquisas 
+                desenvolvidas pelos discentes.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # =====================================================================
+    # FAIXAS DE IMPACTO
+    # =====================================================================
+    st.markdown('<div class="secao-titulo">📊 Faixas de Impacto</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>🎯 Gráfico — Evolução da Distribuição de Autores por Faixa de Índice H (2018–2024)</h4>
+            <p>
+                A distribuição dos autores ao longo de 2018–2024 mostra <strong>predominância clara da faixa 
+                0-5 (Iniciante)</strong> em ambos os níveis, indicando que a maior parte da produção ainda 
+                está concentrada em pesquisadores com baixo Índice H. Mesmo assim, o Doutorado apresenta 
+                <strong>maior volume absoluto de autores</strong> e uma evolução mais consistente nessa faixa, 
+                além de concentrar mais casos nas faixas <strong>6-15 (Consolidado)</strong> e 
+                <strong>16-30 (Líder)</strong> do que o Mestrado. Já o Mestrado mantém valores mais baixos nas 
+                faixas intermediárias e superiores, sugerindo <strong>menor amadurecimento acadêmico</strong> 
+                no período. Em conjunto, o gráfico indica que o Doutorado contribui mais para a formação de 
+                pesquisadores com maior impacto científico, embora a base de autores ainda permaneça 
+                majoritariamente na faixa iniciante.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # =====================================================================
+    # IMPACTO POR CONCEITO CAPES
+    # =====================================================================
+    st.markdown('<div class="secao-titulo">📊 Impacto por Conceito CAPES</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>📊 Gráfico 1 — Média de Citações</h4>
+            <p>
+                Insira seu insight sobre este gráfico aqui.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+        <div class="card-insight borda-ciano">
+            <h4>📈 Gráfico 2 — Índice H médio</h4>
+            <p>
+                Insira seu insight sobre este gráfico aqui.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # =====================================================================
+    # CONCLUSÃO FINAL
+    # =====================================================================
+    st.markdown("---")
+
+    st.markdown(
+        """
+        <div class="card-conclusao">
+            <h3>💎 Conclusão Final</h3>
+            <p>
+                Os dados analisados confirmam que o <strong>Doutorado</strong> é o principal motor de 
+                impacto científico no ecossistema da UFRPE. Os indicadores de citações, índice H 
+                e distribuição de impacto demonstram de forma consistente que um <strong>maior grau de 
+                instrução está associado a maior qualidade e volume de produção científica</strong>.<br>
+                Estratégias de fomento que incentivem a transição de mestrandos para o doutorado e que 
+                apoiem pesquisadores da faixa <strong>"Iniciante" a migrarem para patamares de maior 
+                impacto</strong> são fundamentais para o fortalecimento da produção científica da 
+                instituição e do estado de Pernambuco.
+            </p>
         </div>
         """,
         unsafe_allow_html=True,
