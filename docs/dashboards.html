@@ -10,23 +10,10 @@ active: dashboards
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <!-- Cabeçalho -->
-  <header>
-    <h1>🔬 CT&I-PE</h1>
-    <p>Portal de Gestão do Conhecimento</p>
-  </header>
-
-  <!-- Navegação -->
-  <nav>
-    <a href="index.html">🏠 Home</a>
-    <a href="sobre.html">ℹ️ Sobre</a>
-    <a href="dashboards.html" class="active">📊 Dashboards</a>
-    <a href="redes-sociais.html">🌐 Redes Sociais</a>
-  </nav>
-
-  <!-- Conteúdo Principal -->
-  <div class="container">
+    <!-- Cabeçalho -->
+    {% include header.html %}
     
+  <div class="container">
     <!-- Destaque e Link para o Streamlit -->
     <section style="text-align: center; margin-bottom: 60px; padding: 40px; background-color: var(--primary-blue); border-radius: 8px; border: 1px solid var(--accent-cyan);">
       <h2 style="border: none; margin-bottom: 15px;">📊 Painel Interativo de Dados</h2>
