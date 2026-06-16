@@ -977,23 +977,16 @@ elif selecao == "Insights e Conclusão":
     st.markdown(
         """
         <div class="card-insight borda-ciano">
-            <h4>👥 Gráfico 1 — Discentes Titulados por Nível Acadêmico</h4>
+            <h4>👥 Gráficos da Seção de Indicadores Gerais por Período</h4>
             <p>
-                <em>Seu insight sobre este gráfico será inserido aqui.</em>
+                Analisando os dois primeiros gráficos exibidos no painel principal, pode-se observar que, de 2018 a 2024,
+                ocorre um aumento progressivo na quantidade de discentes de Mestrado titulados enquanto ocorre uma pequena diminuição na quantidade de discentes de Doutorado a cada ano. 
+                Um padrão semelhante acontece com o número de publicações realizadas no mesmo período, um aumento na quantidade de publicações de discentes de Mestrado, ocorrendo um aumento abrupto em 2021, 
+                e uma diminuição progressiva na quantidade de publicações de discentes de Doutorado, com exceção de 2021, onde também ocorre um aumento considerável, voltando a cair nos anos seguintes.
+                Já no gráfico de Publicações por Discente Titulado, é possível notar que nos anos de 2018 e 2019, a produtividade dos estudantes de Mestrado e de Doutorado da UFRPE era equiparável,
+                se distanciando apenas a partir de 2020, onde a produtividade dos estudantes de Doutorado começa a entrar em uma crescente até 2024, contrastando com os números associados à produtividade
+                de discentes de Mestrado, que entram em queda a partir de 2021.
             </p>
-        </div>
-        <div class="card-insight borda-ciano">
-            <h4>📝 Gráfico 2 — Total de Publicações por Nível Acadêmico</h4>
-            <p>
-                <em>Seu insight sobre este gráfico será inserido aqui.</em>
-            </p>
-        </div>
-        <div class="card-insight borda-ciano">
-            <h4>🚀 Gráfico 3 — Publicações por Discente Titulado (Produtividade)</h4>
-            <p>
-                <em>Seu insight sobre este gráfico será inserido aqui.</em>
-            </p>
-        </div>
         """,
         unsafe_allow_html=True,
     )
@@ -1006,21 +999,10 @@ elif selecao == "Insights e Conclusão":
     st.markdown(
         """
         <div class="card-insight borda-ciano">
-            <h4>📊 Gráfico 1 — Evolução da Nota CAPES</h4>
+            <h4>📊 Gráficos da Seção de Evolução de Notas dos PPGs</h4>
             <p>
-                Insira seu insight sobre este gráfico aqui.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        """
-        <div class="card-insight borda-ciano">
-            <h4>📈 Gráfico 2 — Evolução do Índice H Médio dos Discentes</h4>
-            <p>
-            Insira seu insight sobre este gráfico aqui.
+                Analisando as notas dos PPGs da UFRPE e as médias dos índices H dos discentes associados a esses PPGs, percebe-se que PPGs com notas de conceito mais altas (5, 6, 7) 
+                tendem a ter discentes com índices H mais elevados. 
             </p>
         </div>
         """,
