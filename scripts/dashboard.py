@@ -1085,21 +1085,20 @@ elif selecao == "Insights e Conclusão":
     st.markdown(
         """
         <div class="card-insight borda-ciano">
-            <h4>📊 Gráfico 1 — Média de Citações</h4>
+            <h4>📊 Gráficos da Seção de Impacto por Conceito CAPES</h4>
             <p>
-                Insira seu insight sobre este gráfico aqui.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        """
-        <div class="card-insight borda-ciano">
-            <h4>📈 Gráfico 2 — Índice H médio</h4>
-            <p>
-                Insira seu insight sobre este gráfico aqui.
+                Os dados apontam uma associação entre a nota CAPES e o impacto científico dos discentes, mas ela é mais irregular do que se poderia esperar. 
+                Entre 2018 e 2021, programas com notas mais altas (5 e 6) concentravam discentes com maior média de citações e Índice H. 
+                Já entre 2022 e 2024 esse padrão enfraquece: a nota 5 passa a liderar em citações no Doutorado, superando até a nota 6, o que mostra que a maior avaliação do programa nem sempre se reflete no impacto individual dos discentes.
+                A nota 3 só aparece no Mestrado, e isso ocorre porque, a partir de 2018, programas de Doutorado não podem ter conceito menor que 4, então não há doutorandos nessa faixa. 
+                Quando um PPG fica com nota baixa, ele costuma ser reestruturado ou incorporado por outro mais forte, como foi o caso de Ciência Animal Tropical, absorvido pelo PPG de Biociência Animal. 
+                Por isso a comparação direta entre níveis dentro da mesma nota só é possível a partir da nota 4.
+                O que se mantém estável em todo o período é o peso do nível acadêmico. O Doutorado apresenta indicadores consistentemente superiores ao Mestrado dentro de uma mesma nota, resultado esperado pela trajetória de pesquisa mais longa dos doutorandos. 
+                No Mestrado a relação com a nota é fraca e às vezes até inversa.
+                O Índice H é a métrica mais confiável para comparar, já que sofre menos com a defasagem de citações (publicações recentes ainda não tiveram tempo de acumular citações, e por isso o teto cai de 44,0 em 2022 para 23,3 em 2024). 
+                Mesmo assim, ele também oscila: cresce de forma ordenada com a nota no Doutorado em 2022 e 2023, mas quebra esse padrão em 2024, quando a nota 6 fica abaixo das notas 4 e 5.
+                Em resumo, <strong>programas melhor avaliados tendem a formar discentes com maior impacto científico, sobretudo no Doutorado e quando se olha o Índice H.</strong>
+                Mas a nota CAPES sozinha não prevê de forma confiável a qualidade da produção individual, porque avalia o programa como um todo (estrutura, corpo docente, formação) e não o desempenho de cada discente.
             </p>
         </div>
         """,
